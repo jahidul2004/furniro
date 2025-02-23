@@ -6,7 +6,7 @@ import { LuInstagram } from "react-icons/lu";
 const Footer = () => {
     return (
         <div>
-            <footer className="footer flex justify-between bg-base-200 text-base-content p-10">
+            <footer className="footer flex flex-col md:flex-row justify-between bg-base-200 text-base-content p-10">
                 <div>
                     <h1 className="text-2xl font-bold">Furniro</h1>
                     <p>
