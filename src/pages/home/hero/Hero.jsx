@@ -12,7 +12,9 @@ const Hero = () => {
             <div className="hero-content text-neutral-content text-center grid grid-cols-1 md:grid-cols-2">
                 <div></div>
                 <div className="max-w-md bg-[#fff3e3] rounded text-left text-black p-4">
-                    <p className="text-lg">New Arrival</p>
+                    <p className="text-lg font-semibold text-[#3b3b3b]">
+                        New Arrival
+                    </p>
                     <h1 className="my-1 leading-12 text-3xl md:text-4xl font-bold text-[#ba8d2f]">
                         Discover our new collection
                     </h1>
