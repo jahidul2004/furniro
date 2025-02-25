@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "title": "Wooden Dining Table",
+        "description": "Premium oak wood dining table",
+        "price": 12000,
+        "discount": 15,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": true
+    },
+    {
+        "id": 2,
+        "title": "Leather Sofa Set",
+        "description": "Comfortable brown leather sofa set",
+        "price": 25000,
+        "discount": 20,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": false
+    },
+    {
+        "id": 3,
+        "title": "Modern Office Chair",
+        "description": "Ergonomic black office chair",
+        "price": 7000,
+        "discount": 10,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": true
+    },
+    {
+        "id": 4,
+        "title": "King Size Bed",
+        "description": "Luxury wooden king size bed",
+        "price": 30000,
+        "discount": 25,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": false
+    },
+    {
+        "id": 5,
+        "title": "Glass Coffee Table",
+        "description": "Elegant glass top coffee table",
+        "price": 9000,
+        "discount": 30,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": true
+    },
+    {
+        "id": 6,
+        "title": "Bookshelf Cabinet",
+        "description": "Spacious wooden bookshelf cabinet",
+        "price": 11000,
+        "discount": 12,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": false
+    },
+    {
+        "id": 6,
+        "title": "Bookshelf Cabinet",
+        "description": "Spacious wooden bookshelf cabinet",
+        "price": 11000,
+        "discount": 12,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": false
+    },
+    {
+        "id": 6,
+        "title": "Bookshelf Cabinet",
+        "description": "Spacious wooden bookshelf cabinet",
+        "price": 11000,
+        "discount": 12,
+        "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "isNew": false
+    }
+]
