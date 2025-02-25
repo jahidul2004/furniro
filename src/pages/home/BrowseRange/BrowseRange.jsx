@@ -56,7 +56,10 @@ const BrowseRange = () => {
                 </div>
 
                 <div className="flex justify-center mt-10">
-                    <Link className="btn btn-outline border-[#2ec1ac] text-[#2ec1ac]">
+                    <Link
+                        to={"/shop"}
+                        className="btn btn-outline border-[#2ec1ac] text-[#2ec1ac]"
+                    >
                         Show All Products
                     </Link>
                 </div>
