@@ -1,4 +1,6 @@
 import { FaGreaterThan } from "react-icons/fa";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 const ProductDetails = () => {
     return (
@@ -74,19 +76,72 @@ const ProductDetails = () => {
             {/* Product area end */}
 
             {/* Additional data */}
-            <div role="tablist" className="tabs tabs-border">
-                <a role="tab" className="tab">
-                    Tab 1
-                </a>
-                <a role="tab" className="tab tab-active">
-                    Tab 2
-                </a>
-                <a role="tab" className="tab">
-                    Tab 3
-                </a>
+            <div className="w-[95%] md:container mx-auto my-10 py-5 text-center border-y border-[#9f9f9f]">
+                <Tabs>
+                    <TabList
+                        className={
+                            "text-lg font-semibold my-2 flex justify-center items-center gap-4"
+                        }
+                    >
+                        <Tab
+                            selectedClassName="text-[#b98e2f]"
+                            className="cursor-pointer"
+                        >
+                            Description
+                        </Tab>
+                        <Tab
+                            selectedClassName="text-[#b98e2f]"
+                            className={"cursor-pointer"}
+                        >
+                            Additional Info
+                        </Tab>
+                        <Tab
+                            selectedClassName="text-[#b98e2f]"
+                            className={"cursor-pointer"}
+                        >
+                            Reviews(5)
+                        </Tab>
+                    </TabList>
+
+                    <TabPanel className={"mx-0 md:mx-5 lg:mx-20"}>
+                        <p className="text-justify text-[#9f9f9f]">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Harum optio sed, qui corrupti saepe eum eos
+                            iure possimus in consequatur! Lorem ipsum dolor sit
+                            amet consectetur adipisicing elit. Quae, veniam?
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Tempora, nisi. Lorem ipsum dolor sit amet.
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Veritatis nihil repellat ratione accusantium
+                            blanditiis saepe, odio quae aspernatur sint
+                            voluptatem? Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Harum optio sed, qui corrupti
+                            saepe eum eos iure possimus in consequatur! Lorem
+                            ipsum.
+                        </p>
+                    </TabPanel>
+                    <TabPanel>
+                        <h2>Additional Info Here</h2>
+                    </TabPanel>
+                    <TabPanel>
+                        <h2>Reviews Here</h2>
+                    </TabPanel>
+                </Tabs>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <img
+                        className="h-[300px] w-full rounded"
+                        src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
+                        alt=""
+                    />
+                    <img
+                        className="h-[300px] w-full rounded"
+                        src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
+                        alt=""
+                    />
+                </div>
             </div>
 
-            <div>Main Content here</div>
             {/* Additional data end */}
         </div>
     );
