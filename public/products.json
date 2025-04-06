@@ -6,7 +6,8 @@
         "price": 12000,
         "discount": 15,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": true
+        "isNew": true,
+        "category": "furniture"
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@
         "price": 25000,
         "discount": 20,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": false
+        "isNew": false,
+        "category": "furniture"
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@
         "price": 7000,
         "discount": 10,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": true
+        "isNew": true,
+        "category": "stationery"
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@
         "price": 30000,
         "discount": 25,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": false
+        "isNew": false,
+        "category": "stationery"
     },
     {
         "id": 5,
@@ -42,7 +46,8 @@
         "price": 9000,
         "discount": 30,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": true
+        "isNew": true,
+        "category": "furniture"
     },
     {
         "id": 6,
@@ -51,7 +56,8 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": false
+        "isNew": false,
+        "category": "other"
     },
     {
         "id": 7,
@@ -60,7 +66,8 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": false
+        "isNew": false,
+        "category": "other"
     },
     {
         "id": 8,
@@ -69,6 +76,7 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        "isNew": false
+        "isNew": false,
+        "category": "furniture"
     }
 ]
