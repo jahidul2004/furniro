@@ -1,8 +1,30 @@
+import { useEffect, useState } from "react";
 import { FaGreaterThan } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 const ProductDetails = () => {
+    const currentId = useParams();
+    const [relatedProducts, setRelatedProducts] = useState([]);
+    const [currentProduct, setCurrentProduct] = useState({});
+
+    console.log("Current products is:", currentProduct);
+
+    useEffect(() => {
+        fetch("/products.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setRelatedProducts(data);
+                data.map((item) => {
+                    if (item.id == currentId.id) {
+                        setCurrentProduct(item);
+                    } else {
+                        setCurrentProduct({});
+                    }
+                });
+            });
+    }, []);
     return (
         <div>
             {/* stats bar */}
@@ -143,6 +165,15 @@ const ProductDetails = () => {
             </div>
 
             {/* Additional data end */}
+
+            {/* Related products */}
+            <div>
+                <h1 className="text-3xl font-bold text-center mb-4">
+                    Related Products
+                </h1>
+                <div></div>
+            </div>
+            {/* Related products end */}
         </div>
     );
 };
