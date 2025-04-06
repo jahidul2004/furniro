@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ data }) => {
     console.log(data);
     return (
@@ -13,9 +15,9 @@ const ProductCard = ({ data }) => {
 
                 <div className="flex justify-between items-center">
                     <h3 className="font-semibold">$ {data?.price}</h3>
-                    <button className="btn btn-sm mt-2 border-none shadow-none bg-[#2ec1ac] rounded-none text-white">
+                    <Link to={`/shop/${data?.id}`} className="btn btn-sm mt-2 border-none shadow-none bg-[#2ec1ac] rounded-none text-white">
                         View Details
-                    </button>
+                    </Link>
                 </div>
             </div>
             {data?.isNew && (
