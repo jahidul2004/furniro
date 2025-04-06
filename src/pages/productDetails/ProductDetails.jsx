@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaGreaterThan } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import ProductCard from "../../components/productCard/ProductCard";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -15,11 +16,21 @@ const ProductDetails = () => {
         fetch("/products.json")
             .then((res) => res.json())
             .then((data) => {
-                setRelatedProducts(data);
                 const matched = data.find((item) => item.id == currentId.id);
                 setCurrentProduct(matched || {});
+
+                if (matched) {
+                    const related = data.filter(
+                        (item) =>
+                            item.category === matched.category &&
+                            item.id != matched.id
+                    );
+                    setRelatedProducts(related);
+                    console.log("Related Products:", related);
+                }
             });
     }, [currentId]);
+
     return (
         <div>
             {/* stats bar */}
@@ -145,11 +156,27 @@ const ProductDetails = () => {
             {/* Additional data end */}
 
             {/* Related products */}
-            <div>
-                <h1 className="text-3xl font-bold text-center mb-4">
+            <div className="my-10">
+                <h1 className="text-3xl font-bold text-center mb-8">
                     Related Products
                 </h1>
-                <div></div>
+                <div className="w-[95%] md:container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                    {relatedProducts?.map((product) => (
+                        <ProductCard
+                            key={product?.id}
+                            data={product}
+                        ></ProductCard>
+                    ))}
+                </div>
+
+                <div className="flex justify-center mt-10">
+                    <Link
+                        className="btn border border-[#b98e2f] text-[#b98e2f]"
+                        to={"/shop"}
+                    >
+                        Show More
+                    </Link>
+                </div>
             </div>
             {/* Related products end */}
         </div>
