@@ -16,22 +16,17 @@ const ProductDetails = () => {
             .then((res) => res.json())
             .then((data) => {
                 setRelatedProducts(data);
-                data.map((item) => {
-                    if (item.id == currentId.id) {
-                        setCurrentProduct(item);
-                    } else {
-                        setCurrentProduct({});
-                    }
-                });
+                const matched = data.find((item) => item.id == currentId.id);
+                setCurrentProduct(matched || {});
             });
-    }, []);
+    }, [currentId]);
     return (
         <div>
             {/* stats bar */}
             <div className="bg-[#f9f0e7] p-4 md:p-6">
                 <div className="w-[95%] md:container mx-auto flex items-center gap-2 font-semibold text-[#9f9f9f] text-lg">
                     Home <FaGreaterThan /> Shop |{" "}
-                    <span className="text-black">Agree Sofa</span>
+                    <span className="text-black">{currentProduct?.title}</span>
                 </div>
             </div>
             {/* stats bar end */}
@@ -42,7 +37,7 @@ const ProductDetails = () => {
                 <div>
                     <img
                         className="rounded"
-                        src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
+                        src={currentProduct?.image}
                         alt=""
                     />
                 </div>
@@ -50,19 +45,14 @@ const ProductDetails = () => {
 
                 {/* Description area */}
                 <div>
-                    <h1 className="text-4xl font-bold">This is product name</h1>
+                    <h1 className="text-4xl font-bold">
+                        {currentProduct?.title}
+                    </h1>
                     <p className="my-2 text-xl font-semibold text-[#9f9f9f]">
-                        BDT-25000 TK
+                        BDT-{currentProduct?.price} TK
                     </p>
                     <p className="my-2">⭐⭐⭐⭐⭐ | 5 Reviews</p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Harum optio sed, qui corrupti saepe eum eos iure
-                        possimus in consequatur! Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Quae, veniam? Lorem ipsum
-                        dolor sit amet, consectetur adipisicing elit. Tempora,
-                        nisi. Lorem ipsum dolor sit amet.
-                    </p>
+                    <p>{currentProduct?.description}</p>
 
                     <div className="my-2">
                         <h6 className="mb-2 font-semibold">Size</h6>
@@ -127,19 +117,7 @@ const ProductDetails = () => {
 
                     <TabPanel className={"mx-0 md:mx-5 lg:mx-20"}>
                         <p className="text-justify text-[#9f9f9f]">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Harum optio sed, qui corrupti saepe eum eos
-                            iure possimus in consequatur! Lorem ipsum dolor sit
-                            amet consectetur adipisicing elit. Quae, veniam?
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Tempora, nisi. Lorem ipsum dolor sit amet.
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Veritatis nihil repellat ratione accusantium
-                            blanditiis saepe, odio quae aspernatur sint
-                            voluptatem? Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Harum optio sed, qui corrupti
-                            saepe eum eos iure possimus in consequatur! Lorem
-                            ipsum.
+                            {currentProduct?.description}
                         </p>
                     </TabPanel>
                     <TabPanel>
