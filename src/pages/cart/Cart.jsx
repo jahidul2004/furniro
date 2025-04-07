@@ -5,6 +5,7 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { HiOutlineTrophy } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 const Cart = () => {
     return (
         <div>
@@ -104,9 +105,12 @@ const Cart = () => {
                     <div className="flex flex-col gap-4 mt-4 text-center">
                         <span>Subtotal: 25000</span>
                         <span>Total: 25000</span>
-                        <button className="btn bg-[#b98e2f] text-white w-max mx-auto border-none">
+                        <Link
+                            to={"/checkout"}
+                            className="btn bg-[#b98e2f] text-white w-max mx-auto border-none"
+                        >
                             Checkout
-                        </button>
+                        </Link>
                     </div>
                 </div>
                 {/* Checkout div end */}
