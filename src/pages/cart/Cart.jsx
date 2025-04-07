@@ -1,5 +1,10 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
+import { CiCircleRemove } from "react-icons/ci";
+import { MdOutlineSupportAgent } from "react-icons/md";
+import { TbTruckDelivery } from "react-icons/tb";
+import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { HiOutlineTrophy } from "react-icons/hi2";
 const Cart = () => {
     return (
         <div>
@@ -18,7 +23,139 @@ const Cart = () => {
             </div>
             {/* Header end */}
 
-            <div className="w-[95%] md:container mx-auto">I am from cart</div>
+            <div className="w-[95%] md:container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 my-10">
+                {/* Product list */}
+                <div className="col-span-2">
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            {/* head */}
+                            <thead className="bg-[#f9f0e7] text-black">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* row 1 */}
+                                <tr>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="rounded h-12 w-12">
+                                                    <img
+                                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                        alt="Avatar Tailwind CSS Component"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Zemlak, Daniel and Leannon</td>
+                                    <td>2500</td>
+                                    <td>1</td>
+                                    <td>25000TK</td>
+                                    <td>
+                                        <CiCircleRemove
+                                            className="font-bold cursor-pointer text-[#b98e2f]"
+                                            size={30}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="rounded h-12 w-12">
+                                                    <img
+                                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                        alt="Avatar Tailwind CSS Component"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Zemlak, Daniel and Leannon</td>
+                                    <td>2500</td>
+                                    <td>1</td>
+                                    <td>25000TK</td>
+                                    <td>
+                                        <CiCircleRemove
+                                            className="font-bold cursor-pointer text-[#b98e2f]"
+                                            size={30}
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {/* Product list end */}
+
+                {/* Checkout div */}
+                <div className="bg-[#f9f0e7] p-2 md:p-4">
+                    <h1 className="text-2xl font-bold text-center">
+                        Cart Total
+                    </h1>
+
+                    <div className="flex flex-col gap-4 mt-4 text-center">
+                        <span>Subtotal: 25000</span>
+                        <span>Total: 25000</span>
+                        <button className="btn bg-[#b98e2f] text-white w-max mx-auto border-none">
+                            Checkout
+                        </button>
+                    </div>
+                </div>
+                {/* Checkout div end */}
+            </div>
+
+            {/* Feature card start */}
+            <div className="bg-[#f9f0e7]">
+                <div className="w-[95%] md:container mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div className="flex items-center gap-2">
+                        <HiOutlineTrophy size={60} />
+                        <div>
+                            <h1 className="text-xl font-bold">High Quality</h1>
+                            <p className="font-semibold text-[#898989]">
+                                Crafted from top materials
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <IoShieldCheckmarkOutline size={60} />
+                        <div>
+                            <h1 className="text-xl font-bold">
+                                Warranty Protection
+                            </h1>
+                            <p className="font-semibold text-[#898989]">
+                                Over 2 years
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <TbTruckDelivery size={60} />
+                        <div>
+                            <h1 className="text-xl font-bold">Free shipping</h1>
+                            <p className="font-semibold text-[#898989]">
+                                Order over 150 $
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <MdOutlineSupportAgent size={60} />
+                        <div>
+                            <h1 className="text-xl font-bold">24/7 support</h1>
+                            <p className="font-semibold text-[#898989]">
+                                With your team
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Feature card end */}
         </div>
     );
 };
