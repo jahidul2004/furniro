@@ -70,7 +70,7 @@ const Navbar = () => {
                     <Link>
                         <FaRegHeart size={20} />
                     </Link>
-                    <Link>
+                    <Link to={"/cart"}>
                         <IoCartOutline size={25} />
                     </Link>
                 </div>
