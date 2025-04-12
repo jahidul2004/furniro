@@ -34,54 +34,105 @@ const Contact = () => {
                 {/* Header area start end */}
 
                 {/* Address and contact form start */}
-                <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 mt-12">
                     {/* Address area start */}
-                    <div>
-                        {/* Address */}
-                        <div>
-                            <span className="flex items-center gap-2">
-                                <FaLocationDot size={23} />
-                                <h1 className="text-xl font-bold">Address</h1>
-                            </span>
-                            <p className="text-[#9f9f9f] mt-2">
-                                236 5th SE Avenue, <br /> New York NY10000,
-                                United States
-                            </p>
-                        </div>
-                        {/* Address */}
+                    <div className="flex justify-center">
+                        <div className="w-max flex flex-col gap-4 md:gap-6">
+                            {/* Address */}
+                            <div>
+                                <span className="flex items-center gap-2">
+                                    <FaLocationDot size={23} />
+                                    <h1 className="text-xl font-bold">
+                                        Address
+                                    </h1>
+                                </span>
+                                <p className="text-[#9f9f9f] mt-2">
+                                    236 5th SE Avenue, <br /> New York NY10000,
+                                    United States
+                                </p>
+                            </div>
+                            {/* Address */}
 
-                        {/* Phone */}
-                        <div>
-                            <span className="flex items-center gap-2">
-                                <FaPhone size={23} />
-                                <h1 className="text-xl font-bold">Phone</h1>
-                            </span>
-                            <p className="text-[#9f9f9f] mt-2">
-                                Mobile: +(84) 546-6789 <br /> Hotline: +(84)
-                                456-6789
-                            </p>
-                        </div>
-                        {/* Phone */}
+                            {/* Phone */}
+                            <div>
+                                <span className="flex items-center gap-2">
+                                    <FaPhone size={23} />
+                                    <h1 className="text-xl font-bold">Phone</h1>
+                                </span>
+                                <p className="text-[#9f9f9f] mt-2">
+                                    Mobile: +(84) 546-6789 <br /> Hotline: +(84)
+                                    456-6789
+                                </p>
+                            </div>
+                            {/* Phone */}
 
-                        {/* Working Time */}
-                        <div>
-                            <span className="flex items-center gap-2">
-                                <FaClock size={23} />
-                                <h1 className="text-xl font-bold">
-                                    Working Time
-                                </h1>
-                            </span>
-                            <p className="text-[#9f9f9f] mt-2">
-                                Monday-Friday: 9:00 - 22:00 <br />{" "}
-                                Saturday-Sunday: 9:00 - 21:00
-                            </p>
+                            {/* Working Time */}
+                            <div>
+                                <span className="flex items-center gap-2">
+                                    <FaClock size={23} />
+                                    <h1 className="text-xl font-bold">
+                                        Working Time
+                                    </h1>
+                                </span>
+                                <p className="text-[#9f9f9f] mt-2">
+                                    Monday-Friday: 9:00 - 22:00 <br />{" "}
+                                    Saturday-Sunday: 9:00 - 21:00
+                                </p>
+                            </div>
+                            {/* Working Time */}
                         </div>
-                        {/* Working Time */}
                     </div>
                     {/* Address area end */}
 
                     {/* Contact form start */}
-                    <div></div>
+                    <div className="flex justify-center">
+                        <div className="w-[90%] md:w-[80%]">
+                            <form action="">
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend">
+                                        Your Name
+                                    </legend>
+                                    <input
+                                        type="text"
+                                        className="input w-full md:w-[80%]"
+                                        placeholder="Enter Your Name"
+                                    />
+                                </fieldset>
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend">
+                                        Your Email
+                                    </legend>
+                                    <input
+                                        type="email"
+                                        className="input w-full md:w-[80%]"
+                                        placeholder="Enter Your Email"
+                                    />
+                                </fieldset>
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend">
+                                        Subject
+                                    </legend>
+                                    <input
+                                        type="text"
+                                        className="input w-full md:w-[80%]"
+                                        placeholder="Subject"
+                                    />
+                                </fieldset>
+                                <fieldset className="fieldset">
+                                    <legend className="fieldset-legend">
+                                        Message
+                                    </legend>
+                                    <textarea
+                                        className="textarea h-24 w-full md:w-[80%]"
+                                        placeholder="Enter Your Message"
+                                    ></textarea>
+                                </fieldset>
+                                <button className="btn bg-[#b98e2f] text-white border-none outline-none w-full md:w-[80%] mt-4">
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     {/* Contact form end */}
                 </div>
                 {/* Address and contact form end */}
