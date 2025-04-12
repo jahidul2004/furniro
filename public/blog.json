@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "title": "5 Tips to Choose the Perfect Sofa for Your Living Room",
+        "excerpt": "Discover the best ways to find a sofa that fits both your style and comfort.",
+        "content": "When buying a sofa, consider the size of your space, your comfort needs, the fabric type, and the color scheme. Don't forget to measure doorways and entrances before purchase!",
+        "image": "https://images.unsplash.com/photo-1618221043161-d9c7bcd7c297",
+        "author": "Emily Carter",
+        "date": "2025-04-05",
+        "tags": ["sofa", "living room", "interior design"]
+    },
+    {
+        "id": 2,
+        "title": "How to Set Up a Minimalist Workspace at Home",
+        "excerpt": "Less is more when it comes to productivity. Here's how to design a clutter-free office corner.",
+        "content": "Minimalist workspaces promote focus and calm. Start with a sleek desk and ergonomic chair. Keep your essentials only, and choose a neutral color palette.",
+        "image": "https://images.unsplash.com/photo-1587614382346-4ecb3f3df1c4",
+        "author": "James Miller",
+        "date": "2025-03-28",
+        "tags": ["workspace", "minimalist", "home office"]
+    },
+    {
+        "id": 3,
+        "title": "Why Wooden Furniture is Still in Style in 2025",
+        "excerpt": "Wooden furniture adds timeless elegance to your home. Here’s why it’s worth the investment.",
+        "content": "Wood is durable, versatile, and eco-friendly. Whether rustic or modern, wooden furniture blends into any style while adding warmth and sophistication.",
+        "image": "https://images.unsplash.com/photo-1598300053412-b90c2dcfa851",
+        "author": "Sarah Thompson",
+        "date": "2025-03-20",
+        "tags": ["wood", "furniture", "trends"]
+    },
+    {
+        "id": 4,
+        "title": "Creative Bedroom Ideas for Small Spaces",
+        "excerpt": "Maximize your bedroom space with these smart layout and furniture ideas.",
+        "content": "Use multifunctional furniture, vertical storage, and light colors to create the illusion of space. Mirrors and under-bed drawers work wonders too.",
+        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+        "author": "Olivia Brown",
+        "date": "2025-03-14",
+        "tags": ["bedroom", "small space", "design"]
+    },
+    {
+        "id": 5,
+        "title": "Top 10 Must-Have Furniture Pieces for a New Home",
+        "excerpt": "Starting fresh? Here are 10 essential furniture items to complete your dream home.",
+        "content": "From a comfy sofa to a versatile dining set, these pieces cover comfort, function, and style for every room in your house.",
+        "image": "https://images.unsplash.com/photo-1600585154154-3954b14f41f7",
+        "author": "David Lee",
+        "date": "2025-03-08",
+        "tags": ["furniture", "new home", "essentials"]
+    },
+    {
+        "id": 6,
+        "title": "Eco-Friendly Furniture: A Step Toward Sustainable Living",
+        "excerpt": "Learn how sustainable furniture can make your home and the planet a better place.",
+        "content": "Eco-friendly furniture uses recycled or responsibly sourced materials. It’s stylish, durable, and kind to the environment — a smart choice for the future.",
+        "image": "https://images.unsplash.com/photo-1600585154200-7b3c4f1d540e",
+        "author": "Sophia Green",
+        "date": "2025-02-28",
+        "tags": ["eco-friendly", "sustainable", "green living"]
+    },
+    {
+        "id": 7,
+        "title": "How to Match Furniture with Your Interior Style",
+        "excerpt": "Not sure what furniture fits your vibe? Here's how to match pieces with your style.",
+        "content": "Whether you love boho, modern, or vintage — matching textures, colors, and shapes is key. Choose pieces that reflect your lifestyle and taste.",
+        "image": "https://images.unsplash.com/photo-1616627981065-5d3c5b1c73c6",
+        "author": "Liam Johnson",
+        "date": "2025-02-20",
+        "tags": ["interior style", "matching", "home decor"]
+    }
+]

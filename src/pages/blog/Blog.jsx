@@ -18,6 +18,10 @@ const Blog = () => {
                 </p>
             </div>
             {/* Header end */}
+
+            {/* Main content */}
+            <div></div>
+            {/* Main content end */}
         </div>
     );
 };
