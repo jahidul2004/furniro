@@ -5,7 +5,7 @@ const BlogCard = ({ item }) => {
     return (
         <div className="my-4">
             <img
-                className="rounded h-[350px] w-full"
+                className="rounded h-[400px] w-full"
                 src={item?.image}
                 alt=""
             />
