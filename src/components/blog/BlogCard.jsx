@@ -25,7 +25,10 @@ const BlogCard = ({ item }) => {
             </div>
             <h1 className="text-2xl font-bold my-4 mt-6">{item?.title}</h1>
             <p className="text-gray-500 mb-4">{item?.excerpt}</p>
-            <Link className="border-b-2 border-gray-500 p-1 font-bold">
+            <Link
+                to={`/blog/${item?.id}`}
+                className="border-b-2 border-gray-500 p-1 font-bold"
+            >
                 Read More
             </Link>
         </div>
