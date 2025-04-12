@@ -1,8 +1,24 @@
 import { FaClock, FaGreaterThan, FaPhone } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { FaLocationDot } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const Contact = () => {
+    const handleContact = (event) => {
+        event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+
+        Swal.fire({
+            title: `Thank You ${name}`,
+            text: "We received your message. \n We Will Get Back To You Soon",
+            icon: "success",
+            confirmButtonText: "Close",
+        });
+
+        form.reset();
+    };
     return (
         <div>
             {/* Header */}
@@ -87,12 +103,14 @@ const Contact = () => {
                     {/* Contact form start */}
                     <div className="flex justify-center">
                         <div className="w-[90%] md:w-[80%]">
-                            <form action="">
+                            <form onSubmit={handleContact} action="">
                                 <fieldset className="fieldset">
                                     <legend className="fieldset-legend">
                                         Your Name
                                     </legend>
                                     <input
+                                        required
+                                        name="name"
                                         type="text"
                                         className="input w-full md:w-[80%]"
                                         placeholder="Enter Your Name"
@@ -103,6 +121,7 @@ const Contact = () => {
                                         Your Email
                                     </legend>
                                     <input
+                                        required
                                         type="email"
                                         className="input w-full md:w-[80%]"
                                         placeholder="Enter Your Email"
@@ -113,6 +132,7 @@ const Contact = () => {
                                         Subject
                                     </legend>
                                     <input
+                                        required
                                         type="text"
                                         className="input w-full md:w-[80%]"
                                         placeholder="Subject"
@@ -123,6 +143,7 @@ const Contact = () => {
                                         Message
                                     </legend>
                                     <textarea
+                                        required
                                         className="textarea h-24 w-full md:w-[80%]"
                                         placeholder="Enter Your Message"
                                     ></textarea>
