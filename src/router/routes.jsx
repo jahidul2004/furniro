@@ -7,41 +7,46 @@ import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/checkout/Checkout";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
+import Blog from "../pages/blog/Blog";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        children:[
+        children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <Home></Home>,
             },
             {
-                path:"/shop",
-                element: <Shop></Shop>
+                path: "/shop",
+                element: <Shop></Shop>,
             },
             {
-                path:"/shop/:id",
-                element: <ProductDetails></ProductDetails>
+                path: "/shop/:id",
+                element: <ProductDetails></ProductDetails>,
             },
             {
-                path:"/cart",
-                element: <Cart></Cart>
+                path: "/cart",
+                element: <Cart></Cart>,
             },
             {
-                path:"/checkout",
-                element:<Checkout></Checkout>
+                path: "/checkout",
+                element: <Checkout></Checkout>,
             },
             {
-                path:"/contact",
-                element: <Contact></Contact>
+                path: "/contact",
+                element: <Contact></Contact>,
             },
             {
-                path:"/about",
-                element:<About></About>
-            }
-        ]
+                path: "/about",
+                element: <About></About>,
+            },
+            {
+                path: "/blog",
+                element: <Blog></Blog>,
+            },
+        ],
     },
 ]);
 
