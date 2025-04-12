@@ -1,7 +1,18 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
+import { useEffect, useState } from "react";
+import BlogCard from "../../components/blog/BlogCard";
 
 const Blog = () => {
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        fetch("blog.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setBlogs(data);
+            });
+    }, []);
     return (
         <div>
             {/* Header */}
@@ -20,7 +31,15 @@ const Blog = () => {
             {/* Header end */}
 
             {/* Main content */}
-            <div></div>
+            <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+                {/* Blog Content */}
+                <div className="flex flex-col gap-4 md:gap-8">
+                    {blogs.map((item) => (
+                        <BlogCard key={item.id} item={item}></BlogCard>
+                    ))}
+                </div>
+                {/* Blog Content end */}
+            </div>
             {/* Main content end */}
         </div>
     );
