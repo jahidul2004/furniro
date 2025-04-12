@@ -42,7 +42,7 @@ const Blog = () => {
                 {/* Blog Content end */}
 
                 {/* Navigation area start */}
-                <div>
+                <div className="my-4">
                     <input
                         type="text"
                         className="input"
@@ -61,41 +61,28 @@ const Blog = () => {
                     </div>
                     <div>
                         <h1 className="text-2xl font-bold my-3">Recent Post</h1>
-                        <div className="flex flex-col gap-2 md:gap-4">
-                            <div className="flex items-center gap-2 cursor-pointer">
-                                <img
-                                    className="w-[70px] h-[70px] rounded"
-                                    src="https://i.ibb.co.com/HT3LH0tb/Eco-Rowe.jpg"
-                                    alt=""
-                                />
+                        <div className="flex flex-col gap-4 md:gap-8">
+                            {blogs.map((blog) => (
+                                <div className="flex items-center gap-4 cursor-pointer">
+                                    <img
+                                        className="w-[70px] h-[70px] rounded"
+                                        src={blog?.image}
+                                        alt=""
+                                    />
 
-                                <div>
-                                    <h1 className="text-xl font-bold">
-                                        Wooden Craft Handmade
-                                    </h1>
-                                    <p>
-                                        Not sure what furniture fits your vibe?
-                                    </p>
-                                    <p className="text-gray-500">12/10/2025</p>
+                                    <div>
+                                        <h1 className="font-bold">
+                                            {blog?.title}
+                                        </h1>
+                                        {/* <p>
+                                            {blog?.excerpt}
+                                        </p> */}
+                                        <p className="text-gray-500">
+                                            {blog?.date}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-2 cursor-pointer">
-                                <img
-                                    className="w-[70px] h-[70px] rounded"
-                                    src="https://i.ibb.co.com/vCY8SFLm/Customized-Living-Room-Furniture-Raleigh-NC.jpg"
-                                    alt=""
-                                />
-
-                                <div>
-                                    <h1 className="text-xl font-bold">
-                                        Wooden Craft Handmade
-                                    </h1>
-                                    <p>
-                                        Not sure what furniture fits your vibe?
-                                    </p>
-                                    <p className="text-gray-500">12/10/2025</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
