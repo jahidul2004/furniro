@@ -95,6 +95,8 @@ const Shop = () => {
                 </div>
             </div>
             {/* Products are end */}
+
+            {/* Feature card start */}
             <div className="bg-[#f9f0e7]">
                 <div className="w-[95%] md:container mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="flex items-center gap-2">
