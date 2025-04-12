@@ -11,6 +11,7 @@ import Blog from "../pages/blog/Blog";
 import BlogDetails from "../components/blog/BlogDetails";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
+import Dashboard from "../pages/admin/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
                 element: <Login></Login>,
             },
         ],
+    },
+    {
+        path: "/admin/dashboard",
+        element: <Dashboard></Dashboard>,
     },
 ]);
 
