@@ -1,11 +1,30 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import hero1 from "../../../assets/images/hero1.jpeg";
+
 const Hero = () => {
+    const images = [
+        "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
+        "https://i.ibb.co.com/0j9W53Qy/15824-177906.jpg",
+        "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+    ];
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex(
+                (prevIndex) => (prevIndex + 1) % images.length
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div
-            className="hero h-[500px]"
+            className="hero h-[550px] transition-all duration-1000 ease-in-out"
             style={{
-                backgroundImage: `url(${hero1})`,
+                backgroundImage: `url("${images[currentImageIndex]}")`,
             }}
         >
             <div className="hero-overlay opacity-10"></div>
