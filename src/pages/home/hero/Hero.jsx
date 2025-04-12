@@ -6,6 +6,7 @@ const Hero = () => {
         "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
         "https://i.ibb.co.com/0j9W53Qy/15824-177906.jpg",
         "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "https://i.ibb.co.com/XkrTy93T/modern-img.webp",
     ];
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
