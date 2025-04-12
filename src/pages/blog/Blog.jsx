@@ -32,9 +32,9 @@ const Blog = () => {
             {/* Header end */}
 
             {/* Main content */}
-            <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+            <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
                 {/* Blog Content */}
-                <div className="flex flex-col gap-4 md:gap-8 md:col-span-2">
+                <div className="flex flex-col gap-4 md:gap-8 md:col-span-2 order-2 md:order-1">
                     {blogs.map((item) => (
                         <BlogCard key={item.id} item={item}></BlogCard>
                     ))}
@@ -42,7 +42,7 @@ const Blog = () => {
                 {/* Blog Content end */}
 
                 {/* Navigation area start */}
-                <div className="my-4">
+                <div className="my-4 order-1 md:order-2">
                     <input
                         type="text"
                         className="input"
