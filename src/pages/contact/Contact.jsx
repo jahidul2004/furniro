@@ -18,6 +18,33 @@ const Contact = () => {
                 </p>
             </div>
             {/* Header end */}
+
+            {/* Main content start */}
+            <div className="my-10">
+                {/* Header area start */}
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold">Get In Touch With Us</h1>
+                    <p className="text-[#9f9f9f] mt-4">
+                        For More Information About Our Product & Services.
+                        Please Feel Free To Drop Us An Email. <br /> Our Staff
+                        Always Be There To Help You Out. Do Not Hesitate!
+                    </p>
+                </div>
+                {/* Header area start end */}
+
+                {/* Address and contact form start */}
+                <div>
+                    {/* Address area start */}
+                    <div></div>
+                    {/* Address area end */}
+
+                    {/* Contact form start */}
+                    <div></div>
+                    {/* Contact form end */}
+                </div>
+                {/* Address and contact form end */}
+            </div>
+            {/* Main content end */}
         </div>
     );
 };
