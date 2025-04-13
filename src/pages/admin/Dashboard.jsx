@@ -7,6 +7,7 @@ import { LuChefHat } from "react-icons/lu";
 import { MdOutlineReviews, MdOutlineWatchLater } from "react-icons/md";
 import { RiHome9Line } from "react-icons/ri";
 import { Link, Outlet } from "react-router-dom";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 
 const Dashboard = () => {
     return (
@@ -16,9 +17,9 @@ const Dashboard = () => {
                 {/* Page content here */}
                 <label
                     htmlFor="my-drawer-2"
-                    className="btn bg-[#5fbf54] text-white my-2 drawer-button lg:hidden"
+                    className="btn bg-[#f3f4f6] text-black drawer-button lg:hidden border-none w-full"
                 >
-                    Open drawer
+                    <FaArrowRightFromBracket size={21} />
                 </label>
 
                 <Outlet></Outlet>
