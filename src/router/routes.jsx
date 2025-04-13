@@ -12,6 +12,7 @@ import BlogDetails from "../components/blog/BlogDetails";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Dashboard from "../pages/admin/Dashboard";
+import AdminHome from "../pages/admin/home/AdminHome";
 
 const router = createBrowserRouter([
     {
@@ -67,12 +68,12 @@ const router = createBrowserRouter([
     {
         path: "/admin/dashboard",
         element: <Dashboard></Dashboard>,
-        children:[
+        children: [
             {
                 path: "/admin/dashboard",
-                element: <h1 className="text-3xl font-bold">Admin Dashboard</h1>,
-            }
-        ]
+                element: <AdminHome></AdminHome>,
+            },
+        ],
     },
 ]);
 
