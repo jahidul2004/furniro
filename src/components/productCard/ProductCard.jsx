@@ -5,7 +5,11 @@ const ProductCard = ({ data }) => {
     return (
         <div className="bg-[#f4f5f7] relative rounded">
             <div className="w-full h-[200px]">
-                <img className="w-full h-full rounded-t" src={data?.image} alt="" />
+                <img
+                    className="w-full h-full rounded-t"
+                    src={data?.image}
+                    alt=""
+                />
             </div>
             <div className="p-4">
                 <h1 className="text-xl font-semibold">{data?.title}</h1>
