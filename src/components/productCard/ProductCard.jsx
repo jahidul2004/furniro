@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ data }) => {
     console.log(data);
     return (
-        <div className="bg-[#f4f5f7] relative">
+        <div className="bg-[#f4f5f7] relative rounded">
             <div className="w-full h-[200px]">
-                <img className="w-full h-full" src={data?.image} alt="" />
+                <img className="w-full h-full rounded-t" src={data?.image} alt="" />
             </div>
             <div className="p-4">
                 <h1 className="text-xl font-semibold">{data?.title}</h1>
@@ -15,7 +15,10 @@ const ProductCard = ({ data }) => {
 
                 <div className="flex justify-between items-center">
                     <h3 className="font-semibold">$ {data?.price}</h3>
-                    <Link to={`/shop/${data?.id}`} className="btn btn-sm mt-2 border-none shadow-none bg-[#2ec1ac] rounded-none text-white">
+                    <Link
+                        to={`/shop/${data?.id}`}
+                        className="rounded btn btn-sm mt-2 border-none shadow-none bg-[#2ec1ac] text-white"
+                    >
                         View Details
                     </Link>
                 </div>
