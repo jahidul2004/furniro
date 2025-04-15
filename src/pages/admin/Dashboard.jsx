@@ -56,74 +56,85 @@ const Dashboard = () => {
                             <div className="flex-1">
                                 <ul className="pt-2 pb-4 space-y-1 text-sm">
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={"/admin/dashboard"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <FiHome />
                                             <span>Home</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={"/admin/dashboard/allOrders"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <AiOutlineProduct />
                                             <span>All Orders</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={
+                                                "/admin/dashboard/completedOrders"
+                                            }
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <IoCheckmarkDoneCircleOutline />
                                             <span>Completed Orders</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={
+                                                "/admin/dashboard/canceledOrders"
+                                            }
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <MdOutlineCancel />
                                             <span>Canceled Orders</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={"/admin/dashboard/allProducts"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <FaCubesStacked />
-                                            <span>Product</span>
-                                        </a>
+                                            <span>All Product</span>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={"/admin/dashboard/addProduct"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <RiApps2AddLine />
                                             <span>Add Product</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
-                                        <a
+                                        <Link
+                                            to={"/admin/dashboard/sellDetails"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
                                             <BsCoin />
                                             <span>Sell Details</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="rounded-sm">
                                         <a
