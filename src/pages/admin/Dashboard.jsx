@@ -19,7 +19,10 @@ const Dashboard = () => {
                     htmlFor="my-drawer-2"
                     className="btn bg-[#f3f4f6] text-black drawer-button lg:hidden border-none w-full"
                 >
-                    <FaArrowRightFromBracket size={21} />
+                    <FaArrowRightFromBracket
+                        className="bg-white p-2 w-10 h-10 rounded-full mt-4"
+                        size={21}
+                    />
                 </label>
 
                 <Outlet></Outlet>

@@ -35,18 +35,20 @@ const AdminHome = () => {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
-            {/* Welcome Message */}
-            <h1 className="text-3xl font-bold mb-4 text-gray-800">
-                Welcome to Admin Dashboard
-            </h1>
+            <div className="flex flex-col md:flex-row items-center justify-between">
+                {/* Welcome Message */}
+                <h1 className="text-center md:text-left text-4xl font-bold mb-4 text-gray-800">
+                    Welcome to Admin Dashboard
+                </h1>
 
-            {/* Real-time Clock */}
-            <p className="text-lg text-gray-700 font-medium mb-6">
-                🕒 Current Time: {time.toLocaleTimeString()}
-            </p>
+                {/* Real-time Clock */}
+                <p className="text-lg text-gray-700 bg-white w-max p-4 rounded-full font-medium mb-6">
+                    🕒 {time.toLocaleTimeString()}
+                </p>
+            </div>
 
             {/* Dashboard Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 <Card title="Total Users" value="1,235" color="text-blue-600" />
                 <Card
                     title="Total Sales"
