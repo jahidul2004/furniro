@@ -47,7 +47,7 @@ const ProductDetails = () => {
                 {/* Image area */}
                 <div>
                     <img
-                        className="rounded"
+                        className="rounded w-full h-full"
                         src={currentProduct?.image}
                         alt=""
                     />
