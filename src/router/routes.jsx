@@ -14,6 +14,7 @@ import Login from "../pages/login/Login";
 import Dashboard from "../pages/admin/Dashboard";
 import AdminHome from "../pages/admin/home/AdminHome";
 import AllOrders from "../pages/admin/allOrders/AllOrders";
+import AddProduct from "../pages/admin/addProduct/AddProduct";
 
 const router = createBrowserRouter([
     {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
             {
                 path: "allOrders",
                 element: <AllOrders></AllOrders>,
+            },
+            {
+                path: "addProduct",
+                element: <AddProduct></AddProduct>,
             },
         ],
     },
