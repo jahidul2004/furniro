@@ -6,6 +6,7 @@ import {
     IoAddCircleOutline,
     IoArrowBackSharp,
     IoCheckmarkDoneCircleOutline,
+    IoChevronBackCircleOutline,
 } from "react-icons/io5";
 import { LuChefHat } from "react-icons/lu";
 import {
@@ -170,6 +171,17 @@ const Dashboard = () => {
                                 </span>
                             </div>
                         </div>
+                        <li className="rounded-sm mt-5">
+                            <Link
+                                to={"/"}
+                                rel="noopener noreferrer"
+                                href="#"
+                                className="flex items-center p-2 space-x-3 rounded-md"
+                            >
+                                <IoChevronBackCircleOutline />
+                                <span>Back to Home</span>
+                            </Link>
+                        </li>
                     </div>
                 </ul>
             </div>
