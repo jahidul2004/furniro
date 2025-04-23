@@ -2,10 +2,12 @@ import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { Link } from "react-router-dom";
 import auth from "../../firebase/firebase.init";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Register = () => {
+    const { registerUser } = useContext(AuthContext);
     const handleRegister = (e) => {
         e.preventDefault();
 
@@ -15,7 +17,7 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        createUserWithEmailAndPassword(auth, email, password)
+        registerUser(email, password)
             .then((userCredential) => {
                 Swal.fire({
                     title: "Success",
