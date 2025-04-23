@@ -43,8 +43,11 @@ const Hero = () => {
                         Explore a stunning range of cutting-edge designs,
                         crafted with precision and innovation.
                     </p>
-                    <Link className="cursor-pointer btn mt-2 bg-[#ba8d2f] text-white border-none shadow-none rounded-none px-5">
-                        Buy Now
+                    <Link
+                        to={"/shop"}
+                        className="rounded btn mt-2 bg-[#ba8d2f] text-white border-none shadow-none px-5"
+                    >
+                        Buy Now!
                     </Link>
                 </div>
             </div>

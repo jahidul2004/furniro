@@ -92,7 +92,6 @@ const ProductDetails = () => {
 
                     <div className="flex items-center gap-4 mt-4">
                         <button className="btn btn-outline">Add To Cart</button>
-                        <button className="btn btn-outline">Compare</button>
                     </div>
                 </div>
                 {/* Description area end */}
