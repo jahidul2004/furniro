@@ -7,6 +7,7 @@ const MyAccount = () => {
     console.log(user);
     return (
         <div>
+            {user?.displayName}
             {user?.email}
 
             <button

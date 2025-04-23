@@ -7,7 +7,7 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Register = () => {
-    const { registerUser } = useContext(AuthContext);
+    const { registerUser, updateDisplayName } = useContext(AuthContext);
     const handleRegister = (e) => {
         e.preventDefault();
 
@@ -19,6 +19,13 @@ const Register = () => {
 
         registerUser(email, password)
             .then((userCredential) => {
+                updateDisplayName(name)
+                    .then(() => {
+                        // User's display name updated successfully
+                    })
+                    .catch((error) => {
+                        console.error("Error updating display name:", error);
+                    });
                 Swal.fire({
                     title: "Success",
                     text: "User registered successfully!",
