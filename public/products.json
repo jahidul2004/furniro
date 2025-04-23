@@ -7,6 +7,7 @@
         "price": 12000,
         "discount": 15,
         "image": "https://i.ibb.co.com/vCsPjzkX/images.jpg",
+        "image2": "https://i.ibb.co.com/XkrTy93T/modern-img.webp",
         "isNew": true,
         "category": "furniture"
     },
@@ -18,6 +19,7 @@
         "price": 25000,
         "discount": 20,
         "image": "https://i.ibb.co.com/XkrTy93T/modern-img.webp",
+        "image2": "https://i.ibb.co.com/HT3LH0tb/Eco-Rowe.jpg",
         "isNew": false,
         "category": "furniture"
     },
@@ -29,6 +31,7 @@
         "price": 7000,
         "discount": 10,
         "image": "https://i.ibb.co.com/HT3LH0tb/Eco-Rowe.jpg",
+        "image2": "https://i.ibb.co.com/vCY8SFLm/Customized-Living-Room-Furniture-Raleigh-NC.jpg",
         "isNew": true,
         "category": "stationery"
     },
@@ -40,6 +43,7 @@
         "price": 30000,
         "discount": 25,
         "image": "https://i.ibb.co.com/vCY8SFLm/Customized-Living-Room-Furniture-Raleigh-NC.jpg",
+        "image2": "https://i.ibb.co.com/0j9W53Qy/15824-177906.jpg",
         "isNew": false,
         "category": "stationery"
     },
@@ -51,6 +55,7 @@
         "price": 9000,
         "discount": 30,
         "image": "https://i.ibb.co.com/0j9W53Qy/15824-177906.jpg",
+        "image2": "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
         "isNew": true,
         "category": "furniture"
     },
@@ -62,6 +67,7 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
+        "image2": "https://i.ibb.co.com/kR8WrRT/images.jpg",
         "isNew": false,
         "category": "other"
     },
@@ -73,6 +79,7 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/kR8WrRT/images.jpg",
+        "image2": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
         "isNew": false,
         "category": "other"
     },
@@ -84,6 +91,7 @@
         "price": 11000,
         "discount": 12,
         "image": "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
+        "image2": "https://i.ibb.co.com/vCsPjzkX/images.jpg",
         "isNew": false,
         "category": "furniture"
     }
