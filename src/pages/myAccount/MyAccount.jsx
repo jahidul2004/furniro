@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import userIcon from "../../assets/accountProfile/user.png";
 import { Link } from "react-router-dom";
+import { CiCircleRemove } from "react-icons/ci";
 
 const MyAccount = () => {
     const { user, logout } = useContext(AuthContext);
@@ -70,7 +71,99 @@ const MyAccount = () => {
             {/* Profile area end */}
 
             {/* Action area */}
-            <div className="col-span-1 md:col-span-2"></div>
+            <div className="col-span-1 md:col-span-2">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* Product list */}
+                    <div className="col-span-2">
+                        <div className="overflow-x-auto">
+                            <table className="table">
+                                {/* head */}
+                                <thead className="bg-[#f9f0e7] text-black">
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* row 1 */}
+                                    <tr>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="rounded h-12 w-12">
+                                                        <img
+                                                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                            alt="Avatar Tailwind CSS Component"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Zemlak, Daniel and Leannon</td>
+                                        <td>2500</td>
+                                        <td>1</td>
+                                        <td>25000TK</td>
+                                        <td>
+                                            <CiCircleRemove
+                                                className="font-bold cursor-pointer text-[#b98e2f]"
+                                                size={30}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="rounded h-12 w-12">
+                                                        <img
+                                                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                                            alt="Avatar Tailwind CSS Component"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Zemlak, Daniel and Leannon</td>
+                                        <td>2500</td>
+                                        <td>1</td>
+                                        <td>25000TK</td>
+                                        <td>
+                                            <CiCircleRemove
+                                                className="font-bold cursor-pointer text-[#b98e2f]"
+                                                size={30}
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {/* Product list end */}
+
+                    {/* Checkout div */}
+                    <div className="bg-[#f9f0e7] p-2 md:p-4 w-full">
+                        <h1 className="text-2xl font-bold text-center">
+                            Cart Total
+                        </h1>
+
+                        <div className="flex flex-col gap-4 mt-4 text-center">
+                            <span>Subtotal: 25000</span>
+                            <span>Total: 25000</span>
+                            <Link
+                                to={"/checkout"}
+                                className="btn bg-[#b98e2f] text-white w-max mx-auto border-none"
+                            >
+                                Checkout
+                            </Link>
+                        </div>
+                    </div>
+                    {/* Checkout div end */}
+                </div>
+            </div>
             {/* Action area end */}
         </div>
     );
