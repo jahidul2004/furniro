@@ -36,7 +36,8 @@ const ProductDetails = () => {
             {/* stats bar */}
             <div className="bg-[#f9f0e7] p-4 md:p-6">
                 <div className="w-[95%] md:container mx-auto flex items-center gap-2 font-semibold text-[#9f9f9f] text-lg">
-                    Home <FaGreaterThan /> Shop |{" "}
+                    <Link to={"/"}>Home</Link> <FaGreaterThan />{" "}
+                    <Link to={"/shop"}>Shop</Link> |{" "}
                     <span className="text-black">{currentProduct?.title}</span>
                 </div>
             </div>
@@ -147,7 +148,7 @@ const ProductDetails = () => {
                     />
                     <img
                         className="h-[300px] w-full rounded"
-                        src={currentProduct?.image}
+                        src={currentProduct?.image2}
                         alt=""
                     />
                 </div>
