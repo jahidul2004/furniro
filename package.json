@@ -22,7 +22,7 @@
     "react-tabs": "^6.1.0",
     "recharts": "^2.15.2",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^11.17.2",
+    "sweetalert2": "^11.19.1",
     "tailwindcss": "^4.0.8"
   },
   "devDependencies": {

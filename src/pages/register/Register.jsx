@@ -1,8 +1,40 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { Link } from "react-router-dom";
+import auth from "../../firebase/firebase.init";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Register = () => {
+    const handleRegister = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const name = form.username.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "User registered successfully!",
+                    icon: "success",
+                    confirmButtonText: "Close",
+                });
+            })
+            .catch((error) => {
+                Swal.fire({
+                    title: "Error!",
+                    text: error.message,
+                    icon: "error",
+                    confirmButtonText: "Close",
+                });
+            });
+
+        form.reset();
+    };
     return (
         <div>
             {/* Header */}
@@ -25,7 +57,12 @@ const Register = () => {
                 {/* Register form */}
                 <div className="order-2 md:order-1 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
                     <h1 className="text-2xl font-bold text-center">Register</h1>
-                    <form noValidate="" action="" className="space-y-6">
+                    <form
+                        onSubmit={handleRegister}
+                        noValidate=""
+                        action=""
+                        className="space-y-6"
+                    >
                         <div className="space-y-1 text-sm">
                             <label
                                 htmlFor="username"
