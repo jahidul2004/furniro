@@ -17,6 +17,7 @@ import AllOrders from "../pages/admin/allOrders/AllOrders";
 import AddProduct from "../pages/admin/addProduct/AddProduct";
 import MyAccount from "../pages/myAccount/MyAccount";
 import LoginRegisterPrivate from "./LoginRegisterPrivate";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -77,7 +78,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/myAccount",
-                element: <MyAccount></MyAccount>,
+                element: (
+                    <PrivateRoute>
+                        <MyAccount></MyAccount>
+                    </PrivateRoute>
+                ),
             },
         ],
     },
