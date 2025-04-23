@@ -64,7 +64,7 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">{links}</ul>
                 </div>
                 <div className="navbar-end flex gap-4 md:gap-8 items-center">
-                    <Link>
+                    <Link to={"/register"}>
                         <FaRegUser size={20} />
                     </Link>
                     <Link>
