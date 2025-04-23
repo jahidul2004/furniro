@@ -14,7 +14,7 @@ const ProductCard = ({ data }) => {
             <div className="p-4">
                 <h1 className="text-xl font-semibold">{data?.title}</h1>
                 <p className="my-2 text-[#898989] font-semibold">
-                    {data?.description}
+                    {data?.shortDescription}
                 </p>
 
                 <div className="flex justify-between items-center">
