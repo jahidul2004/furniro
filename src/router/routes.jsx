@@ -16,6 +16,7 @@ import AdminHome from "../pages/admin/home/AdminHome";
 import AllOrders from "../pages/admin/allOrders/AllOrders";
 import AddProduct from "../pages/admin/addProduct/AddProduct";
 import MyAccount from "../pages/myAccount/MyAccount";
+import LoginRegisterPrivate from "./LoginRegisterPrivate";
 
 const router = createBrowserRouter([
     {
@@ -60,11 +61,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "/register",
-                element: <Register></Register>,
+                element: (
+                    <LoginRegisterPrivate>
+                        <Register></Register>
+                    </LoginRegisterPrivate>
+                ),
             },
             {
                 path: "/login",
-                element: <Login></Login>,
+                element: (
+                    <LoginRegisterPrivate>
+                        <Login></Login>
+                    </LoginRegisterPrivate>
+                ),
             },
             {
                 path: "/myAccount",
