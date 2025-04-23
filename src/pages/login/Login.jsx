@@ -3,6 +3,7 @@ import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { login, setUser } = useContext(AuthContext);
@@ -20,9 +21,21 @@ const Login = () => {
                 const loggedUser = result.user;
                 setUser(loggedUser);
                 form.reset();
+                Swal.fire({
+                    title: "Success",
+                    text: "Login successful",
+                    icon: "success",
+                    confirmButtonText: "Close",
+                });
             })
             .catch((error) => {
                 console.error("Login error:", error.message);
+                Swal.fire({
+                    title: "Error!",
+                    text: error.message,
+                    icon: "error",
+                    confirmButtonText: "Close",
+                });
             });
     };
     return (
