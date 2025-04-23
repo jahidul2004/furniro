@@ -1,8 +1,30 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Login = () => {
+    const { login, setUser } = useContext(AuthContext);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        login(email, password)
+            .then((result) => {
+                const loggedUser = result.user;
+                setUser(loggedUser);
+                form.reset();
+            })
+            .catch((error) => {
+                console.error("Login error:", error.message);
+            });
+    };
     return (
         <div>
             {/* Header */}
@@ -25,7 +47,12 @@ const Login = () => {
                 {/* Register form */}
                 <div className="order-2 md:order-1 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
                     <h1 className="text-2xl font-bold text-center">Login</h1>
-                    <form noValidate="" action="" className="space-y-6">
+                    <form
+                        onSubmit={handleLogin}
+                        noValidate=""
+                        action=""
+                        className="space-y-6"
+                    >
                         <div className="space-y-1 text-sm">
                             <label
                                 htmlFor="username"

@@ -2,8 +2,11 @@ import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoCartOutline, IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
     const links = (
         <>
             <li>
@@ -64,7 +67,10 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">{links}</ul>
                 </div>
                 <div className="navbar-end flex gap-4 md:gap-8 items-center">
-                    <Link to={"/register"}>
+                    <Link
+                        to={user ? "/myAccount" : "/register"}
+                        className="hidden md:flex"
+                    >
                         <FaRegUser size={20} />
                     </Link>
                     <Link>
