@@ -6,7 +6,14 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 const Cart = () => {
+    const [cartProducts, setCartProducts] = useState([]);
+
+    useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCartProducts(cart);
+    }, []);
     return (
         <div>
             {/* Header */}
@@ -41,55 +48,32 @@ const Cart = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* row 1 */}
-                                <tr>
-                                    <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="rounded h-12 w-12">
-                                                    <img
-                                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                        alt="Avatar Tailwind CSS Component"
-                                                    />
+                                {cartProducts.map((product) => (
+                                    <tr>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="rounded h-12 w-12">
+                                                        <img
+                                                            src={product?.image}
+                                                            alt="Avatar Tailwind CSS Component"
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>Zemlak, Daniel and Leannon</td>
-                                    <td>2500</td>
-                                    <td>1</td>
-                                    <td>25000TK</td>
-                                    <td>
-                                        <CiCircleRemove
-                                            className="font-bold cursor-pointer text-[#b98e2f]"
-                                            size={30}
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="rounded h-12 w-12">
-                                                    <img
-                                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                        alt="Avatar Tailwind CSS Component"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Zemlak, Daniel and Leannon</td>
-                                    <td>2500</td>
-                                    <td>1</td>
-                                    <td>25000TK</td>
-                                    <td>
-                                        <CiCircleRemove
-                                            className="font-bold cursor-pointer text-[#b98e2f]"
-                                            size={30}
-                                        />
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>{product?.title}</td>
+                                        <td>{product?.price}</td>
+                                        <td>1</td>
+                                        <td>25000TK</td>
+                                        <td>
+                                            <CiCircleRemove
+                                                className="font-bold cursor-pointer text-[#b98e2f]"
+                                                size={30}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
