@@ -10,8 +10,6 @@ const ProductDetails = () => {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [currentProduct, setCurrentProduct] = useState({});
 
-    console.log("Current products is:", currentProduct);
-
     useEffect(() => {
         fetch("/products.json")
             .then((res) => res.json())
@@ -30,6 +28,14 @@ const ProductDetails = () => {
                 }
             });
     }, [currentId]);
+
+    const handleAddToCart = (product) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        cart.push(product);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+    };
 
     return (
         <div>
@@ -91,7 +97,14 @@ const ProductDetails = () => {
                     </div>
 
                     <div className="flex items-center gap-4 mt-4">
-                        <button className="btn btn-outline">Add To Cart</button>
+                        <button
+                            onClick={() => {
+                                handleAddToCart(currentProduct);
+                            }}
+                            className="btn btn-outline"
+                        >
+                            Add To Cart
+                        </button>
                     </div>
                 </div>
                 {/* Description area end */}
