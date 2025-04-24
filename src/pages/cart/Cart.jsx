@@ -14,6 +14,13 @@ const Cart = () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartProducts(cart);
     }, []);
+
+    const handleRemoveFromCart = (productId) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const updatedCart = cart.filter((item) => item.id !== productId);
+        setCartProducts(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+    };
     return (
         <div>
             {/* Header */}
@@ -68,6 +75,11 @@ const Cart = () => {
                                         <td>25000TK</td>
                                         <td>
                                             <CiCircleRemove
+                                                onClick={() => {
+                                                    handleRemoveFromCart(
+                                                        product?.id
+                                                    );
+                                                }}
                                                 className="font-bold cursor-pointer text-[#b98e2f]"
                                                 size={30}
                                             />
@@ -83,7 +95,7 @@ const Cart = () => {
                 {/* Checkout div */}
                 <div className="bg-[#f9f0e7] p-2 md:p-4">
                     <h1 className="text-2xl font-bold text-center">
-                        Cart Total
+                        Cart Total({cartProducts?.length})
                     </h1>
 
                     <div className="flex flex-col gap-4 mt-4 text-center">
