@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import Swal from "sweetalert2";
+import ReviewCard from "../../components/reviewCard/ReviewCard";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -159,7 +160,7 @@ const ProductDetails = () => {
                             selectedClassName="text-[#b98e2f]"
                             className={"cursor-pointer"}
                         >
-                            Reviews(5)
+                            Reviews({reviews?.length})
                         </Tab>
                     </TabList>
 
@@ -172,7 +173,14 @@ const ProductDetails = () => {
                         <h2>Additional Info Here</h2>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Reviews Here</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {reviews?.map((review) => (
+                                <ReviewCard
+                                    key={review?.id}
+                                    data={review}
+                                ></ReviewCard>
+                            ))}
+                        </div>
                     </TabPanel>
                 </Tabs>
 
