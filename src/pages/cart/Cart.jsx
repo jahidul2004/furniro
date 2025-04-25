@@ -7,6 +7,7 @@ import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState([]);
 
@@ -20,6 +21,15 @@ const Cart = () => {
         const updatedCart = cart.filter((item) => item.id !== productId);
         setCartProducts(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product removed from cart",
+            showConfirmButton: false,
+            timer: 2500,
+            toast: true,
+        });
     };
     return (
         <div>

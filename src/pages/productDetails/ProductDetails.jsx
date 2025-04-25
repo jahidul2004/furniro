@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductCard from "../../components/productCard/ProductCard";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -35,6 +36,15 @@ const ProductDetails = () => {
         cart.push(product);
 
         localStorage.setItem("cart", JSON.stringify(cart));
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added to cart",
+            showConfirmButton: false,
+            timer: 2500,
+            toast: true,
+        });
     };
 
     return (
