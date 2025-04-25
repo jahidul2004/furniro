@@ -164,12 +164,12 @@ const ProductDetails = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <img
-                        className="h-[300px] w-full rounded"
+                        className="h-[350px] w-full rounded"
                         src={currentProduct?.image}
                         alt=""
                     />
                     <img
-                        className="h-[300px] w-full rounded"
+                        className="h-[350px] w-full rounded"
                         src={currentProduct?.image2}
                         alt=""
                     />

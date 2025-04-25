@@ -1,0 +1,82 @@
+[
+    {
+        "id": "1",
+        "reviewerName": "Emma Johnson",
+        "date": "2025-03-15",
+        "rating": 4.5,
+        "reviewMessage": "The furniture quality is top-notch. Delivery was on time and the packaging was excellent.",
+        "reviewerImage": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+        "id": "2",
+        "reviewerName": "Liam Smith",
+        "date": "2025-03-18",
+        "rating": 4.0,
+        "reviewMessage": "Very stylish design and comfortable seating. Slight delay in delivery, but overall happy.",
+        "reviewerImage": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    {
+        "id": "3",
+        "reviewerName": "Sophia Martinez",
+        "date": "2025-03-22",
+        "rating": 5.0,
+        "reviewMessage": "Absolutely love my new sofa! Looks exactly like the picture. Highly recommend Furniro!",
+        "reviewerImage": "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+    {
+        "id": "4",
+        "reviewerName": "Noah Williams",
+        "date": "2025-03-24",
+        "rating": 4.8,
+        "reviewMessage": "Great customer support and fast response. The table set is elegant and durable.",
+        "reviewerImage": "https://randomuser.me/api/portraits/men/55.jpg"
+    },
+    {
+        "id": "5",
+        "reviewerName": "Isabella Brown",
+        "date": "2025-03-28",
+        "rating": 4.3,
+        "reviewMessage": "Product was good but the color was a little different than expected. Still satisfied!",
+        "reviewerImage": "https://randomuser.me/api/portraits/women/30.jpg"
+    },
+    {
+        "id": "6",
+        "reviewerName": "James Davis",
+        "date": "2025-03-29",
+        "rating": 5.0,
+        "reviewMessage": "Perfect chair for my home office. Build quality is excellent and looks premium.",
+        "reviewerImage": "https://randomuser.me/api/portraits/men/75.jpg"
+    },
+    {
+        "id": "7",
+        "reviewerName": "Mia Wilson",
+        "date": "2025-04-01",
+        "rating": 4.7,
+        "reviewMessage": "Delivery was quick, and the bed frame is strong and easy to assemble. Very happy!",
+        "reviewerImage": "https://randomuser.me/api/portraits/women/22.jpg"
+    },
+    {
+        "id": "8",
+        "reviewerName": "Benjamin Moore",
+        "date": "2025-04-03",
+        "rating": 3.9,
+        "reviewMessage": "Good value for money, but the cushions could have been softer.",
+        "reviewerImage": "https://randomuser.me/api/portraits/men/60.jpg"
+    },
+    {
+        "id": "9",
+        "reviewerName": "Charlotte Taylor",
+        "date": "2025-04-06",
+        "rating": 4.6,
+        "reviewMessage": "Very elegant design and finish. Matches perfectly with my living room theme.",
+        "reviewerImage": "https://randomuser.me/api/portraits/women/52.jpg"
+    },
+    {
+        "id": "10",
+        "reviewerName": "Elijah Anderson",
+        "date": "2025-04-09",
+        "rating": 5.0,
+        "reviewMessage": "Best purchase I've made in a while. 100% satisfied with the product and service.",
+        "reviewerImage": "https://randomuser.me/api/portraits/men/33.jpg"
+    }
+]
