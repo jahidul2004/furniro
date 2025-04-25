@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import userIcon from "../../assets/accountProfile/user.png";
 import { Link } from "react-router-dom";
 import { CiCircleRemove } from "react-icons/ci";
+import { CgArrowLeftO, CgShoppingBag } from "react-icons/cg";
+import { FiEdit } from "react-icons/fi";
 
 const MyAccount = () => {
     const { user, logout } = useContext(AuthContext);
@@ -30,6 +32,13 @@ const MyAccount = () => {
                     </h1>
                     <p className="mb-4">{user?.email}</p>
                     <div className="flex justify-center items-center gap-1">
+                        <Link
+                            to={"/shop"}
+                            className="btn bg-white shadow-none border-none text-[#b98e2f]"
+                        >
+                            <FiEdit />
+                            Edit Profile
+                        </Link>
                         <button
                             onClick={() => {
                                 logout()
@@ -57,14 +66,9 @@ const MyAccount = () => {
                             }}
                             className="btn bg-white text-[#b98e2f] border-none shadow-none"
                         >
+                            <CgArrowLeftO />
                             Logout
                         </button>
-                        <Link
-                            to={"/shop"}
-                            className="btn bg-white shadow-none border-none text-[#b98e2f]"
-                        >
-                            Shop
-                        </Link>
                     </div>
                 </div>
             </div>
