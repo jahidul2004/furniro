@@ -8,8 +8,9 @@ import {
     IoCheckmarkDoneCircleOutline,
     IoChevronBackCircleOutline,
 } from "react-icons/io5";
-import { LuChefHat } from "react-icons/lu";
+import { LuChefHat, LuClock } from "react-icons/lu";
 import {
+    MdOutlineAddBox,
     MdOutlineCancel,
     MdOutlineReviews,
     MdOutlineWatchLater,
@@ -17,9 +18,10 @@ import {
 import { RiApps2AddLine, RiHome9Line } from "react-icons/ri";
 import { Link, Outlet } from "react-router-dom";
 import { FaArrowRightFromBracket, FaCubesStacked } from "react-icons/fa6";
-import { FiHome } from "react-icons/fi";
+import { FiHome, FiUsers } from "react-icons/fi";
 import { AiOutlineLogout, AiOutlineProduct } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
+import { FaBlog } from "react-icons/fa";
 
 const Dashboard = () => {
     return (
@@ -87,6 +89,19 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
+                                            <LuClock />
+                                            <span>Pending Orders</span>
+                                        </Link>
+                                    </li>
+                                    <li className="rounded-sm">
+                                        <Link
+                                            to={
+                                                "/admin/dashboard/completedOrders"
+                                            }
+                                            rel="noopener noreferrer"
+                                            href="#"
+                                            className="flex items-center p-2 space-x-3 rounded-md"
+                                        >
                                             <IoCheckmarkDoneCircleOutline />
                                             <span>Completed Orders</span>
                                         </Link>
@@ -138,6 +153,39 @@ const Dashboard = () => {
                                         </Link>
                                     </li>
                                     <li className="rounded-sm">
+                                        <Link
+                                            to={"/admin/dashboard/sellDetails"}
+                                            rel="noopener noreferrer"
+                                            href="#"
+                                            className="flex items-center p-2 space-x-3 rounded-md"
+                                        >
+                                            <FiUsers />
+                                            <span>Users</span>
+                                        </Link>
+                                    </li>
+                                    <li className="rounded-sm">
+                                        <Link
+                                            to={"/admin/dashboard/sellDetails"}
+                                            rel="noopener noreferrer"
+                                            href="#"
+                                            className="flex items-center p-2 space-x-3 rounded-md"
+                                        >
+                                            <FaBlog />
+                                            <span>Blogs</span>
+                                        </Link>
+                                    </li>
+                                    <li className="rounded-sm">
+                                        <Link
+                                            to={"/admin/dashboard/sellDetails"}
+                                            rel="noopener noreferrer"
+                                            href="#"
+                                            className="flex items-center p-2 space-x-3 rounded-md"
+                                        >
+                                            <MdOutlineAddBox />
+                                            <span>Add Blog</span>
+                                        </Link>
+                                    </li>
+                                    <li className="rounded-sm">
                                         <a
                                             rel="noopener noreferrer"
                                             href="#"
@@ -150,7 +198,7 @@ const Dashboard = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="flex items-center p-2 mt-12 space-x-4 justify-self-end">
+                        <div className="flex items-center p-2 mt-2 space-x-4 justify-self-end">
                             <img
                                 src="https://i.ibb.co.com/HT3LH0tb/Eco-Rowe.jpg"
                                 alt=""
