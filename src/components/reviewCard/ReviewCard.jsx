@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const ReviewCard = ({ data }) => {
     return (
-        <div className="text-left bg-white shadow-md rounded-2xl p-5 flex flex-col gap-4 max-w-md mx-auto">
+        <div className="text-left bg-white shadow-md rounded-2xl p-5 flex flex-col gap-4 max-w-md mx-auto border border-gray-200">
             {/* Reviewer Info */}
             <div className="flex items-center gap-4">
                 <img

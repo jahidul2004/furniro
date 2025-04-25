@@ -8,6 +8,12 @@ import Swal from "sweetalert2";
 import ReviewCard from "../../components/reviewCard/ReviewCard";
 import { MessageCircleOff } from "lucide-react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
+
 const ProductDetails = () => {
     const currentId = useParams();
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -174,25 +180,37 @@ const ProductDetails = () => {
                         <h2>Additional Info Here</h2>
                     </TabPanel>
                     <TabPanel>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+                        <div className="my-10">
                             {reviews && reviews.length > 0 ? (
-                                reviews.map((review) => (
-                                    <ReviewCard
-                                        key={review?.id}
-                                        data={review}
-                                    />
-                                ))
+                                <Swiper
+                                    modules={[Autoplay, Pagination]}
+                                    autoplay={{
+                                        delay: 3000,
+                                        disableOnInteraction: false,
+                                    }}
+                                    pagination={{ clickable: true }}
+                                    spaceBetween={30}
+                                    breakpoints={{
+                                        640: { slidesPerView: 1 },
+                                        768: { slidesPerView: 2 },
+                                        1024: { slidesPerView: 3 },
+                                    }}
+                                >
+                                    {reviews.map((review) => (
+                                        <SwiperSlide key={review?.id}>
+                                            <ReviewCard data={review} />
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
                             ) : (
                                 <div className="col-span-full text-center py-10">
-                                    <div className="col-span-full text-center py-10">
-                                        <MessageCircleOff
-                                            className="mx-auto text-gray-400"
-                                            size={40}
-                                        />
-                                        <h1 className="text-xl font-semibold text-gray-500 mt-2">
-                                            No reviews yet
-                                        </h1>
-                                    </div>
+                                    <MessageCircleOff
+                                        className="mx-auto text-gray-400"
+                                        size={40}
+                                    />
+                                    <h1 className="text-xl font-semibold text-gray-500 mt-2">
+                                        No reviews yet
+                                    </h1>
                                 </div>
                             )}
                         </div>
