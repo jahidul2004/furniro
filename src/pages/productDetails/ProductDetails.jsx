@@ -6,6 +6,7 @@ import "react-tabs/style/react-tabs.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import Swal from "sweetalert2";
 import ReviewCard from "../../components/reviewCard/ReviewCard";
+import { MessageCircleOff } from "lucide-react";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -173,13 +174,27 @@ const ProductDetails = () => {
                         <h2>Additional Info Here</h2>
                     </TabPanel>
                     <TabPanel>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {reviews?.map((review) => (
-                                <ReviewCard
-                                    key={review?.id}
-                                    data={review}
-                                ></ReviewCard>
-                            ))}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-5">
+                            {reviews && reviews.length > 0 ? (
+                                reviews.map((review) => (
+                                    <ReviewCard
+                                        key={review?.id}
+                                        data={review}
+                                    />
+                                ))
+                            ) : (
+                                <div className="col-span-full text-center py-10">
+                                    <div className="col-span-full text-center py-10">
+                                        <MessageCircleOff
+                                            className="mx-auto text-gray-400"
+                                            size={40}
+                                        />
+                                        <h1 className="text-xl font-semibold text-gray-500 mt-2">
+                                            No reviews yet
+                                        </h1>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </TabPanel>
                 </Tabs>
