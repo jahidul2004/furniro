@@ -10,6 +10,9 @@ const ProductDetails = () => {
     const currentId = useParams();
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [currentProduct, setCurrentProduct] = useState({});
+    const [reviews, setReviews] = useState([]);
+
+    console.log("my reviews", reviews);
 
     useEffect(() => {
         fetch("/products.json")
@@ -29,6 +32,17 @@ const ProductDetails = () => {
                 }
             });
     }, [currentId]);
+
+    useEffect(() => {
+        fetch("/review.json")
+            .then((res) => res.json())
+            .then((data) => {
+                const matched = data.filter(
+                    (item) => item.productId == currentId.id
+                );
+                setReviews(matched || []);
+            });
+    }, []);
 
     const handleAddToCart = (product) => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
