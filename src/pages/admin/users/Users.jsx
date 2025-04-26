@@ -1,7 +1,19 @@
+import { TbUsers } from "react-icons/tb";
+
 const Users = () => {
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-bold">Users</h1>
+            <div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold flex items-center gap-2">
+                    <TbUsers />
+                    Users
+                </h1>
+                <input
+                    className="input"
+                    type="text"
+                    placeholder="Search User by Name"
+                />
+            </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
