@@ -20,6 +20,7 @@ import LoginRegisterPrivate from "./LoginRegisterPrivate";
 import PrivateRoute from "./PrivateRoute";
 import PendingOrders from "../pages/admin/pendingOrders/PendingOrders";
 import CompletedOrders from "../pages/admin/completedOrders/CompletedOrders";
+import { Users } from "lucide-react";
 
 const router = createBrowserRouter([
     {
@@ -105,13 +106,17 @@ const router = createBrowserRouter([
                 element: <AddProduct></AddProduct>,
             },
             {
-                path:"pendingOrders",
-                element: <PendingOrders></PendingOrders>
+                path: "pendingOrders",
+                element: <PendingOrders></PendingOrders>,
             },
             {
-                path:"completedOrders",
-                element: <CompletedOrders></CompletedOrders>
-            }
+                path: "completedOrders",
+                element: <CompletedOrders></CompletedOrders>,
+            },
+            {
+                path: "users",
+                element: <Users></Users>,
+            },
         ],
     },
 ]);
