@@ -1,3 +1,4 @@
+import { AiOutlineProduct } from "react-icons/ai";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
 const AllProducts = () => {
@@ -34,7 +35,10 @@ const AllProducts = () => {
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold mb-6">Products</h2>
+                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <AiOutlineProduct className="text-info" />
+                    Products
+                </h2>
                 <input
                     className="input"
                     type="text"
