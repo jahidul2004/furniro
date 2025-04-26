@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaRegClock } from "react-icons/fa";
+import { BsEmojiSmile } from "react-icons/bs";
+import { FaRegArrowAltCircleRight, FaRegClock } from "react-icons/fa";
+import { MdOutlineAnalytics } from "react-icons/md";
 import {
     LineChart,
     Line,
@@ -9,12 +12,13 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 // Custom Card Component
 const Card = ({ title, value, color }) => (
     <div className="bg-white rounded-2xl shadow p-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
         <p className={`text-2xl font-bold mt-2 ${color}`}>{value}</p>
+        <h3 className="text-lg font-semibold">{title}</h3>
     </div>
 );
 
@@ -38,7 +42,8 @@ const AdminHome = () => {
         <div className="p-6 bg-gray-100 min-h-screen">
             <div className="flex flex-col md:flex-row items-center justify-between">
                 {/* Welcome Message */}
-                <h1 className="text-center md:text-left text-4xl font-bold mb-4 text-gray-800">
+                <h1 className="flex items-center gap-2 text-center md:text-left text-4xl font-bold mb-4 text-gray-800">
+                    <BsEmojiSmile className="text-info" />
                     Welcome, Jahidul Islam Jihad
                 </h1>
 
@@ -63,8 +68,9 @@ const AdminHome = () => {
 
             {/* User Growth Chart */}
             <div className="bg-white p-6 rounded-2xl shadow">
-                <h2 className="text-xl font-semibold mb-4 text-gray-800">
-                    📈 Product Sale Overview
+                <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                    <MdOutlineAnalytics className="text-info" /> Product Sale
+                    Overview
                 </h2>
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={data}>
@@ -80,6 +86,16 @@ const AdminHome = () => {
                         />
                     </LineChart>
                 </ResponsiveContainer>
+            </div>
+
+            <div className="flex justify-center items-center mt-5">
+                <Link
+                    to={"sellDetails"}
+                    className="btn btn-info btn-soft border border-dashed border-info"
+                >
+                    Go to sales page
+                    <FaRegArrowAltCircleRight />
+                </Link>
             </div>
         </div>
     );
