@@ -52,7 +52,7 @@ const Dashboard = () => {
                     <div className="flex flex-col h-full p-3 w-60 dark:bg-gray-50 dark:text-gray-800">
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
-                                <h2 className="text-2xl font-bold">
+                                <h2 className="text-2xl font-bold border w-full p-2 rounded border-dashed border-info text-info">
                                     Dashboard
                                 </h2>
                             </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <FiHome />
+                                            <FiHome className="text-info" />
                                             <span>Home</span>
                                         </Link>
                                     </li>
@@ -76,7 +76,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <AiOutlineProduct />
+                                            <AiOutlineProduct className="text-warning" />
                                             <span>All Orders</span>
                                         </Link>
                                     </li>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <LuClock />
+                                            <LuClock className="text-error" />
                                             <span>Pending Orders</span>
                                         </Link>
                                     </li>
@@ -102,7 +102,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <IoCheckmarkDoneCircleOutline />
+                                            <IoCheckmarkDoneCircleOutline className="text-success" />
                                             <span>Completed Orders</span>
                                         </Link>
                                     </li>
@@ -115,7 +115,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <MdOutlineCancel />
+                                            <MdOutlineCancel className="text-error" />
                                             <span>Canceled Orders</span>
                                         </Link>
                                     </li>
@@ -126,7 +126,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <FaCubesStacked />
+                                            <FaCubesStacked className="text-warning" />
                                             <span>All Product</span>
                                         </Link>
                                     </li>
@@ -137,7 +137,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <RiApps2AddLine />
+                                            <RiApps2AddLine className="text-info" />
                                             <span>Add Product</span>
                                         </Link>
                                     </li>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <BsCoin />
+                                            <BsCoin className="text-success" />
                                             <span>Sell Details</span>
                                         </Link>
                                     </li>
@@ -159,7 +159,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <FiUsers />
+                                            <FiUsers className="text-error" />
                                             <span>Users</span>
                                         </Link>
                                     </li>
@@ -170,7 +170,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <FaBlog />
+                                            <FaBlog className="text-info" />
                                             <span>Blogs</span>
                                         </Link>
                                     </li>
@@ -181,7 +181,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <MdOutlineAddBox />
+                                            <MdOutlineAddBox className="text-success" />
                                             <span>Add Blog</span>
                                         </Link>
                                     </li>
@@ -191,7 +191,7 @@ const Dashboard = () => {
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
                                         >
-                                            <AiOutlineLogout />
+                                            <AiOutlineLogout className="text-error" />
                                             <span>Logout</span>
                                         </a>
                                     </li>
@@ -224,7 +224,7 @@ const Dashboard = () => {
                                 to={"/"}
                                 rel="noopener noreferrer"
                                 href="#"
-                                className="flex items-center p-2 space-x-3 rounded-md"
+                                className="flex items-center btn btn-sm border-error border-dashed text-error"
                             >
                                 <IoChevronBackCircleOutline />
                                 <span>Back to Home</span>
