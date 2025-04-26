@@ -1,3 +1,9 @@
+import { BsClockHistory } from "react-icons/bs";
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+
 const CompletedOrders = () => {
     const orders = [
         {
@@ -25,9 +31,12 @@ const CompletedOrders = () => {
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Completed Orders</h2>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white shadow-md rounded-xl overflow-hidden">
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <FaRegCircleCheck className="text-info" />
+                Completed Orders
+            </h2>
+            <div className="overflow-x-auto border border-gray-200">
+                <table className="min-w-full bg-white shadow-md overflow-hidden">
                     <thead className="bg-gray-100">
                         <tr className="text-left text-sm font-semibold text-gray-600">
                             <th className="px-6 py-3">Image</th>
@@ -40,7 +49,10 @@ const CompletedOrders = () => {
                     </thead>
                     <tbody>
                         {orders?.map((order) => (
-                            <tr key={order?.id} className="border-t">
+                            <tr
+                                key={order?.id}
+                                className="border-t border-gray-200"
+                            >
                                 <td className="px-6 py-4">
                                     <img
                                         src={order?.image}
@@ -55,7 +67,7 @@ const CompletedOrders = () => {
                                 <td className="px-6 py-4">Completed</td>
                                 <td className="px-6 py-4">2500</td>
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">
+                                    <button className="btn btn-info btn-soft btn-sm">
                                         View
                                     </button>
                                 </td>
@@ -63,6 +75,21 @@ const CompletedOrders = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            <div className="mt-5 flex items-center justify-center gap-4">
+                <Link className="btn btn-soft btn-success">
+                    Go To Sales Page
+                    <FaRegArrowAltCircleRight />
+                </Link>
+                <Link className="btn btn-soft btn-info">
+                    <IoChevronBackCircleOutline />
+                    Back To Admin Home
+                </Link>
+                <Link className="btn btn-soft btn-error">
+                    Pending Orders
+                    <BsClockHistory />
+                </Link>
             </div>
         </div>
     );
