@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaRegClock } from "react-icons/fa";
 import {
     LineChart,
     Line,
@@ -38,17 +39,18 @@ const AdminHome = () => {
             <div className="flex flex-col md:flex-row items-center justify-between">
                 {/* Welcome Message */}
                 <h1 className="text-center md:text-left text-4xl font-bold mb-4 text-gray-800">
-                    Welcome to Admin Dashboard
+                    Welcome, Jahidul Islam Jihad
                 </h1>
 
                 {/* Real-time Clock */}
-                <p className="text-lg text-gray-700 bg-white w-max p-4 rounded-full font-medium mb-6">
-                    🕒 {time.toLocaleTimeString()}
+                <p className="border border-dashed border-info text-lg text-info bg-white w-max px-4 py-2 rounded-full font-medium mb-6 flex items-center gap-2">
+                    <FaRegClock />
+                    {time.toLocaleTimeString()}
                 </p>
             </div>
 
             {/* Dashboard Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center">
                 <Card title="Total Users" value="1,235" color="text-blue-600" />
                 <Card
                     title="Total Sales"
