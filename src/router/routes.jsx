@@ -21,6 +21,7 @@ import PrivateRoute from "./PrivateRoute";
 import PendingOrders from "../pages/admin/pendingOrders/PendingOrders";
 import CompletedOrders from "../pages/admin/completedOrders/CompletedOrders";
 import Users from "../pages/admin/users/Users";
+import SellDetails from "../pages/admin/sellDetails/SellDetails";
 
 const router = createBrowserRouter([
     {
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
             {
                 path: "users",
                 element: <Users></Users>,
+            },
+            {
+                path: "sellDetails",
+                element: <SellDetails></SellDetails>,
             },
         ],
     },
