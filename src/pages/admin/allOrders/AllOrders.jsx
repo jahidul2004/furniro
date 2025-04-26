@@ -1,4 +1,5 @@
 import React from "react";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
 const orders = [
     {
@@ -27,11 +28,11 @@ const orders = [
 const getStatusColor = (status) => {
     switch (status) {
         case "pending":
-            return "bg-yellow-100 text-yellow-800";
+            return "bg-yellow-50 text-yellow-800";
         case "completed":
-            return "bg-green-100 text-green-800";
+            return "bg-green-50 text-green-800";
         case "cancelled":
-            return "bg-red-100 text-red-800";
+            return "bg-red-50 text-red-800";
         default:
             return "";
     }
@@ -41,8 +42,8 @@ const AllOrders = () => {
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6">All Orders</h2>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white shadow-md rounded-xl overflow-hidden">
+            <div className="overflow-x-auto border border-gray-200">
+                <table className="min-w-full bg-white shadow-md overflow-hidden">
                     <thead className="bg-gray-100">
                         <tr className="text-left text-sm font-semibold text-gray-600">
                             <th className="px-6 py-3">Image</th>
@@ -54,7 +55,10 @@ const AllOrders = () => {
                     </thead>
                     <tbody>
                         {orders.map((order) => (
-                            <tr key={order.id} className="border-t">
+                            <tr
+                                key={order.id}
+                                className="border-t border-gray-200"
+                            >
                                 <td className="px-6 py-4">
                                     <img
                                         src={order.image}
@@ -64,6 +68,10 @@ const AllOrders = () => {
                                 </td>
                                 <td className="px-6 py-4 font-medium">
                                     {order.title}
+                                    <p className="flex items-center gap-2 text-[#b98e2f]">
+                                        <FaBangladeshiTakaSign />
+                                        2500 BDT
+                                    </p>
                                 </td>
                                 <td className="px-6 py-4">{order.district}</td>
                                 <td className="px-6 py-4">
@@ -76,13 +84,13 @@ const AllOrders = () => {
                                     </span>
                                 </td>
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm">
+                                    <button className="btn btn-sm btn-success btn-soft">
                                         Complete
                                     </button>
-                                    <button className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
+                                    <button className="btn btn-sm btn-error btn-soft">
                                         Cancel
                                     </button>
-                                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">
+                                    <button className="btn btn-sm btn-info btn-soft">
                                         View
                                     </button>
                                 </td>
