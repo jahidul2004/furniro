@@ -1,3 +1,5 @@
+import { CgSandClock } from "react-icons/cg";
+
 const PendingOrders = () => {
     const orders = [
         {
@@ -24,9 +26,15 @@ const PendingOrders = () => {
     ];
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Pending Orders</h2>
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white shadow-md rounded-xl overflow-hidden">
+            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <CgSandClock
+                    size={32}
+                    className="text-info border border-dashed rounded-full p-1"
+                />
+                Pending Orders
+            </h2>
+            <div className="overflow-x-auto border border-gray-200">
+                <table className="min-w-full bg-white shadow-md overflow-hidden">
                     <thead className="bg-gray-100">
                         <tr className="text-left text-sm font-semibold text-gray-600">
                             <th className="px-6 py-3">Image</th>
@@ -38,7 +46,10 @@ const PendingOrders = () => {
                     </thead>
                     <tbody>
                         {orders?.map((order) => (
-                            <tr key={order?.id} className="border-t">
+                            <tr
+                                key={order?.id}
+                                className="border-t border-gray-200"
+                            >
                                 <td className="px-6 py-4">
                                     <img
                                         src={order?.image}
@@ -52,13 +63,13 @@ const PendingOrders = () => {
                                 <td className="px-6 py-4">{order?.district}</td>
                                 <td className="px-6 py-4">Pending</td>
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm">
+                                    <button className="btn btn-sm btn-success btn-soft border border-dashed border-success">
                                         Complete
                                     </button>
-                                    <button className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm">
+                                    <button className="btn btn-sm btn-error btn-soft border border-dashed border-error">
                                         Cancel
                                     </button>
-                                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">
+                                    <button className="btn btn-sm btn-info btn-soft border border-dashed border-info">
                                         View
                                     </button>
                                 </td>
