@@ -19,6 +19,7 @@ import MyAccount from "../pages/myAccount/MyAccount";
 import LoginRegisterPrivate from "./LoginRegisterPrivate";
 import PrivateRoute from "./PrivateRoute";
 import PendingOrders from "../pages/admin/pendingOrders/PendingOrders";
+import CompletedOrders from "../pages/admin/completedOrders/CompletedOrders";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
             {
                 path:"pendingOrders",
                 element: <PendingOrders></PendingOrders>
+            },
+            {
+                path:"completedOrders",
+                element: <CompletedOrders></CompletedOrders>
             }
         ],
     },
