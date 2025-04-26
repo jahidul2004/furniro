@@ -1,4 +1,5 @@
 import { CgSandClock } from "react-icons/cg";
+import { TbCoinTaka } from "react-icons/tb";
 
 const PendingOrders = () => {
     const orders = [
@@ -59,9 +60,16 @@ const PendingOrders = () => {
                                 </td>
                                 <td className="px-6 py-4 font-medium">
                                     {order?.title}
+                                    <br />
+                                    <span className="flex items-center gap-1 text-info">
+                                        <TbCoinTaka />
+                                        2500 BDT
+                                    </span>
                                 </td>
                                 <td className="px-6 py-4">{order?.district}</td>
-                                <td className="px-6 py-4">Pending</td>
+                                <td className="px-6 py-4 text-warning">
+                                    Pending
+                                </td>
                                 <td className="px-6 py-4 flex gap-2">
                                     <button className="btn btn-sm btn-success btn-soft border border-dashed border-success">
                                         Complete
