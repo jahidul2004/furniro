@@ -83,7 +83,7 @@ const Dashboard = () => {
                                     <li className="rounded-sm">
                                         <Link
                                             to={
-                                                "/admin/dashboard/completedOrders"
+                                                "/admin/dashboard/pendingOrders"
                                             }
                                             rel="noopener noreferrer"
                                             href="#"
