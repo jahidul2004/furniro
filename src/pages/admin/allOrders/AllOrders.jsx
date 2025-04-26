@@ -41,14 +41,21 @@ const getStatusColor = (status) => {
 const AllOrders = () => {
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">All Orders</h2>
+            <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold mb-6">All Orders</h2>
+                <input
+                    className="input"
+                    type="text"
+                    placeholder="Search order by title, location, status"
+                />
+            </div>
             <div className="overflow-x-auto border border-gray-200">
                 <table className="min-w-full bg-white shadow-md overflow-hidden">
                     <thead className="bg-gray-100">
                         <tr className="text-left text-sm font-semibold text-gray-600">
                             <th className="px-6 py-3">Image</th>
                             <th className="px-6 py-3">Title</th>
-                            <th className="px-6 py-3">District</th>
+                            <th className="px-6 py-3">Location</th>
                             <th className="px-6 py-3">Status</th>
                             <th className="px-6 py-3">Actions</th>
                         </tr>
