@@ -22,6 +22,7 @@ import { FiHome, FiUsers } from "react-icons/fi";
 import { AiOutlineLogout, AiOutlineProduct } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
 import { FaBlog } from "react-icons/fa";
+import { TbLayoutDashboard } from "react-icons/tb";
 
 const Dashboard = () => {
     return (
@@ -52,7 +53,8 @@ const Dashboard = () => {
                     <div className="flex flex-col h-full p-3 w-60 dark:bg-gray-50 dark:text-gray-800">
                         <div className="space-y-3">
                             <div className="flex items-center justify-between">
-                                <h2 className="text-2xl font-bold border w-full p-2 rounded border-dashed border-info text-info">
+                                <h2 className="flex items-center gap-2 text-2xl font-bold w-full p-2 rounded text-info">
+                                    <TbLayoutDashboard />
                                     Dashboard
                                 </h2>
                             </div>
