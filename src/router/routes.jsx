@@ -22,6 +22,7 @@ import PendingOrders from "../pages/admin/pendingOrders/PendingOrders";
 import CompletedOrders from "../pages/admin/completedOrders/CompletedOrders";
 import Users from "../pages/admin/users/Users";
 import SellDetails from "../pages/admin/sellDetails/SellDetails";
+import AllProducts from "../pages/admin/allProducts/AllProducts";
 
 const router = createBrowserRouter([
     {
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
             {
                 path: "sellDetails",
                 element: <SellDetails></SellDetails>,
+            },
+            {
+                path: "allProducts",
+                element: <AllProducts></AllProducts>,
             },
         ],
     },
