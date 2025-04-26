@@ -40,6 +40,12 @@ const SellDetails = () => {
                         {sellData?.totalSales} BDT
                     </p>
                     <h2 className="text-xl font-semibold mb-4">Total Sales</h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-success border-dashed text-success"
+                    >
+                        View
+                    </Link>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -54,6 +60,12 @@ const SellDetails = () => {
                     <h2 className="text-xl font-semibold mb-4">
                         Cancelled Orders Amount
                     </h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-error border-dashed text-error"
+                    >
+                        View
+                    </Link>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -65,6 +77,12 @@ const SellDetails = () => {
                     <h2 className="text-xl font-semibold mb-4">
                         Pending Orders Amount
                     </h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-info border-dashed text-info"
+                    >
+                        View
+                    </Link>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -77,6 +95,12 @@ const SellDetails = () => {
                         {sellData?.cancelledOrdersAmount} BDT
                     </p>
                     <h2 className="text-xl font-semibold mb-4">Total Orders</h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-success border-dashed text-success"
+                    >
+                        View
+                    </Link>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -87,6 +111,12 @@ const SellDetails = () => {
                     <h2 className="text-xl font-semibold mb-4">
                         Cancelled Orders
                     </h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-error border-dashed text-error"
+                    >
+                        View
+                    </Link>
                 </div>
 
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -101,6 +131,12 @@ const SellDetails = () => {
                     <h2 className="text-xl font-semibold mb-4">
                         Pending Orders
                     </h2>
+                    <Link
+                        to={"/admin/dashboard/completedOrders"}
+                        className="btn btn-sm border border-info border-dashed text-info"
+                    >
+                        View
+                    </Link>
                 </div>
             </div>
 
