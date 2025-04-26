@@ -18,19 +18,21 @@ const Users = () => {
                 <table className="table border border-gray-200">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className="bg-base-200">
                             <th>SL</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Registered Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        <tr className="bg-base-200">
+                        <tr>
                             <th>1</th>
                             <td>Cy Ganderton</td>
                             <td>abc@def.com</td>
+                            <td>20/5/2024</td>
                             <td>
                                 <button className="btn btn-xs btn-dash btn-error">
                                     Remove
@@ -42,6 +44,7 @@ const Users = () => {
                             <th>2</th>
                             <td>Hart Hagerty</td>
                             <td>abc@def.com</td>
+                            <td>20/5/2024</td>
                             <td>
                                 <button className="btn btn-xs btn-dash btn-error">
                                     Remove
@@ -53,6 +56,7 @@ const Users = () => {
                             <th>3</th>
                             <td>Brice Swyre</td>
                             <td>abc@def.com</td>
+                            <td>20/5/2024</td>
                             <td>
                                 <button className="btn btn-xs btn-dash btn-error">
                                     Remove
