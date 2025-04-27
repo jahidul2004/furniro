@@ -1,32 +1,85 @@
+import axios from "axios";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
-    const [product, setProduct] = useState({
-        title: "",
-        description: "",
-        price: "",
-        discount: "",
-        image: "",
-        isNew: false,
-        category: "",
-    });
+    const [loading, setLoading] = useState(false);
 
-    const handleChange = (e) => {
-        const { name, value, type, checked, files } = e.target;
-        if (type === "file") {
-            setProduct({ ...product, [name]: files[0]?.name || "" });
-        } else {
-            setProduct({
-                ...product,
-                [name]: type === "checkbox" ? checked : value,
-            });
-        }
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("New Product:", product);
-        // API call or localStorage logic here
+        setLoading(true);
+
+        const form = e.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const price = form.price.value;
+        const discount = form.discount.value;
+        const imageFile = form.image.files[0];
+        const image2File = form.image2.files[0];
+        const isNew = form.isNew.checked;
+        const category = form.category.value;
+
+        try {
+            // Upload first image
+            const formData1 = new FormData();
+            formData1.append("image", imageFile);
+            const res1 = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${
+                    import.meta.env.VITE_IMAGEBB_API_KEY
+                }`,
+                formData1
+            );
+            const imageUrl1 = res1.data.data.display_url;
+
+            // Upload second image
+            const formData2 = new FormData();
+            formData2.append("image", image2File);
+            const res2 = await axios.post(
+                `https://api.imgbb.com/1/upload?key=${
+                    import.meta.env.VITE_IMAGEBB_API_KEY
+                }`,
+                formData2
+            );
+            const imageUrl2 = res2.data.data.display_url;
+
+            // Prepare product object
+            const product = {
+                title,
+                description,
+                price: parseFloat(price),
+                discount: parseFloat(discount),
+                images: [imageUrl1, imageUrl2],
+                isNew,
+                category,
+            };
+
+            // Upload product to MongoDB (server)
+            await axios.post("http://localhost:3000/addProduct", product, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            Swal.fire({
+                icon: "success",
+                title: "Product added successfully!",
+                showConfirmButton: false,
+                timer: 2500,
+                toast: true,
+                position: "top-end",
+            });
+            form.reset();
+        } catch (error) {
+            console.error(error);
+            Swal.fire({
+                icon: "error",
+                title: "Something wrong! Try again.",
+                showConfirmButton: false,
+                timer: 2500,
+                toast: true,
+                position: "top-end",
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -37,6 +90,7 @@ const AddProduct = () => {
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Title */}
                     <div>
                         <label className="block text-sm font-medium mb-2 text-gray-700">
                             Product Title
@@ -44,14 +98,13 @@ const AddProduct = () => {
                         <input
                             type="text"
                             name="title"
-                            value={product.title}
-                            onChange={handleChange}
                             placeholder="e.g. Wooden Chair"
                             className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                             required
                         />
                     </div>
 
+                    {/* Description */}
                     <div>
                         <label className="block text-sm font-medium mb-2 text-gray-700">
                             Description
@@ -59,14 +112,13 @@ const AddProduct = () => {
                         <textarea
                             name="description"
                             rows={4}
-                            value={product.description}
-                            onChange={handleChange}
                             placeholder="Write a short product description..."
                             className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                             required
                         />
                     </div>
 
+                    {/* Price and Discount */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-medium mb-2 text-gray-700">
@@ -75,8 +127,6 @@ const AddProduct = () => {
                             <input
                                 type="number"
                                 name="price"
-                                value={product.price}
-                                onChange={handleChange}
                                 placeholder="e.g. 1200"
                                 className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                                 required
@@ -90,39 +140,44 @@ const AddProduct = () => {
                             <input
                                 type="number"
                                 name="discount"
-                                value={product.discount}
-                                onChange={handleChange}
                                 placeholder="e.g. 10"
                                 className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                             />
                         </div>
                     </div>
 
+                    {/* Images */}
                     <div>
                         <label className="block text-sm font-medium mb-2 text-gray-700">
-                            Product Image
+                            Product Image 1
                         </label>
                         <input
                             type="file"
                             name="image"
                             accept="image/*"
-                            onChange={handleChange}
                             className="file-input file-input-bordered w-full"
                             required
                         />
-                        {product.image && (
-                            <p className="text-sm mt-1 text-green-600">
-                                Selected: {product.image}
-                            </p>
-                        )}
                     </div>
 
+                    <div>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">
+                            Product Image 2
+                        </label>
+                        <input
+                            type="file"
+                            name="image2"
+                            accept="image/*"
+                            className="file-input file-input-bordered w-full"
+                            required
+                        />
+                    </div>
+
+                    {/* Is New */}
                     <div className="flex items-center gap-3">
                         <input
                             type="checkbox"
                             name="isNew"
-                            checked={product.isNew}
-                            onChange={handleChange}
                             className="accent-[#b98e2f]"
                         />
                         <label className="text-sm font-medium text-gray-700">
@@ -130,14 +185,13 @@ const AddProduct = () => {
                         </label>
                     </div>
 
+                    {/* Category */}
                     <div>
                         <label className="block text-sm font-medium mb-2 text-gray-700">
                             Category
                         </label>
                         <select
                             name="category"
-                            value={product.category}
-                            onChange={handleChange}
                             className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                             required
                         >
@@ -148,11 +202,13 @@ const AddProduct = () => {
                         </select>
                     </div>
 
+                    {/* Submit Button */}
                     <button
                         type="submit"
+                        disabled={loading}
                         className="w-full bg-[#b98e2f] hover:bg-[#a67c1f] transition-colors duration-300 text-white py-3 rounded-lg font-semibold shadow-md"
                     >
-                        Add Product
+                        {loading ? "Adding..." : "Add Product"}
                     </button>
                 </form>
             </div>
