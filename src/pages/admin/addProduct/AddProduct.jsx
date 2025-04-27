@@ -18,6 +18,7 @@ const AddProduct = () => {
         const image2File = form.image2.files[0];
         const isNew = form.isNew.checked;
         const category = form.category.value;
+        const shortDescription = form.shortDescription.value;
 
         try {
             // Upload first image
@@ -45,6 +46,7 @@ const AddProduct = () => {
             // Prepare product object
             const product = {
                 title,
+                shortDescription,
                 description,
                 price: parseFloat(price),
                 discount: parseFloat(discount),
@@ -98,6 +100,19 @@ const AddProduct = () => {
                         <input
                             type="text"
                             name="title"
+                            placeholder="e.g. Wooden Chair"
+                            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                            required
+                        />
+                    </div>
+                    {/* Short description */}
+                    <div>
+                        <label className="block text-sm font-medium mb-2 text-gray-700">
+                            Product short description
+                        </label>
+                        <input
+                            type="text"
+                            name="shortDescription"
                             placeholder="e.g. Wooden Chair"
                             className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
                             required
