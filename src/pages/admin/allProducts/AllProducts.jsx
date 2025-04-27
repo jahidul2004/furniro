@@ -1,37 +1,15 @@
+import { useEffect, useState } from "react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 
 const AllProducts = () => {
-    const products = [
-        {
-            id: 1,
-            image: "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
-            title: "Modern Wooden Chair",
-            district: "01/01/2024",
-            status: "ofs",
-        },
-        {
-            id: 2,
-            image: "https://i.ibb.co.com/vCsPjzkX/images.jpg",
-            title: "Elegant Sofa Set",
-            district: "01/01/2024",
-            status: "available",
-        },
-        {
-            id: 3,
-            image: "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-            title: "Glass Coffee Table",
-            district: "01/01/2024",
-            status: "available",
-        },
-        {
-            id: 4,
-            image: "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-            title: "Coffee Table Set",
-            district: "01/01/2024",
-            status: "ofs",
-        },
-    ];
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/allProducts")
+            .then((res) => res.json())
+            .then((data) => setProducts(data));
+    });
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
@@ -64,7 +42,7 @@ const AllProducts = () => {
                             >
                                 <td className="px-6 py-4">
                                     <img
-                                        src={product?.image}
+                                        src={product?.images[0]}
                                         alt={product?.title}
                                         className="w-14 h-14 object-cover rounded"
                                     />
@@ -73,7 +51,7 @@ const AllProducts = () => {
                                     {product?.title}
                                     <p className="flex items-center gap-2 text-[#b98e2f]">
                                         <FaBangladeshiTakaSign />
-                                        2500 BDT
+                                        {product?.price} BDT
                                     </p>
                                 </td>
                                 <td className="px-6 py-4">
