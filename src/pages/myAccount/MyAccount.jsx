@@ -149,7 +149,7 @@ const MyAccount = () => {
                                         <button className="btn btn-sm btn-info btn-soft">
                                             View
                                         </button>
-                                        <button className="btn btn-sm btn-info btn-soft">
+                                        <button className="btn btn-sm btn-success btn-soft">
                                             Make Review
                                         </button>
                                     </td>
