@@ -40,6 +40,11 @@ const Cart = () => {
             toast: true,
         });
     };
+
+    const handleCreateOrder = () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log(cart);
+    };
     return (
         <div>
             {/* Header */}
@@ -74,7 +79,7 @@ const Cart = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cartProducts.map((product) => (
+                                {cartProducts?.map((product) => (
                                     <tr>
                                         <td>
                                             <div className="flex items-center gap-3">
@@ -126,6 +131,7 @@ const Cart = () => {
                         <span>Subtotal: {totalPrice}</span>
                         <span>Total: {totalPrice}</span>
                         <Link
+                            onClick={handleCreateOrder}
                             to={"/checkout"}
                             className="btn bg-[#b98e2f] text-white w-max mx-auto border-none"
                         >
