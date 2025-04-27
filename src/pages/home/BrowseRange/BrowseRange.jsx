@@ -11,7 +11,7 @@ const BrowseRange = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("/products.json")
+        fetch("http://localhost:3000/allProducts")
             .then((response) => response.json())
             .then((data) => setProducts(data));
     }, []);

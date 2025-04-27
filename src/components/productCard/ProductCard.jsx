@@ -6,7 +6,11 @@ const ProductCard = ({ data }) => {
             <div className="w-full h-[200px]">
                 <img
                     className="w-full h-full rounded-t"
-                    src={data?.image}
+                    src={
+                        data?.images[0]
+                            ? data?.images[0]
+                            : "https://i.ibb.co/7g0J3qY/Rectangle-1.png"
+                    }
                     alt=""
                 />
             </div>
