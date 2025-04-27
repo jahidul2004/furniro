@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
@@ -10,6 +12,24 @@ const AllProducts = () => {
             .then((res) => res.json())
             .then((data) => setProducts(data));
     });
+
+    const handleDeleteOrder = (id) => {
+        axios
+            .delete(`http://localhost:3000/deleteProduct/${id}`)
+            .then((res) => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Product deleted successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    toast: true,
+                });
+            })
+            .catch((error) => {
+                console.error("Error deleting order:", error);
+            });
+    };
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
@@ -37,7 +57,7 @@ const AllProducts = () => {
                     <tbody>
                         {products?.map((product) => (
                             <tr
-                                key={product?.id}
+                                key={product?._id}
                                 className="border-t border-gray-200"
                             >
                                 <td className="px-6 py-4">
@@ -72,7 +92,12 @@ const AllProducts = () => {
                                 </td>
 
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="btn btn-sm btn-error btn-soft">
+                                    <button
+                                        onClick={() => {
+                                            handleDeleteOrder(product?._id);
+                                        }}
+                                        className="btn btn-sm btn-error btn-soft"
+                                    >
                                         Delete
                                     </button>
                                     <button className="btn btn-sm btn-info btn-soft">
