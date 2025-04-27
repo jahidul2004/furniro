@@ -1,11 +1,19 @@
+import { useEffect, useState } from "react";
 import { TbUsers } from "react-icons/tb";
 
 const Users = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/allUsers")
+            .then((res) => res.json())
+            .then((data) => setUsers(data));
+    }, [users]);
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
                 <h1 className="text-2xl font-bold flex items-center gap-2">
-                    <TbUsers />
+                    <TbUsers className="text-info" />
                     Users
                 </h1>
                 <input
@@ -27,42 +35,19 @@ const Users = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>abc@def.com</td>
-                            <td>20/5/2024</td>
-                            <td>
-                                <button className="btn btn-xs btn-dash btn-error">
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
-                        {/* row 2 */}
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>abc@def.com</td>
-                            <td>20/5/2024</td>
-                            <td>
-                                <button className="btn btn-xs btn-dash btn-error">
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
-                        {/* row 3 */}
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>abc@def.com</td>
-                            <td>20/5/2024</td>
-                            <td>
-                                <button className="btn btn-xs btn-dash btn-error">
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
+                        {users?.map((user, index) => (
+                            <tr>
+                                <th>{index + 1}</th>
+                                <td>{user?.name}</td>
+                                <td>{user?.email}</td>
+                                <td>{user?.creationTime}</td>
+                                <td>
+                                    <button className="btn btn-xs btn-dash btn-error">
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
