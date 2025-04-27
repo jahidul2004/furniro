@@ -5,6 +5,7 @@ import auth from "../../firebase/firebase.init";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import axios from "axios";
 
 const Register = () => {
     const { registerUser, updateDisplayName } = useContext(AuthContext);
@@ -25,6 +26,20 @@ const Register = () => {
                     })
                     .catch((error) => {
                         console.error("Error updating display name:", error);
+                    });
+
+                axios
+                    .post("http://localhost:3000/addUser", {
+                        name,
+                        email,
+                        role: "user",
+                        creationTime: new Date(),
+                    })
+                    .then((response) => {
+                        console.log("User added to database:", response.data);
+                    })
+                    .catch((error) => {
+                        console.error("Error adding user to database:", error);
                     });
                 Swal.fire({
                     title: "Success",
