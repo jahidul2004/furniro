@@ -57,7 +57,7 @@ const CanceledOrders = () => {
                                     <img
                                         src={order?.image}
                                         alt={order?.title}
-                                        className="w-14 h-14 object-cover rounded"
+                                        className="w-14 h-14 object-cover rounded border border-dashed border-error p-1"
                                     />
                                 </td>
                                 <td className="px-6 py-4 font-medium">
