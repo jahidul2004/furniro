@@ -7,6 +7,7 @@ import { CiCircleRemove } from "react-icons/ci";
 import { CgArrowLeftO, CgShoppingBag } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
 
 const MyAccount = () => {
     const { user, logout } = useContext(AuthContext);
@@ -77,8 +78,10 @@ const MyAccount = () => {
 
             {/* Action area */}
             <div className="col-span-1 md:col-span-2">
+                {/* My Orders */}
                 <div>
-                    <h1 className="text-white text-3xl font-bold bg-[#b98e2f] p-2 rounded">
+                    <h1 className="flex items-center gap-2 text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded">
+                        <HiOutlineViewGrid />
                         My Orders
                     </h1>
                     <div>
@@ -117,6 +120,9 @@ const MyAccount = () => {
                                         <button className="btn btn-sm btn-info btn-soft">
                                             View
                                         </button>
+                                        <button className="btn btn-sm btn-success btn-soft">
+                                            Make Review
+                                        </button>
                                     </td>
                                 </tr>
                                 <tr className="border-t border-gray-200">
@@ -143,6 +149,60 @@ const MyAccount = () => {
                                         <button className="btn btn-sm btn-info btn-soft">
                                             View
                                         </button>
+                                        <button className="btn btn-sm btn-info btn-soft">
+                                            Make Review
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {/* My orders end */}
+
+                <div className="mt-5">
+                    <h1 className="text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded flex items-center gap-2">
+                        <HiOutlineCurrencyDollar />
+                        Payment History
+                    </h1>
+
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            {/* head */}
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Product Title</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Transaction ID</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* row 1 */}
+                                <tr>
+                                    <th>1</th>
+                                    <td>Cy Ganderton</td>
+                                    <td>1200</td>
+                                    <td>20/02/2025</td>
+                                    <td>1f23BCf4Rf4ffD4dHgd</td>
+                                    <td>
+                                        <span className="btn btn-soft btn-success btn-xs cursor-none">
+                                            success
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>2</th>
+                                    <td>Cy Ganderton</td>
+                                    <td>1200</td>
+                                    <td>20/02/2025</td>
+                                    <td>1f23BCf4Rf4ffD4dHgd</td>
+                                    <td>
+                                        <span className="btn btn-soft btn-error btn-xs cursor-none">
+                                            failed
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
