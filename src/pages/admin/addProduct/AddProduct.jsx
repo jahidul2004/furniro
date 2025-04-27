@@ -53,6 +53,7 @@ const AddProduct = () => {
                 images: [imageUrl1, imageUrl2],
                 isNew,
                 category,
+                addedDate: new Date(),
             };
 
             // Upload product to MongoDB (server)
