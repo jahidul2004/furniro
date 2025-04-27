@@ -25,6 +25,7 @@ import SellDetails from "../pages/admin/sellDetails/SellDetails";
 import AllProducts from "../pages/admin/allProducts/AllProducts";
 import CanceledOrders from "../pages/admin/canceledOrders/CanceledOrders";
 import AdminBlog from "../pages/admin/adminBlog/AdminBlog";
+import AddBlog from "../pages/admin/addBlog/AddBlog";
 
 const router = createBrowserRouter([
     {
@@ -130,13 +131,17 @@ const router = createBrowserRouter([
                 element: <AllProducts></AllProducts>,
             },
             {
-                path:"canceledOrders",
-                element: <CanceledOrders></CanceledOrders>
+                path: "canceledOrders",
+                element: <CanceledOrders></CanceledOrders>,
             },
             {
-                path:"blogs",
-                element: <AdminBlog></AdminBlog>
-            }
+                path: "blogs",
+                element: <AdminBlog></AdminBlog>,
+            },
+            {
+                path: "addBlog",
+                element: <AddBlog></AddBlog>,
+            },
         ],
     },
 ]);

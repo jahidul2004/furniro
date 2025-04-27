@@ -178,7 +178,7 @@ const Dashboard = () => {
                                     </li>
                                     <li className="rounded-sm">
                                         <Link
-                                            to={"/admin/dashboard/sellDetails"}
+                                            to={"/admin/dashboard/addBlog"}
                                             rel="noopener noreferrer"
                                             href="#"
                                             className="flex items-center p-2 space-x-3 rounded-md"
