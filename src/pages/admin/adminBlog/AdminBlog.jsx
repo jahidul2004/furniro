@@ -1,5 +1,5 @@
 const AdminBlog = () => {
-    return <div></div>;
+    return <div>Hello I am Blog</div>;
 };
 
 export default AdminBlog;
