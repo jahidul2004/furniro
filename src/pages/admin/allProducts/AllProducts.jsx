@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllProducts = () => {
@@ -100,9 +101,12 @@ const AllProducts = () => {
                                     >
                                         Delete
                                     </button>
-                                    <button className="btn btn-sm btn-info btn-soft">
+                                    <Link
+                                        to={`/shop/${product?._id}`}
+                                        className="btn btn-sm btn-info btn-soft"
+                                    >
                                         View
-                                    </button>
+                                    </Link>
                                 </td>
                             </tr>
                         ))}
