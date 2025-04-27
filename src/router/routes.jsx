@@ -23,6 +23,7 @@ import CompletedOrders from "../pages/admin/completedOrders/CompletedOrders";
 import Users from "../pages/admin/users/Users";
 import SellDetails from "../pages/admin/sellDetails/SellDetails";
 import AllProducts from "../pages/admin/allProducts/AllProducts";
+import CanceledOrders from "../pages/admin/canceledOrders/CanceledOrders";
 
 const router = createBrowserRouter([
     {
@@ -127,6 +128,10 @@ const router = createBrowserRouter([
                 path: "allProducts",
                 element: <AllProducts></AllProducts>,
             },
+            {
+                path:"canceledOrders",
+                element: <CanceledOrders></CanceledOrders>
+            }
         ],
     },
 ]);
