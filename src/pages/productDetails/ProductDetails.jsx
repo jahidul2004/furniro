@@ -20,10 +20,6 @@ const ProductDetails = () => {
     const [currentProduct, setCurrentProduct] = useState({});
     const [reviews, setReviews] = useState([]);
 
-    console.log("my reviews", reviews);
-
-    console.log("current product", currentProduct);
-
     useEffect(() => {
         fetch(`http://localhost:3000/product/${currentId?.id}`)
             .then((res) => res.json())

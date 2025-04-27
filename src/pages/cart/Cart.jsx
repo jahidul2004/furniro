@@ -72,7 +72,12 @@ const Cart = () => {
                                                 <div className="avatar">
                                                     <div className="rounded h-12 w-12">
                                                         <img
-                                                            src={product?.image}
+                                                            src={
+                                                                product?.images
+                                                                    ? product
+                                                                          ?.images[0]
+                                                                    : "Hello"
+                                                            }
                                                             alt="Avatar Tailwind CSS Component"
                                                         />
                                                     </div>
