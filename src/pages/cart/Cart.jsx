@@ -10,6 +10,15 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+
+        setTotalPrice(total);
+    }, [cartProducts]);
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -18,7 +27,7 @@ const Cart = () => {
 
     const handleRemoveFromCart = (productId) => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const updatedCart = cart.filter((item) => item.id !== productId);
+        const updatedCart = cart.filter((item) => item._id !== productId);
         setCartProducts(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
 
@@ -87,12 +96,12 @@ const Cart = () => {
                                         <td>{product?.title}</td>
                                         <td>{product?.price}</td>
                                         <td>1</td>
-                                        <td>25000TK</td>
+                                        <td>{product?.price}</td>
                                         <td>
                                             <CiCircleRemove
                                                 onClick={() => {
                                                     handleRemoveFromCart(
-                                                        product?.id
+                                                        product?._id
                                                     );
                                                 }}
                                                 className="font-bold cursor-pointer text-[#b98e2f]"
@@ -114,8 +123,8 @@ const Cart = () => {
                     </h1>
 
                     <div className="flex flex-col gap-4 mt-4 text-center">
-                        <span>Subtotal: 25000</span>
-                        <span>Total: 25000</span>
+                        <span>Subtotal: {totalPrice}</span>
+                        <span>Total: {totalPrice}</span>
                         <Link
                             to={"/checkout"}
                             className="btn bg-[#b98e2f] text-white w-max mx-auto border-none"
