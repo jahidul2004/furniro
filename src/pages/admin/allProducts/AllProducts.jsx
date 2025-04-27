@@ -91,11 +91,8 @@ const AllProducts = () => {
                                 </td>
 
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="btn btn-sm btn-success btn-soft">
-                                        Complete
-                                    </button>
                                     <button className="btn btn-sm btn-error btn-soft">
-                                        Cancel
+                                        Delete
                                     </button>
                                     <button className="btn btn-sm btn-info btn-soft">
                                         View
