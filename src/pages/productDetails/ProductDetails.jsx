@@ -22,22 +22,13 @@ const ProductDetails = () => {
 
     console.log("my reviews", reviews);
 
+    console.log("current product", currentProduct);
+
     useEffect(() => {
-        fetch("/products.json")
+        fetch(`http://localhost:3000/product/${currentId?.id}`)
             .then((res) => res.json())
             .then((data) => {
-                const matched = data.find((item) => item.id == currentId.id);
-                setCurrentProduct(matched || {});
-
-                if (matched) {
-                    const related = data.filter(
-                        (item) =>
-                            item.category === matched.category &&
-                            item.id != matched.id
-                    );
-                    setRelatedProducts(related);
-                    console.log("Related Products:", related);
-                }
+                setCurrentProduct(data);
             });
     }, [currentId]);
 
@@ -87,7 +78,11 @@ const ProductDetails = () => {
                 <div>
                     <img
                         className="rounded w-full h-full"
-                        src={currentProduct?.image}
+                        src={
+                            currentProduct?.images
+                                ? currentProduct?.images[0]
+                                : "https://i.ibb.co/7g0J3qY/Rectangle-1.png"
+                        }
                         alt=""
                     />
                 </div>
@@ -220,12 +215,20 @@ const ProductDetails = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                     <img
                         className="h-[350px] w-full rounded"
-                        src={currentProduct?.image}
+                        src={
+                            currentProduct?.images
+                                ? currentProduct?.images[0]
+                                : "https://i.ibb.co/7g0J3qY/Rectangle-1.png"
+                        }
                         alt=""
                     />
                     <img
                         className="h-[350px] w-full rounded"
-                        src={currentProduct?.image2}
+                        src={
+                            currentProduct?.images
+                                ? currentProduct?.images[1]
+                                : "https://i.ibb.co/7g0J3qY/Rectangle-1.png"
+                        }
                         alt=""
                     />
                 </div>

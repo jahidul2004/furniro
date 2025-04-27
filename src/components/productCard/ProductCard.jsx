@@ -23,7 +23,7 @@ const ProductCard = ({ data }) => {
                 <div className="flex justify-between items-center">
                     <h3 className="font-semibold">$ {data?.price}</h3>
                     <Link
-                        to={`/shop/${data?.id}`}
+                        to={`/shop/${data?._id}`}
                         className="rounded btn btn-sm mt-2 border-none shadow-none bg-[#b98e2f] text-white"
                     >
                         View Details
