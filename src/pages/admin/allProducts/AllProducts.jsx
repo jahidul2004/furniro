@@ -55,7 +55,10 @@ const AllProducts = () => {
                                     </p>
                                 </td>
                                 <td className="px-6 py-4">
-                                    {product?.district} <br />{" "}
+                                    {product?.addedDate
+                                        ? product?.addedDate
+                                        : "None"}{" "}
+                                    <br />{" "}
                                     <span className="text-error">
                                         19 days ago
                                     </span>
