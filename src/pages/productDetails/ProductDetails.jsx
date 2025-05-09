@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaGreaterThan } from "react-icons/fa";
+import { FaGreaterThan, FaRegHeart } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -13,6 +13,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import { BsCartPlus } from "react-icons/bs";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -50,6 +51,23 @@ const ProductDetails = () => {
             position: "top-end",
             icon: "success",
             title: "Product added to cart",
+            showConfirmButton: false,
+            timer: 2500,
+            toast: true,
+        });
+    };
+
+    const handleAddToWishlist = (product) => {
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        wishlist.push(product);
+
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added to wishlist",
             showConfirmButton: false,
             timer: 2500,
             toast: true,
@@ -124,9 +142,17 @@ const ProductDetails = () => {
                             onClick={() => {
                                 handleAddToCart(currentProduct);
                             }}
-                            className="btn btn-outline"
+                            className="btn btn-soft btn-info"
                         >
-                            Add To Cart
+                            Add To Cart <BsCartPlus />
+                        </button>
+                        <button
+                            onClick={() => {
+                                handleAddToWishlist(currentProduct);
+                            }}
+                            className="btn btn-soft btn-warning"
+                        >
+                            Add To Wishlist <FaRegHeart />
                         </button>
                     </div>
                 </div>
