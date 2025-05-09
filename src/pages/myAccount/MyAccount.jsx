@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import userIcon from "../../assets/accountProfile/user.png";
@@ -11,6 +11,21 @@ import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
 
 const MyAccount = () => {
     const { user, logout, setDbUser } = useContext(AuthContext);
+
+    const [orders, setOrders] = useState([]);
+
+    console.log("Orders:", orders);
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/orders/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setOrders(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching orders:", error);
+            });
+    }, []);
 
     return (
         <div className="w-[95%] md:container mx-auto my-10 grid gird-cols-1 md:grid-cols-3 gap-4 md:gap-8">
@@ -86,77 +101,90 @@ const MyAccount = () => {
                         My Orders
                     </h1>
                     <div>
-                        <table className="min-w-full bg-white shadow-md overflow-hidden">
-                            <thead className="bg-gray-100">
-                                <tr className="text-left text-sm font-semibold text-gray-600">
-                                    <th className="px-6 py-3">Image</th>
-                                    <th className="px-6 py-3">Title</th>
-                                    <th className="px-6 py-3">Order Time</th>
-                                    <th className="px-6 py-3">Status</th>
-                                    <th className="px-6 py-3">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr className="border-t border-gray-200">
-                                    <td className="px-6 py-4">
-                                        <img
-                                            src={""}
-                                            alt={""}
-                                            className="w-14 h-14 object-cover rounded"
-                                        />
-                                    </td>
-                                    <td className="px-6 py-4 font-medium">
-                                        Hello Title
-                                        <p className="flex items-center gap-2 text-[#b98e2f]">
-                                            <FaBangladeshiTakaSign />
-                                            2500 BDT
-                                        </p>
-                                    </td>
-                                    <td className="px-6 py-4">Comilla</td>
-                                    <td className="px-6 py-4">pending</td>
-                                    <td className="px-6 py-4 flex gap-2">
-                                        <button className="btn btn-sm btn-error btn-soft">
-                                            Cancel
-                                        </button>
-                                        <button className="btn btn-sm btn-info btn-soft">
-                                            View
-                                        </button>
-                                        <button className="btn btn-sm btn-success btn-soft">
-                                            Make Review
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr className="border-t border-gray-200">
-                                    <td className="px-6 py-4">
-                                        <img
-                                            src={""}
-                                            alt={""}
-                                            className="w-14 h-14 object-cover rounded"
-                                        />
-                                    </td>
-                                    <td className="px-6 py-4 font-medium">
-                                        Hello Title
-                                        <p className="flex items-center gap-2 text-[#b98e2f]">
-                                            <FaBangladeshiTakaSign />
-                                            2500 BDT
-                                        </p>
-                                    </td>
-                                    <td className="px-6 py-4">Comilla</td>
-                                    <td className="px-6 py-4">pending</td>
-                                    <td className="px-6 py-4 flex gap-2">
-                                        <button className="btn btn-sm btn-error btn-soft">
-                                            Cancel
-                                        </button>
-                                        <button className="btn btn-sm btn-info btn-soft">
-                                            View
-                                        </button>
-                                        <button className="btn btn-sm btn-success btn-soft">
-                                            Make Review
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {orders?.map((order) => (
+                            <div className="my-2 md:my-4">
+                                <div className="bg-warning rounded-t p-1 flex justify-between items-center">
+                                    <h1 className="text-lg font-semibold">
+                                        Order ID: #{order?._id} /{" "}
+                                        {order?.totalPrice} BDT
+                                    </h1>
+                                    <button className="btn btn-sm btn-info btn-soft">
+                                        View Details
+                                    </button>
+                                </div>
+                                <table className="rounded-b min-w-full bg-white shadow-md overflow-hidden">
+                                    <thead className="bg-gray-100">
+                                        <tr className="text-left text-sm font-semibold text-gray-600">
+                                            <th className="px-6 py-3">Image</th>
+                                            <th className="px-6 py-3">Title</th>
+                                            <th className="px-6 py-3">
+                                                Order Time
+                                            </th>
+                                            <th className="px-6 py-3">
+                                                Status
+                                            </th>
+                                            <th className="px-6 py-3">
+                                                Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {order?.orderedProducts?.map(
+                                            (product) => (
+                                                <tr className="border-t border-gray-200">
+                                                    <td className="px-6 py-4">
+                                                        <img
+                                                            src={
+                                                                product?.images
+                                                            }
+                                                            alt={""}
+                                                            className="w-14 h-14 object-cover rounded"
+                                                        />
+                                                    </td>
+                                                    <td className="px-6 py-4 font-medium">
+                                                        {product?.title}
+                                                        <p className="flex items-center gap-2 text-[#b98e2f]">
+                                                            <FaBangladeshiTakaSign />
+                                                            {product?.price} BDT
+                                                        </p>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        {order?.orderDate}
+                                                    </td>
+                                                    <td
+                                                        className={`px-6 py-4 ${
+                                                            order?.status ===
+                                                            "pending"
+                                                                ? "text-yellow-500"
+                                                                : order?.status ===
+                                                                  "completed"
+                                                                ? "text-green-500"
+                                                                : "text-red-500"
+                                                        }`}
+                                                    >
+                                                        {order?.status}
+                                                    </td>
+                                                    <td
+                                                        className={`${
+                                                            order?.status ===
+                                                                "pending" ||
+                                                            order?.status ===
+                                                                "canceled"
+                                                                ? "pointer-events-none"
+                                                                : ""
+                                                        } px-6 py-4 flex gap-2`}
+                                                    >
+                                                        <button className="btn btn-sm btn-success btn-soft">
+                                                            Make Review
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 {/* My orders end */}

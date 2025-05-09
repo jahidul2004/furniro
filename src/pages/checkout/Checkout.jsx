@@ -33,11 +33,12 @@ const Checkout = () => {
             phone,
             email,
             additionalInfo,
-            orderedProducts: cartProducts.map((product) => product._id),
+            orderedProducts: cartProducts,
             totalPrice,
             discount: 0,
             paymentMethod: "cod",
             status: "pending",
+            orderDate: new Date().toLocaleDateString(),
         };
 
         axios
