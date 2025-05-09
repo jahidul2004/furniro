@@ -18,6 +18,9 @@ const AdminBlog = () => {
         axios
             .delete(`http://localhost:3000/deleteBlog/${id}`)
             .then((res) => {
+                setBlogs((prevBlogs) =>
+                    prevBlogs.filter((blog) => blog._id !== id)
+                );
                 Swal.fire({
                     icon: "success",
                     title: "Blog Deleted",
