@@ -234,13 +234,13 @@ const Dashboard = () => {
                                     {user?.displayName}
                                 </h2>
                                 <span className="flex items-center space-x-1">
-                                    <a
+                                    <Link
+                                        to={"/admin/dashboard/profile"}
                                         rel="noopener noreferrer"
-                                        href="#"
                                         className="text-xs hover:underline dark:text-gray-600"
                                     >
                                         View profile
-                                    </a>
+                                    </Link>
                                 </span>
                             </div>
                         </div>
