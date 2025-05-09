@@ -13,7 +13,10 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [dbUser, setDbUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    console.log("Db user", dbUser);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -29,6 +32,23 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         };
     }, []);
+
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:3000/user/${user?.email}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data) {
+                        setDbUser(data);
+                    } else {
+                        console.error("User not found in the database");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user data:", error);
+                });
+        }
+    }, [user]);
 
     const registerUser = (email, password) => {
         setLoading(true);
@@ -66,6 +86,8 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         googleLogin,
+        dbUser,
+        setDbUser,
     };
 
     return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

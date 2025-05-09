@@ -6,7 +6,7 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { login, setUser } = useContext(AuthContext);
+    const { login, setUser, setDbUser } = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -36,6 +36,21 @@ const Login = () => {
                     icon: "error",
                     confirmButtonText: "Close",
                 });
+            });
+
+        // Fetch user data from the database
+        fetch(`http://localhost:3000/user/${email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data) {
+                    setDbUser(data);
+                    console.log("User data from database:", data);
+                } else {
+                    console.error("User not found in the database");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
             });
     };
     return (

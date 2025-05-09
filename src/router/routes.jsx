@@ -26,6 +26,7 @@ import AllProducts from "../pages/admin/allProducts/AllProducts";
 import CanceledOrders from "../pages/admin/canceledOrders/CanceledOrders";
 import AdminBlog from "../pages/admin/adminBlog/AdminBlog";
 import AddBlog from "../pages/admin/addBlog/AddBlog";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -96,7 +97,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/admin/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: (
+            <AdminRoute>
+                <Dashboard></Dashboard>
+            </AdminRoute>
+        ),
         children: [
             {
                 path: "/admin/dashboard",

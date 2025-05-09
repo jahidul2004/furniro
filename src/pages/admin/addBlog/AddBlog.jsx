@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const AddBlog = () => {
@@ -16,7 +17,23 @@ const AddBlog = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(blogData);
-        // এখানে তুমি তোমার API call বা ফর্ম সাবমিশনের কাজ করতে পারবে
+
+        axios
+            .post("http://localhost:3000/addBlog", blogData)
+            .then((res) => {
+                if (res.data.insertedId) {
+                    alert("Blog added successfully!");
+                    setBlogData({
+                        title: "",
+                        image: "",
+                        description: "",
+                        category: "",
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error adding blog:", error);
+            });
     };
 
     return (

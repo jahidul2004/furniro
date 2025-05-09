@@ -7,6 +7,7 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
+    const { dbUser } = useContext(AuthContext);
     const links = (
         <>
             <li>
@@ -68,7 +69,13 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-4 md:gap-8 items-center">
                     <Link
-                        to={user ? "/myAccount" : "/register"}
+                        to={
+                            dbUser?.role === "admin"
+                                ? "/admin/dashboard"
+                                : dbUser?.role === "user"
+                                ? "/myAccount"
+                                : "/login"
+                        }
                         className="hidden md:flex"
                     >
                         <FaRegUser size={20} />
