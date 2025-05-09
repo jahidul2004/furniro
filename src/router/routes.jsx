@@ -27,6 +27,7 @@ import CanceledOrders from "../pages/admin/canceledOrders/CanceledOrders";
 import AdminBlog from "../pages/admin/adminBlog/AdminBlog";
 import AddBlog from "../pages/admin/addBlog/AddBlog";
 import AdminRoute from "./AdminRoute";
+import NotAdminRoute from "./NotAdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -51,7 +52,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "/checkout",
-                element: <Checkout></Checkout>,
+                element: (
+                    <NotAdminRoute>
+                        <PrivateRoute>
+                            <Checkout></Checkout>
+                        </PrivateRoute>
+                    </NotAdminRoute>
+                ),
             },
             {
                 path: "/contact",
@@ -89,7 +96,9 @@ const router = createBrowserRouter([
                 path: "/myAccount",
                 element: (
                     <PrivateRoute>
-                        <MyAccount></MyAccount>
+                        <NotAdminRoute>
+                            <MyAccount></MyAccount>
+                        </NotAdminRoute>
                     </PrivateRoute>
                 ),
             },
