@@ -12,7 +12,7 @@ const Blog = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch("blog.json")
+        fetch("http://localhost:3000/allBlogs")
             .then((res) => res.json())
             .then((data) => {
                 setBlogs(data);
@@ -67,7 +67,7 @@ const Blog = () => {
                         <h1 className="text-2xl font-bold my-3">Recent Post</h1>
                         <div className="flex flex-col gap-4 md:gap-8">
                             {blogs.map((blog) => (
-                                <Link to={`/blog/${blog?.id}`}>
+                                <Link to={`/blog/${blog?._id}`}>
                                     <div className="flex items-center gap-4 cursor-pointer">
                                         <img
                                             className="w-[70px] h-[70px] rounded"
@@ -79,9 +79,6 @@ const Blog = () => {
                                             <h1 className="font-bold">
                                                 {blog?.title}
                                             </h1>
-                                            {/* <p>
-                                            {blog?.excerpt}
-                                        </p> */}
                                             <p className="text-gray-500">
                                                 {blog?.date}
                                             </p>

@@ -1,4 +1,8 @@
-import { FaRegCalendarCheck, FaRegUser } from "react-icons/fa";
+import {
+    FaRegArrowAltCircleRight,
+    FaRegCalendarCheck,
+    FaRegUser,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
@@ -13,7 +17,7 @@ const BlogCard = ({ item }) => {
             <div>
                 <p className="text-gray-500 text-sm my-2 mt-6 flex items-center gap-2 mb-4">
                     <FaRegUser />
-                    {item?.author} <FaRegCalendarCheck /> {item?.date}
+                    {item?.addedBy} <FaRegCalendarCheck /> {item?.date}
                 </p>
                 <p className="flex items-center gap-2 text-sm my-2">
                     {item?.tags?.map((tag) => (
@@ -27,9 +31,9 @@ const BlogCard = ({ item }) => {
             <p className="text-gray-500 mb-4">{item?.excerpt}</p>
             <Link
                 to={`/blog/${item?.id}`}
-                className="border-b-2 border-gray-500 p-1 font-bold"
+                className="p-1 font-bold flex items-center gap-2 w-max border-b-2 border-gray-200"
             >
-                Read More
+                Read More <FaRegArrowAltCircleRight />
             </Link>
         </div>
     );

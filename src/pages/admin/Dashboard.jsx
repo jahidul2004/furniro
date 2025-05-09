@@ -1,21 +1,11 @@
-import React, { useContext } from "react";
-import { CgProfile } from "react-icons/cg";
-import { GiHotMeal } from "react-icons/gi";
-import { GrUserSettings } from "react-icons/gr";
+import { useContext } from "react";
 import {
-    IoAddCircleOutline,
-    IoArrowBackSharp,
     IoCheckmarkDoneCircleOutline,
     IoChevronBackCircleOutline,
 } from "react-icons/io5";
-import { LuChefHat, LuClock } from "react-icons/lu";
-import {
-    MdOutlineAddBox,
-    MdOutlineCancel,
-    MdOutlineReviews,
-    MdOutlineWatchLater,
-} from "react-icons/md";
-import { RiApps2AddLine, RiHome9Line } from "react-icons/ri";
+import { LuClock } from "react-icons/lu";
+import { MdOutlineAddBox, MdOutlineCancel } from "react-icons/md";
+import { RiApps2AddLine } from "react-icons/ri";
 import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { FaArrowRightFromBracket, FaCubesStacked } from "react-icons/fa6";
 import { FiHome, FiUsers } from "react-icons/fi";

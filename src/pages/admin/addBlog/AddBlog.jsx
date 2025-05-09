@@ -1,46 +1,63 @@
 import axios from "axios";
-import { useState } from "react";
-
+import AuthContext from "../../../context/AuthContext/AuthContext";
+import { useContext } from "react";
 const AddBlog = () => {
-    const [blogData, setBlogData] = useState({
-        title: "",
-        image: "",
-        description: "",
-        category: "",
-    });
+    const { user } = useContext(AuthContext);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setBlogData({ ...blogData, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(blogData);
+        const form = e.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const image = form.image.files[0];
+        const category = form.category.value;
+        const date = new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        });
 
-        axios
-            .post("http://localhost:3000/addBlog", blogData)
-            .then((res) => {
-                if (res.data.insertedId) {
-                    alert("Blog added successfully!");
-                    setBlogData({
-                        title: "",
-                        image: "",
-                        description: "",
-                        category: "",
-                    });
-                }
-            })
-            .catch((error) => {
-                console.error("Error adding blog:", error);
-            });
+        // === Image Upload to imgbb ===
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const imgbbAPIKey = import.meta.env.VITE_IMAGEBB_API_KEY;
+        const imgbbURL = `https://api.imgbb.com/1/upload?key=${imgbbAPIKey}`;
+
+        try {
+            const imgResponse = await axios.post(imgbbURL, formData);
+            const imageUrl = imgResponse.data.data.url;
+
+            // === Final Blog Data ===
+            const blogData = {
+                title,
+                description,
+                image: imageUrl,
+                category,
+                date,
+                addedBy: user?.displayName,
+            };
+
+            // === Send to backend ===
+            const res = await axios.post(
+                "http://localhost:3000/addBlog",
+                blogData
+            );
+            if (res.data.insertedId) {
+                alert("Blog added successfully!");
+                form.reset();
+            }
+        } catch (error) {
+            console.error("Error uploading image or saving blog:", error);
+            alert("Something went wrong!");
+        }
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
             <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl">
                 <h2 className="text-3xl font-bold mb-8 text-center text-info">
-                    Add New Blog
+                    Add New Blog {user?.displayName}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -50,8 +67,6 @@ const AddBlog = () => {
                         <input
                             type="text"
                             name="title"
-                            value={blogData.title}
-                            onChange={handleChange}
                             placeholder="Enter blog title"
                             className="input w-full"
                             required
@@ -77,8 +92,6 @@ const AddBlog = () => {
                         </label>
                         <textarea
                             name="description"
-                            value={blogData.description}
-                            onChange={handleChange}
                             placeholder="Write blog description..."
                             rows="5"
                             className="input w-full"
@@ -93,8 +106,6 @@ const AddBlog = () => {
                         <input
                             type="text"
                             name="category"
-                            value={blogData.category}
-                            onChange={handleChange}
                             placeholder="Enter blog category"
                             className="input w-full"
                             required
