@@ -1,10 +1,11 @@
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
-import { IoCartOutline, IoSearch } from "react-icons/io5";
+import { IoCartOutline, IoCreateOutline, IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import { LuLayoutDashboard } from "react-icons/lu";
+import { AiOutlineLogin } from "react-icons/ai";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
@@ -25,6 +26,12 @@ const Navbar = () => {
             </li>
             <li>
                 <Link to={"/blog"}>Blog</Link>
+            </li>
+            <li className="block md:hidden">
+                <Link className="btn btn-sm btn-soft btn-info w-full font-bold" to={"/login"}>Login <AiOutlineLogin /></Link>
+            </li>
+            <li className="block md:hidden mt-2">
+                <Link className="btn btn-soft btn-success btn-sm w-full font-bold" to={"/register"}>Register <IoCreateOutline /></Link>
             </li>
         </>
     );

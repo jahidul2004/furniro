@@ -1,45 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineViewGrid } from "react-icons/hi";
-
-const orders = [
-    {
-        id: 1,
-        image: "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
-        title: "Modern Wooden Chair",
-        district: "Dhaka",
-        status: "pending",
-    },
-    {
-        id: 2,
-        image: "https://i.ibb.co.com/vCsPjzkX/images.jpg",
-        title: "Elegant Sofa Set",
-        district: "Chittagong",
-        status: "completed",
-    },
-    {
-        id: 3,
-        image: "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-        title: "Glass Coffee Table",
-        district: "Comilla",
-        status: "cancelled",
-    },
-];
-
-const getStatusColor = (status) => {
-    switch (status) {
-        case "pending":
-            return "bg-yellow-50 text-yellow-800";
-        case "completed":
-            return "bg-green-50 text-green-800";
-        case "cancelled":
-            return "bg-red-50 text-red-800";
-        default:
-            return "";
-    }
-};
+import { TbCoinTaka } from "react-icons/tb";
 
 const AllOrders = () => {
+    const [orders, setOrders] = useState([]);
+
+    console.log("orders", orders);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/allOrders")
+            .then((res) => res.json())
+            .then((data) => setOrders(data))
+            .catch((error) => console.error("Error fetching orders:", error));
+    }, []);
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4">
@@ -53,62 +27,70 @@ const AllOrders = () => {
                     placeholder="Search order by title, location, status"
                 />
             </div>
-            <div className="overflow-x-auto border border-gray-200">
-                <table className="min-w-full bg-white shadow-md overflow-hidden">
-                    <thead className="bg-gray-100">
-                        <tr className="text-left text-sm font-semibold text-gray-600">
-                            <th className="px-6 py-3">Image</th>
-                            <th className="px-6 py-3">Title</th>
-                            <th className="px-6 py-3">Location</th>
-                            <th className="px-6 py-3">Status</th>
-                            <th className="px-6 py-3">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order) => (
-                            <tr
-                                key={order.id}
-                                className="border-t border-gray-200"
-                            >
-                                <td className="px-6 py-4">
-                                    <img
-                                        src={order.image}
-                                        alt={order.title}
-                                        className="w-14 h-14 object-cover rounded"
-                                    />
-                                </td>
-                                <td className="px-6 py-4 font-medium">
-                                    {order.title}
-                                    <p className="flex items-center gap-2 text-[#b98e2f]">
-                                        <FaBangladeshiTakaSign />
-                                        2500 BDT
-                                    </p>
-                                </td>
-                                <td className="px-6 py-4">{order.district}</td>
-                                <td className="px-6 py-4">
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(
-                                            order.status
-                                        )}`}
-                                    >
-                                        {order.status}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 flex gap-2">
-                                    <button className="btn btn-sm btn-success btn-soft">
-                                        Complete
-                                    </button>
-                                    <button className="btn btn-sm btn-error btn-soft">
-                                        Cancel
-                                    </button>
-                                    <button className="btn btn-sm btn-info btn-soft">
-                                        View
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            <div>
+                <div>
+                    {orders?.map((order, index) => (
+                        <div className="overflow-x-auto my-2 md:my-4 border rounded border-info">
+                            <div className="bg-info text-white rounded-t p-1 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-2 px-4">
+                                <h1 className="font-bold">{order?.name}</h1>
+                                <h1 className="text-lg font-semibold flex flex-col md:flex-row items-center gap-2">
+                                    {index + 1}. Order ID: #{order?._id}
+                                    <TbCoinTaka /> {order?.totalPrice} BDT
+                                </h1>
+                                <button className="btn btn-sm btn-info btn-soft">
+                                    View Details
+                                </button>
+                            </div>
+                            <table className="rounded-b min-w-full bg-white shadow-md overflow-hidden">
+                                <thead className="bg-gray-100">
+                                    <tr className="text-left text-sm font-semibold text-gray-600">
+                                        <th className="px-6 py-3">Image</th>
+                                        <th className="px-6 py-3">Title</th>
+                                        <th className="px-6 py-3">
+                                            Order Time
+                                        </th>
+                                        <th className="px-6 py-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {order?.orderedProducts?.map((product) => (
+                                        <tr className="border-t border-gray-200">
+                                            <td className="px-6 py-4">
+                                                <img
+                                                    src={product?.images}
+                                                    alt={""}
+                                                    className="w-14 h-14 object-cover rounded"
+                                                />
+                                            </td>
+                                            <td className="px-6 py-4 font-medium">
+                                                {product?.title}
+                                                <p className="flex items-center gap-2 text-[#b98e2f]">
+                                                    <FaBangladeshiTakaSign />
+                                                    {product?.price} BDT
+                                                </p>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {order?.orderDate}
+                                            </td>
+                                            <td
+                                                className={`px-6 py-4 ${
+                                                    order?.status === "pending"
+                                                        ? "text-yellow-500"
+                                                        : order?.status ===
+                                                          "completed"
+                                                        ? "text-green-500"
+                                                        : "text-red-500"
+                                                }`}
+                                            >
+                                                {order?.status}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
