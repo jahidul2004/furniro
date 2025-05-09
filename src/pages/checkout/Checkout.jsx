@@ -1,7 +1,11 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Checkout = () => {
+    const location = useLocation();
+    const { cartProducts =[] } = location.state || {};
+
+
     return (
         <div>
             {/* Header */}

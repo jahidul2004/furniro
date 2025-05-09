@@ -5,12 +5,14 @@ import { MdOutlineSupportAgent } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { HiOutlineTrophy } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -41,9 +43,18 @@ const Cart = () => {
         });
     };
 
-    const handleCreateOrder = () => {
+    const handleCheckout = () => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        console.log(cart);
+        if (cart.length === 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Your cart is empty!",
+            });
+        } else {
+            console.log("Cart is not empty", cart);
+            navigate("/checkout", { state: { cartProducts: cart } });
+        }
     };
     return (
         <div>
@@ -130,13 +141,12 @@ const Cart = () => {
                     <div className="flex flex-col gap-4 mt-4 text-center">
                         <span>Subtotal: {totalPrice}</span>
                         <span>Total: {totalPrice}</span>
-                        <Link
-                            onClick={handleCreateOrder}
-                            to={"/checkout"}
+                        <button
+                            onClick={handleCheckout}
                             className="btn bg-[#b98e2f] text-white w-max mx-auto border-none"
                         >
                             Checkout
-                        </Link>
+                        </button>
                     </div>
                 </div>
                 {/* Checkout div end */}
