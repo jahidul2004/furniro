@@ -1,31 +1,18 @@
-import { CgSandClock } from "react-icons/cg";
+import { useEffect, useState } from "react";
 import { FaBlog, FaRegUserCircle } from "react-icons/fa";
-import { TbCoinTaka } from "react-icons/tb";
 
 const AdminBlog = () => {
-    const orders = [
-        {
-            id: 1,
-            image: "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
-            title: "Modern Wooden Chair",
-            district: "Dhaka",
-            status: "pending",
-        },
-        {
-            id: 2,
-            image: "https://i.ibb.co.com/vCsPjzkX/images.jpg",
-            title: "Elegant Sofa Set",
-            district: "Chittagong",
-            status: "completed",
-        },
-        {
-            id: 3,
-            image: "https://i.ibb.co.com/Xr5MCRyN/hero1.jpg",
-            title: "Glass Coffee Table",
-            district: "Comilla",
-            status: "cancelled",
-        },
-    ];
+    const [blogs, setBlogs] = useState([]);
+
+    console.log(blogs);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/allBlogs")
+            .then((res) => res.json())
+            .then((data) => {
+                setBlogs(data);
+            });
+    }, []);
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
@@ -43,27 +30,27 @@ const AdminBlog = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {orders?.map((order) => (
+                        {blogs?.map((blog) => (
                             <tr
-                                key={order?.id}
+                                key={blog?._id}
                                 className="border-t border-gray-200"
                             >
                                 <td className="px-6 py-4">
                                     <img
-                                        src={order?.image}
-                                        alt={order?.title}
+                                        src={blog?.image}
+                                        alt={blog?.title}
                                         className="w-14 h-14 object-cover rounded"
                                     />
                                 </td>
                                 <td className="px-6 py-4 font-medium">
-                                    {order?.title}
+                                    {blog?.title}
                                     <br />
                                     <span className="flex items-center gap-1 text-info">
                                         <FaRegUserCircle />
-                                        Abdul Ahad
+                                        {blog?.addedBy}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4">20/5/2024</td>
+                                <td className="px-6 py-4">{blog?.date}</td>
                                 <td className="px-6 py-4 flex gap-2">
                                     <button className="btn btn-sm btn-error btn-soft border border-dashed border-error">
                                         Delete
