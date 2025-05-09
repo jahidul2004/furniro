@@ -1,10 +1,10 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaBlog, FaRegUserCircle } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AdminBlog = () => {
     const [blogs, setBlogs] = useState([]);
-
-    console.log(blogs);
 
     useEffect(() => {
         fetch("http://localhost:3000/allBlogs")
@@ -13,6 +13,34 @@ const AdminBlog = () => {
                 setBlogs(data);
             });
     }, []);
+
+    const handleDeleteBlog = (id) => {
+        axios
+            .delete(`http://localhost:3000/deleteBlog/${id}`)
+            .then((res) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Blog Deleted",
+                    text: "The blog has been deleted successfully.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    toast: true,
+                    position: "top-end",
+                });
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "There was an error deleting the blog.",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    toast: true,
+                    position: "top-end",
+                });
+                console.error("Error deleting blog:", error);
+            });
+    };
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
@@ -52,7 +80,12 @@ const AdminBlog = () => {
                                 </td>
                                 <td className="px-6 py-4">{blog?.date}</td>
                                 <td className="px-6 py-4 flex gap-2">
-                                    <button className="btn btn-sm btn-error btn-soft border border-dashed border-error">
+                                    <button
+                                        onClick={() => {
+                                            handleDeleteBlog(blog?._id);
+                                        }}
+                                        className="btn btn-sm btn-error btn-soft border border-dashed border-error"
+                                    >
                                         Delete
                                     </button>
                                     <button className="btn btn-sm btn-info btn-soft border border-dashed border-info">
