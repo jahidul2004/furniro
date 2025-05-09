@@ -31,6 +31,7 @@ const Users = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Registered Date</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,6 +42,15 @@ const Users = () => {
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
                                 <td>{user?.creationTime}</td>
+                                <td
+                                    className={`${
+                                        user?.role === "admin"
+                                            ? "text-success"
+                                            : ""
+                                    }`}
+                                >
+                                    {user?.role}
+                                </td>
                                 <td>
                                     <button className="btn btn-xs btn-dash btn-error">
                                         Remove
