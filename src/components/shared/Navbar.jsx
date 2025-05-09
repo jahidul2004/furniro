@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import { LuLayoutDashboard } from "react-icons/lu";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext);
@@ -78,16 +79,34 @@ const Navbar = () => {
                         }
                         className="hidden md:flex"
                     >
-                        <FaRegUser size={20} />
+                        {dbUser?.role === "admin" ? (
+                            <span className="btn border border-dashed btn-soft btn-warning flex items-center gap-2">
+                                <LuLayoutDashboard
+                                    title="Admin Dashboard"
+                                    size={20}
+                                />
+                                Admin Dashboard
+                            </span>
+                        ) : dbUser?.role === "user" ? (
+                            <span className="flex items-center gap-2">
+                                <FaRegUser size={20} /> My Account
+                            </span>
+                        ) : (
+                            <span className="flex items-center gap-2">
+                                <FaRegUser size={20} /> Login / Register
+                            </span>
+                        )}
                     </Link>
                     <Link>
-                        <IoSearch size={20} />
+                        {dbUser?.role !== "admin" && <IoSearch size={25} />}
                     </Link>
                     <Link>
-                        <FaRegHeart size={20} />
+                        {dbUser?.role !== "admin" && <FaRegHeart size={20} />}
                     </Link>
                     <Link to={"/cart"}>
-                        <IoCartOutline size={25} />
+                        {dbUser?.role !== "admin" && (
+                            <IoCartOutline size={25} />
+                        )}
                     </Link>
                 </div>
             </div>
