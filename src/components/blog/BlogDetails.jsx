@@ -1,6 +1,10 @@
-import { FaGreaterThan, FaRegUser } from "react-icons/fa";
+import {
+    FaGreaterThan,
+    FaRegArrowAltCircleRight,
+    FaRegUser,
+} from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LuClock4 } from "react-icons/lu";
 const BlogDetails = () => {
@@ -8,10 +12,10 @@ const BlogDetails = () => {
     const [blog, setBlog] = useState({});
 
     useEffect(() => {
-        fetch("/blog.json")
+        fetch(`http://localhost:3000/blog/${id}`)
             .then((res) => res.json())
             .then((data) => {
-                setBlog(data.find((item) => item.id == id));
+                setBlog(data);
             });
     }, []);
 
@@ -46,11 +50,16 @@ const BlogDetails = () => {
                 <div>
                     <p className="text-gray-500 flex items-center gap-2 mb-2">
                         <FaRegUser />
-                        {blog?.author} <LuClock4 />
+                        {blog?.addedBy} <LuClock4 />
                         {blog?.date}
                     </p>
                     <h1 className="text-3xl font-bold mb-4">{blog?.title}</h1>
-                    <p>{blog?.content}</p>
+                    <p className="text-justify text-gray-600">
+                        {blog?.description}
+                    </p>
+                    <Link className="btn btn-soft btn-info mt-2" to={"/blog"}>
+                        Read More Blog <FaRegArrowAltCircleRight />
+                    </Link>
                 </div>
             </div>
             {/* Details end */}

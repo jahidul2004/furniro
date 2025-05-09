@@ -30,7 +30,7 @@ const BlogCard = ({ item }) => {
             <h1 className="text-2xl font-bold my-4 mt-6">{item?.title}</h1>
             <p className="text-gray-500 mb-4">{item?.excerpt}</p>
             <Link
-                to={`/blog/${item?.id}`}
+                to={`/blog/${item?._id}`}
                 className="p-1 font-bold flex items-center gap-2 w-max border-b-2 border-gray-200"
             >
                 Read More <FaRegArrowAltCircleRight />
