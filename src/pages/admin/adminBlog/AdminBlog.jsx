@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaBlog, FaRegUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AdminBlog = () => {
@@ -91,9 +92,12 @@ const AdminBlog = () => {
                                     >
                                         Delete
                                     </button>
-                                    <button className="btn btn-sm btn-info btn-soft border border-dashed border-info">
+                                    <Link
+                                        to={`/blog/${blog._id}`}
+                                        className="btn btn-sm btn-info btn-soft border border-dashed border-info"
+                                    >
                                         View
-                                    </button>
+                                    </Link>
                                 </td>
                             </tr>
                         ))}
