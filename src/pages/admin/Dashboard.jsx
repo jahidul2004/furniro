@@ -206,6 +206,7 @@ const Dashboard = () => {
                                                     });
                                                     setDbUser(null);
                                                     navigate("/login");
+                                                    window.location.reload();
                                                 })
                                                 .catch((error) => {
                                                     console.error(
