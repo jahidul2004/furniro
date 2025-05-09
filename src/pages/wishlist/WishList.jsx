@@ -1,7 +1,15 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { CiCircleRemove } from "react-icons/ci";
+import { useEffect, useState } from "react";
 const WishList = () => {
+    const [wishlistProducts, setWishlistProducts] = useState([]);
+    console.log("Wishlist Products", wishlistProducts);
+    useEffect(() => {
+        const wishlistItems =
+            JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        setWishlistProducts(wishlistItems);
+    }, []);
     return (
         <div>
             {/* Header */}
@@ -33,27 +41,33 @@ const WishList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div className="flex items-center gap-3">
-                                    <div className="avatar">
-                                        <div className="rounded h-12 w-12">
-                                            <img
-                                                src={
-                                                    "https://i.ibb.co/7g3JY0C/Rectangle-1.png"
-                                                }
-                                                alt="Avatar Tailwind CSS Component"
-                                            />
+                        {wishlistProducts?.map((product) => (
+                            <tr>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div className="avatar">
+                                            <div className="rounded h-12 w-12">
+                                                <img
+                                                    src={
+                                                        product?.images[0]
+                                                            ? product?.images[0]
+                                                            : "https://i.ibb.co/6H3xY0N/placeholder.png"
+                                                    }
+                                                    alt="Avatar Tailwind CSS Component"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>Hello Product</td>
-                            <td>1200</td>
-                            <td>
-                                <button className="btn btn-soft btn-warning">Add to cart</button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>{product?.title}</td>
+                                <td>{product?.price} TK</td>
+                                <td>
+                                    <button className="btn btn-soft btn-warning">
+                                        Add to cart
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
