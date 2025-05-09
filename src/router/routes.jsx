@@ -29,6 +29,7 @@ import AddBlog from "../pages/admin/addBlog/AddBlog";
 import AdminRoute from "./AdminRoute";
 import NotAdminRoute from "./NotAdminRoute";
 import WishList from "../pages/wishlist/WishList";
+import AdminProfile from "../pages/admin/adminProfile/AdminProfile";
 
 const router = createBrowserRouter([
     {
@@ -56,10 +57,12 @@ const router = createBrowserRouter([
                 ),
             },
             {
-                path:"/wishlist",
-                element: <NotAdminRoute>
-                    <WishList></WishList>
-                </NotAdminRoute>
+                path: "/wishlist",
+                element: (
+                    <NotAdminRoute>
+                        <WishList></WishList>
+                    </NotAdminRoute>
+                ),
             },
             {
                 path: "/checkout",
@@ -166,6 +169,10 @@ const router = createBrowserRouter([
             {
                 path: "addBlog",
                 element: <AddBlog></AddBlog>,
+            },
+            {
+                path: "profile",
+                element: <AdminProfile></AdminProfile>,
             },
         ],
     },
