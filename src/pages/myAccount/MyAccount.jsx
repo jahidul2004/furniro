@@ -8,6 +8,7 @@ import { CgArrowLeftO, CgShoppingBag } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
+import { TbCoinTaka } from "react-icons/tb";
 
 const MyAccount = () => {
     const { user, logout, setDbUser } = useContext(AuthContext);
@@ -95,18 +96,18 @@ const MyAccount = () => {
             {/* Action area */}
             <div className="col-span-1 md:col-span-2">
                 {/* My Orders */}
-                <div>
+                <div className="border p-2 border-warning rounded">
                     <h1 className="flex items-center gap-2 text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded">
                         <HiOutlineViewGrid />
                         My Orders
                     </h1>
                     <div>
-                        {orders?.map((order) => (
+                        {orders?.map((order, index) => (
                             <div className="my-2 md:my-4">
-                                <div className="bg-warning rounded-t p-1 flex justify-between items-center">
-                                    <h1 className="text-lg font-semibold">
-                                        Order ID: #{order?._id} /{" "}
-                                        {order?.totalPrice} BDT
+                                <div className="bg-[#b98e2f] text-white rounded-t p-1 flex justify-between items-center">
+                                    <h1 className="text-lg font-semibold flex items-center gap-2">
+                                        {index + 1}. Order ID: #{order?._id}
+                                        <TbCoinTaka /> {order?.totalPrice} BDT
                                     </h1>
                                     <button className="btn btn-sm btn-info btn-soft">
                                         View Details
@@ -189,7 +190,7 @@ const MyAccount = () => {
                 </div>
                 {/* My orders end */}
 
-                <div className="mt-5">
+                <div className="mt-5 border p-2 border-warning rounded">
                     <h1 className="text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded flex items-center gap-2">
                         <HiOutlineCurrencyDollar />
                         Payment History
