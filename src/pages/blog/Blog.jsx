@@ -53,16 +53,47 @@ const Blog = () => {
                         placeholder="Search Blog"
                     />
 
-                    <div>
-                        <h1 className="text-2xl font-bold my-3">Categories</h1>
-                        <div className="text-gray-500 font-semibold flex flex-col gap-2">
-                            <p>Craft: 12</p>
-                            <p>Design: 16</p>
-                            <p>Handmade: 0</p>
-                            <p>Interior: 15</p>
-                            <p>Wood: 6</p>
-                        </div>
+                    {/* Category Card */}
+                    <div className="bg-white rounded-2xl shadow-md p-6 border mt-2 md:mt-4 border-gray-200">
+                        <h1 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">
+                            Categories
+                        </h1>
+                        <ul className="space-y-3 text-gray-600 font-medium">
+                            <li className="flex justify-between hover:text-info transition">
+                                <span>Craft</span>
+                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                    12
+                                </span>
+                            </li>
+                            <li className="flex justify-between hover:text-info transition">
+                                <span>Design</span>
+                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                    16
+                                </span>
+                            </li>
+                            <li className="flex justify-between hover:text-info transition">
+                                <span>Handmade</span>
+                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                    0
+                                </span>
+                            </li>
+                            <li className="flex justify-between hover:text-info transition">
+                                <span>Interior</span>
+                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                    15
+                                </span>
+                            </li>
+                            <li className="flex justify-between hover:text-info transition">
+                                <span>Wood</span>
+                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                    6
+                                </span>
+                            </li>
+                        </ul>
                     </div>
+                    {/* Category card end */}
+
+                    {/* Recent post */}
                     <div>
                         <h1 className="text-2xl font-bold my-3">Recent Post</h1>
                         <div className="flex flex-col gap-4 md:gap-8">
@@ -88,8 +119,9 @@ const Blog = () => {
                             ))}
                         </div>
                     </div>
+                    {/* Recent post end */}
                 </div>
-                {/* Navigation area start end */}
+                {/* Navigation area end */}
             </div>
             {/* Main content end */}
 
