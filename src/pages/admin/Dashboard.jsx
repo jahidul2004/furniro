@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { GiHotMeal } from "react-icons/gi";
 import { GrUserSettings } from "react-icons/gr";
@@ -23,8 +23,11 @@ import { AiOutlineLogout, AiOutlineProduct } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
 import { FaBlog } from "react-icons/fa";
 import { TbLayoutDashboard } from "react-icons/tb";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Dashboard = () => {
+    const { user, dbUser } = useContext(AuthContext);
+    console.log(user);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -202,13 +205,17 @@ const Dashboard = () => {
                         </div>
                         <div className="flex items-center p-2 mt-2 space-x-4 justify-self-end">
                             <img
-                                src="https://i.ibb.co.com/HT3LH0tb/Eco-Rowe.jpg"
+                                src={
+                                    user?.photoURL
+                                        ? user?.photoURL
+                                        : "https://cdn-icons-png.flaticon.com/128/8030/8030198.png"
+                                }
                                 alt=""
                                 className="w-12 h-12 rounded-lg dark:bg-gray-500"
                             />
                             <div>
                                 <h2 className="text-lg font-semibold">
-                                    Jahidul Islam
+                                    {user?.displayName}
                                 </h2>
                                 <span className="flex items-center space-x-1">
                                     <a
