@@ -1,6 +1,7 @@
 import axios from "axios";
 import AuthContext from "../../../context/AuthContext/AuthContext";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 const AddBlog = () => {
     const { user } = useContext(AuthContext);
 
@@ -44,12 +45,28 @@ const AddBlog = () => {
                 blogData
             );
             if (res.data.insertedId) {
-                alert("Blog added successfully!");
+                Swal.fire({
+                    icon: "success",
+                    title: "Blog Added",
+                    text: "Your blog has been added successfully.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    toast: true,
+                    position: "top-end",
+                });
                 form.reset();
             }
         } catch (error) {
             console.error("Error uploading image or saving blog:", error);
-            alert("Something went wrong!");
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "There was an error uploading the image or saving the blog.",
+                showConfirmButton: true,
+                confirmButtonText: "OK",
+                toast: true,
+                position: "top-end",
+            });
         }
     };
 
