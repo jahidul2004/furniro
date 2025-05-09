@@ -1,6 +1,7 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 const WishList = () => {
     const [wishlistProducts, setWishlistProducts] = useState([]);
     console.log("Wishlist Products", wishlistProducts);
@@ -10,6 +11,34 @@ const WishList = () => {
 
         setWishlistProducts(wishlistItems);
     }, []);
+
+    const handleAddToCart = (product) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        cart.push(product);
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Product added to cart",
+            showConfirmButton: false,
+            timer: 2500,
+            toast: true,
+        });
+    };
+
+    const handleRemoveFromWishlist = (product) => {
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        const updatedWishlist = wishlist.filter(
+            (item) => item._id !== product._id
+        );
+
+        setWishlistProducts(updatedWishlist);
+        localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+    };
     return (
         <div>
             {/* Header */}
@@ -62,7 +91,13 @@ const WishList = () => {
                                 <td>{product?.title}</td>
                                 <td>{product?.price} TK</td>
                                 <td>
-                                    <button className="btn btn-soft btn-warning">
+                                    <button
+                                        onClick={() => {
+                                            handleAddToCart(product);
+                                            handleRemoveFromWishlist(product);
+                                        }}
+                                        className="btn btn-soft btn-warning"
+                                    >
                                         Add to cart
                                     </button>
                                 </td>
