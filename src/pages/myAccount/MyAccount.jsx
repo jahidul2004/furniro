@@ -10,8 +10,8 @@ import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
 
 const MyAccount = () => {
-    const { user, logout } = useContext(AuthContext);
-    console.log(user);
+    const { user, logout, setDbUser } = useContext(AuthContext);
+
     return (
         <div className="w-[95%] md:container mx-auto my-10 grid gird-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Profile area */}
@@ -52,6 +52,7 @@ const MyAccount = () => {
                                             icon: "success",
                                             confirmButtonText: "Close",
                                         });
+                                        setDbUser(null);
                                     })
                                     .catch((error) => {
                                         console.error(
