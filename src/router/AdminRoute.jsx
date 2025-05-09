@@ -6,7 +6,11 @@ const AdminRoute = ({ children }) => {
     const { dbUser, loading } = useContext(AuthContext);
 
     if (loading || !dbUser) {
-        return <span className="loading loading-bars loading-lg"></span>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-bars loading-lg"></span>
+            </div>
+        );
     }
 
     if (dbUser.role === "admin") {

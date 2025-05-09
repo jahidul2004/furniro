@@ -16,7 +16,7 @@ import {
     MdOutlineWatchLater,
 } from "react-icons/md";
 import { RiApps2AddLine, RiHome9Line } from "react-icons/ri";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { FaArrowRightFromBracket, FaCubesStacked } from "react-icons/fa6";
 import { FiHome, FiUsers } from "react-icons/fi";
 import { AiOutlineLogout, AiOutlineProduct } from "react-icons/ai";
@@ -24,10 +24,11 @@ import { BsCoin } from "react-icons/bs";
 import { FaBlog } from "react-icons/fa";
 import { TbLayoutDashboard } from "react-icons/tb";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-    const { user, dbUser } = useContext(AuthContext);
-    console.log(user);
+    const { user, logout, setDbUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -190,7 +191,31 @@ const Dashboard = () => {
                                             <span>Add Blog</span>
                                         </Link>
                                     </li>
-                                    <li className="rounded-sm">
+                                    <li
+                                        onClick={() => {
+                                            logout()
+                                                .then(() => {
+                                                    Swal.fire({
+                                                        title: "Success",
+                                                        text: "Logout successful",
+                                                        icon: "success",
+                                                        toast: true,
+                                                        position: "top-end",
+                                                        showConfirmButton: false,
+                                                        timer: 1500,
+                                                    });
+                                                    setDbUser(null);
+                                                    navigate("/login");
+                                                })
+                                                .catch((error) => {
+                                                    console.error(
+                                                        "Logout error:",
+                                                        error.message
+                                                    );
+                                                });
+                                        }}
+                                        className="rounded-sm"
+                                    >
                                         <a
                                             rel="noopener noreferrer"
                                             href="#"
