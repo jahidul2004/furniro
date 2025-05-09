@@ -28,6 +28,7 @@ import AdminBlog from "../pages/admin/adminBlog/AdminBlog";
 import AddBlog from "../pages/admin/addBlog/AddBlog";
 import AdminRoute from "./AdminRoute";
 import NotAdminRoute from "./NotAdminRoute";
+import WishList from "../pages/wishlist/WishList";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,12 @@ const router = createBrowserRouter([
                         <Cart></Cart>
                     </NotAdminRoute>
                 ),
+            },
+            {
+                path:"/wishlist",
+                element: <NotAdminRoute>
+                    <WishList></WishList>
+                </NotAdminRoute>
             },
             {
                 path: "/checkout",

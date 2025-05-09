@@ -100,7 +100,7 @@ const Navbar = () => {
                     <Link>
                         {dbUser?.role !== "admin" && <IoSearch size={25} />}
                     </Link>
-                    <Link>
+                    <Link to={"/wishlist"}>
                         {dbUser?.role !== "admin" && <FaRegHeart size={20} />}
                     </Link>
                     <Link to={"/cart"}>
