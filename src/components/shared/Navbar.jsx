@@ -88,7 +88,7 @@ const Navbar = () => {
                                 Admin Dashboard
                             </span>
                         ) : dbUser?.role === "user" ? (
-                            <span className="flex items-center gap-2">
+                            <span className="btn btn-soft btn-warning flex items-center gap-2">
                                 <FaRegUser size={20} /> My Account
                             </span>
                         ) : (
