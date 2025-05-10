@@ -113,6 +113,15 @@ const ProductDetails = () => {
                     <p className="my-2">⭐⭐⭐⭐⭐ | 5 Reviews</p>
                     <p>{currentProduct?.description}</p>
 
+                    <div>
+                        <h1 className="text-lg font-bold my-2">Features</h1>
+                        <ul className="list-disc list-inside">
+                            {currentProduct?.features?.map((feature) => (
+                                <li>{feature}</li>
+                            ))}
+                        </ul>
+                    </div>
+
                     <div className="flex items-center gap-4 mt-4">
                         <button
                             onClick={() => {
