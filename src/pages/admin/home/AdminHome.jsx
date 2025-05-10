@@ -12,7 +12,6 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import { IoChevronBackCircleOutline } from "react-icons/io5";
 
 // Custom Card Component
 const Card = ({ title, value, color }) => (
@@ -24,6 +23,16 @@ const Card = ({ title, value, color }) => (
 
 const AdminHome = () => {
     const [time, setTime] = useState(new Date());
+    const [documentCount, setDocumentCount] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/documentCount")
+            .then((res) => res.json())
+            .then((data) => {
+                setDocumentCount(data);
+            })
+            .catch((error) => console.error("Error fetching data:", error));
+    });
 
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date()), 1000);
@@ -56,21 +65,33 @@ const AdminHome = () => {
 
             {/* Dashboard Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center">
-                <Card title="Total Users" value="1,235" color="text-blue-600" />
                 <Card
-                    title="Total Sales"
-                    value="$4,560"
+                    title="Total Users"
+                    value={documentCount?.userCount}
+                    color="text-blue-600"
+                />
+                <Card
+                    title="Total Products"
+                    value={documentCount?.productCount}
                     color="text-green-600"
                 />
-                <Card title="New Signups" value="128" color="text-purple-600" />
-                <Card title="Pending Orders" value="35" color="text-red-600" />
+                <Card
+                    title="Total Order"
+                    value={documentCount?.orderCount}
+                    color="text-purple-600"
+                />
+                <Card
+                    title="Total Review"
+                    value={documentCount?.reviewCount}
+                    color="text-red-600"
+                />
             </div>
 
             {/* User Growth Chart */}
             <div className="bg-white p-6 rounded-2xl shadow">
                 <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
                     <MdOutlineAnalytics className="text-info" /> Product Sale
-                    Overview
+                    Overview (Fixed Data)
                 </h2>
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={data}>
@@ -91,7 +112,7 @@ const AdminHome = () => {
             <div className="flex justify-center items-center mt-5">
                 <Link
                     to={"sellDetails"}
-                    className="btn btn-info btn-soft border border-dashed border-info"
+                    className="btn btn-info text-white rounded-full"
                 >
                     Go to sales page
                     <FaRegArrowAltCircleRight />
