@@ -87,13 +87,10 @@ const CanceledOrders = () => {
                                             />
                                         </td>
                                         <td className="px-6 py-4 font-medium">
-                                            {product?.title}
+                                            {product?.title} <span className="text-error">x {product?.quantity} Pcs</span>
                                             <p className="flex items-center gap-2 text-[#b98e2f]">
                                                 <FaBangladeshiTakaSign />
-                                                {product?.price} BDT
-                                            </p>
-                                            <p className="text-sm text-gray-500">
-                                                Qty: {product?.quantity}
+                                                {product?.price} BDT / pcs
                                             </p>
                                         </td>
                                         <td className="px-6 py-4">
