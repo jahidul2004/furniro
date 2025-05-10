@@ -91,7 +91,7 @@ const ProductDetails = () => {
                 {/* Image area */}
                 <div>
                     <img
-                        className="rounded w-full h-full"
+                        className="rounded w-full h-[500px] object-cover"
                         src={
                             currentProduct?.images
                                 ? currentProduct?.images[0]
@@ -112,30 +112,6 @@ const ProductDetails = () => {
                     </p>
                     <p className="my-2">⭐⭐⭐⭐⭐ | 5 Reviews</p>
                     <p>{currentProduct?.description}</p>
-
-                    <div className="my-2">
-                        <h6 className="mb-2 font-semibold">Size</h6>
-                        <div className="flex items-center gap-2">
-                            <button className="btn bg-[#b98e2f] text-white border-none shadow-none">
-                                S
-                            </button>
-                            <button className="btn bg-[#f9f0e7] text-black border-none shadow-none">
-                                M
-                            </button>
-                            <button className="btn bg-[#f9f0e7] text-black border-none shadow-none">
-                                L
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="my-2">
-                        <h6 className="mb-2 font-semibold">Color</h6>
-                        <div className="flex items-center gap-2">
-                            <button className="btn bg-blue-600 text-white w-[40px] h-[40px] rounded-full border-none"></button>
-                            <button className="btn bg-black text-white w-[40px] h-[40px] rounded-full border-none"></button>
-                            <button className="btn bg-[#b98e2f] text-white w-[40px] h-[40px] rounded-full border-none"></button>
-                        </div>
-                    </div>
 
                     <div className="flex items-center gap-4 mt-4">
                         <button
@@ -188,13 +164,17 @@ const ProductDetails = () => {
                         </Tab>
                     </TabList>
 
-                    <TabPanel className={"mx-0 md:mx-5 lg:mx-20"}>
+                    <TabPanel className="my-10 text-justify">
                         <p className="text-justify text-[#9f9f9f]">
                             {currentProduct?.description}
                         </p>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Additional Info Here</h2>
+                        <div className="my-10 text-justify">
+                            <p className="text-gray-400">
+                                {currentProduct?.additionalInfo}
+                            </p>
+                        </div>
                     </TabPanel>
                     <TabPanel>
                         <div className="my-10">
