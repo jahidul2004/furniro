@@ -9,6 +9,7 @@ import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCoinTaka } from "react-icons/tb";
 import ReactStars from "react-stars"; // Import react-stars for rating
 import Modal from "react-modal"; // Import modal component for review
+import axios from "axios";
 
 // Modal custom styles
 const customStyles = {
@@ -31,10 +32,10 @@ const MyAccount = () => {
     const { user, logout, setDbUser } = useContext(AuthContext);
 
     const [orders, setOrders] = useState([]);
-    const [modalIsOpen, setModalIsOpen] = useState(false); // To manage modal visibility
-    const [currentProduct, setCurrentProduct] = useState(null); // To hold selected product for review
-    const [rating, setRating] = useState(0); // Rating state
-    const [reviewMessage, setReviewMessage] = useState(""); // Review message state
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [currentProduct, setCurrentProduct] = useState(null);
+    const [rating, setRating] = useState(0);
+    const [reviewMessage, setReviewMessage] = useState("");
 
     useEffect(() => {
         fetch(`http://localhost:3000/orders/${user?.email}`)
@@ -65,37 +66,36 @@ const MyAccount = () => {
             return;
         }
 
-        // Submit review (this can be an API call or any other logic)
         const reviewData = {
             productId: currentProduct._id,
             rating,
             reviewMessage,
+            userName: user?.displayName,
+            userEmail: user?.email,
+            userPhoto: user?.photoURL
+                ? user.photoURL
+                : "https://cdn-icons-png.flaticon.com/128/14722/14722327.png",
         };
 
-        fetch("http://localhost:3000/reviews", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(reviewData),
-        })
-            .then((res) => res.json())
-            .then((data) => {
+        axios
+            .post("http://localhost:3000/addReview", reviewData)
+            .then((res) => {
                 Swal.fire({
-                    title: "Success",
+                    title: "Success!",
                     text: "Review submitted successfully!",
                     icon: "success",
                     confirmButtonText: "Close",
                 });
-                setModalIsOpen(false); // Close modal
+                setModalIsOpen(false);
             })
-            .catch((error) => {
+            .catch((err) => {
                 Swal.fire({
                     title: "Error!",
-                    text: "There was an issue submitting your review.",
+                    text: "Failed to submit review. Please try again.",
                     icon: "error",
                     confirmButtonText: "Close",
                 });
+                console.error("Error submitting review:", err);
             });
     };
 
