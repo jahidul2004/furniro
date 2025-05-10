@@ -21,6 +21,7 @@ const AddProduct = () => {
         const isNew = form.isNew.checked;
         const category = form.category.value;
         const shortDescription = form.shortDescription.value;
+        const additionalInfo = form.additionalInfo.value;
 
         try {
             // Upload first image
@@ -58,6 +59,7 @@ const AddProduct = () => {
                 addedDate: new Date(),
                 addedBy: user?.displayName,
                 addedByEmail: user?.email,
+                additionalInfo,
             };
 
             // Upload product to MongoDB (server)
@@ -90,7 +92,7 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#eef4ff] to-[#dbe9ff] py-10 px-4">
+        <div className="min-h-screen py-10 px-4">
             <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
                 <h2 className="text-4xl font-bold text-center text-info mb-10">
                     Add New Product
@@ -222,6 +224,20 @@ const AddProduct = () => {
                             <option value="stationery">Stationery</option>
                             <option value="other">Other</option>
                         </select>
+                    </div>
+
+                    {/* Additional info */}
+                    <div>
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
+                            Additional Information
+                        </label>
+                        <textarea
+                            required
+                            name="additionalInfo"
+                            rows={2}
+                            placeholder="Any additional information about the product..."
+                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
+                        />
                     </div>
 
                     {/* Submit Button */}
