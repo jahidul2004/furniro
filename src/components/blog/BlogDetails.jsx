@@ -7,6 +7,7 @@ import shopHeading from "../../assets/pageHeading/shopHeading.png";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { LuClock4 } from "react-icons/lu";
+import { MdOutlineCategory } from "react-icons/md";
 const BlogDetails = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState({});
@@ -48,10 +49,12 @@ const BlogDetails = () => {
                 </div>
 
                 <div>
-                    <p className="text-gray-500 flex items-center gap-2 mb-2">
+                    <p className="text-gray-500 flex items-center gap-2 mb-2 md:mb-4">
                         <FaRegUser />
                         {blog?.addedBy} <LuClock4 />
                         {blog?.date}
+                        <MdOutlineCategory />
+                        {blog?.category}
                     </p>
                     <h1 className="text-3xl font-bold mb-4">{blog?.title}</h1>
                     <p className="text-justify text-gray-600">
