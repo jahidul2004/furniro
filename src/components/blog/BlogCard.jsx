@@ -3,6 +3,7 @@ import {
     FaRegCalendarCheck,
     FaRegUser,
 } from "react-icons/fa";
+import { MdOutlineCategory } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ item }) => {
@@ -14,10 +15,12 @@ const BlogCard = ({ item }) => {
                 alt=""
             />
 
-            <div>
-                <p className="text-gray-500 text-sm my-2 mt-6 flex items-center gap-2 mb-4">
+            <div className="mt-6">
+                <p className="text-gray-500 text-sm my-2 flex items-center gap-2 mb-4">
                     <FaRegUser />
-                    {item?.addedBy} <FaRegCalendarCheck /> {item?.date}
+                    {item?.addedBy} <FaRegCalendarCheck /> {item?.date}{" "}
+                    <MdOutlineCategory />
+                    {item?.category}
                 </p>
                 <p className="flex items-center gap-2 text-sm my-2">
                     {item?.tags?.map((tag) => (
@@ -27,7 +30,7 @@ const BlogCard = ({ item }) => {
                     ))}
                 </p>
             </div>
-            <h1 className="text-2xl font-bold my-4 mt-6">{item?.title}</h1>
+            <h1 className="text-2xl font-bold my-4">{item?.title}</h1>
             <p className="text-gray-500 mb-4">{item?.excerpt}</p>
             <Link
                 to={`/blog/${item?._id}`}
