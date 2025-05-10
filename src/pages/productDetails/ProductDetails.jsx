@@ -30,13 +30,10 @@ const ProductDetails = () => {
     }, [currentId]);
 
     useEffect(() => {
-        fetch("/review.json")
+        fetch(`http://localhost:3000/reviews/${currentId?.id}`)
             .then((res) => res.json())
             .then((data) => {
-                const matched = data.filter(
-                    (item) => item.productId == currentId.id
-                );
-                setReviews(matched || []);
+                setReviews(data);
             });
     }, []);
 
