@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+    const navigate = useNavigate();
     const images = [
         "https://i.ibb.co.com/qFWn8JfB/furniture-styles-Getty-Images-1467984982-512fed4077b646eabbc187619554d517.jpg",
         "https://i.ibb.co.com/0j9W53Qy/15824-177906.jpg",
@@ -28,7 +29,6 @@ const Hero = () => {
                 backgroundImage: `url("${images[currentImageIndex]}")`,
             }}
         >
-            <div className="hero-overlay opacity-10"></div>
             <div className="hero-content text-neutral-content text-center grid grid-cols-1 md:grid-cols-2">
                 <div></div>
                 <div className="max-w-md bg-[#fff3e3] rounded text-left text-black p-4">
@@ -44,7 +44,7 @@ const Hero = () => {
                         crafted with precision and innovation.
                     </p>
                     <Link
-                        to={"/shop"}
+                        to="/shop"
                         className="rounded btn mt-2 bg-[#ba8d2f] text-white border-none shadow-none px-5"
                     >
                         Buy Now!
