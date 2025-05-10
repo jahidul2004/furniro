@@ -56,7 +56,7 @@ const AddProduct = () => {
                 isNew,
                 category,
                 addedDate: new Date(),
-                addedBy: user?.name,
+                addedBy: user?.displayName,
                 addedByEmail: user?.email,
             };
 
@@ -90,50 +90,51 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 py-10 px-4">
-            <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8">
-                <h2 className="text-3xl font-semibold text-center text-[#b98e2f] mb-8">
+        <div className="min-h-screen bg-gradient-to-br from-[#eef4ff] to-[#dbe9ff] py-10 px-4">
+            <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
+                <h2 className="text-4xl font-bold text-center text-info mb-10">
                     Add New Product
                 </h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Title */}
                     <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
                             Product Title
                         </label>
                         <input
                             type="text"
                             name="title"
                             placeholder="e.g. Wooden Chair"
-                            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
                             required
                         />
                     </div>
-                    {/* Short description */}
+
+                    {/* Short Description */}
                     <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
-                            Product short description
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
+                            Product Short Description
                         </label>
                         <input
                             type="text"
                             name="shortDescription"
-                            placeholder="e.g. Wooden Chair"
-                            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                            placeholder="e.g. Elegant and durable chair"
+                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
                             required
                         />
                     </div>
 
                     {/* Description */}
                     <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
                             Description
                         </label>
                         <textarea
                             name="description"
                             rows={4}
-                            placeholder="Write a short product description..."
-                            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                            placeholder="Write a detailed product description..."
+                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
                             required
                         />
                     </div>
@@ -141,56 +142,57 @@ const AddProduct = () => {
                     {/* Price and Discount */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label className="block text-sm font-medium mb-2 text-gray-700">
+                            <label className="block text-sm font-medium mb-1 text-gray-800">
                                 Price (৳)
                             </label>
                             <input
                                 type="number"
                                 name="price"
                                 placeholder="e.g. 1200"
-                                className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                                className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
                                 required
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium mb-2 text-gray-700">
+                            <label className="block text-sm font-medium mb-1 text-gray-800">
                                 Discount (%)
                             </label>
                             <input
                                 type="number"
                                 name="discount"
                                 placeholder="e.g. 10"
-                                className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                                className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
                             />
                         </div>
                     </div>
 
                     {/* Images */}
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
-                            Product Image 1
-                        </label>
-                        <input
-                            type="file"
-                            name="image"
-                            accept="image/*"
-                            className="file-input file-input-bordered w-full"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
-                            Product Image 2
-                        </label>
-                        <input
-                            type="file"
-                            name="image2"
-                            accept="image/*"
-                            className="file-input file-input-bordered w-full"
-                            required
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-sm font-medium mb-1 text-gray-800">
+                                Product Image 1
+                            </label>
+                            <input
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                className="cursor-pointer w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium mb-1 text-gray-800">
+                                Product Image 2
+                            </label>
+                            <input
+                                type="file"
+                                name="image2"
+                                accept="image/*"
+                                className="w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
+                                required
+                            />
+                        </div>
                     </div>
 
                     {/* Is New */}
@@ -198,21 +200,21 @@ const AddProduct = () => {
                         <input
                             type="checkbox"
                             name="isNew"
-                            className="accent-[#b98e2f]"
+                            className="accent-info w-5 h-5"
                         />
-                        <label className="text-sm font-medium text-gray-700">
+                        <label className="text-sm font-medium text-gray-800">
                             Is New Product?
                         </label>
                     </div>
 
                     {/* Category */}
                     <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-700">
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
                             Category
                         </label>
                         <select
                             name="category"
-                            className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#b98e2f]"
+                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-info"
                             required
                         >
                             <option value="">Select category</option>
@@ -226,7 +228,7 @@ const AddProduct = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-[#b98e2f] hover:bg-[#a67c1f] transition-colors duration-300 text-white py-3 rounded-lg font-semibold shadow-md"
+                        className="w-full bg-info hover:bg-[#1e67d2] transition-all duration-300 text-white py-3 rounded-lg font-semibold shadow-lg text-lg"
                     >
                         {loading ? "Adding..." : "Add Product"}
                     </button>
