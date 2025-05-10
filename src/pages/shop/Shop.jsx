@@ -8,6 +8,7 @@ import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { BsGrid } from "react-icons/bs";
+import { Helmet } from "react-helmet";
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -44,6 +45,11 @@ const Shop = () => {
 
     return (
         <div>
+            {/* Helmet */}
+            <Helmet>
+                <title>Furniro | Shop</title>
+            </Helmet>
+            {/* Helmet end */}
             {/* Header area */}
             <div>
                 <div

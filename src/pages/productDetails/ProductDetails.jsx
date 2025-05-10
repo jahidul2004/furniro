@@ -5,11 +5,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductCard from "../../components/productCard/ProductCard";
 import Swal from "sweetalert2";
-import ReviewCard from "../../components/reviewCard/ReviewCard";
-import { MessageCircleOff } from "lucide-react";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
