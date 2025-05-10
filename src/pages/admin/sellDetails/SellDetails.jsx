@@ -53,10 +53,10 @@ const SellDetails = () => {
 
     return (
         <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-2xl font-bold mb-8 flex items-center gap-2">
+            <h1 className="text-2xl font-bold mb-8 flex items-center gap-2 bg-info p-2 md:p-4 rounded text-white">
                 <TbListDetails
                     size={30}
-                    className="text-info border border-dashed rounded-full p-1"
+                    className="text-white border-2 rounded-full p-1"
                 />
                 Sell Details Overview
             </h1>
