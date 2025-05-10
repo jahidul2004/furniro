@@ -120,6 +120,20 @@ const AllOrders = () => {
                 />
             </div>
 
+            {orders.length === 0 && (
+                <div className="flex justify-center items-center h-[80vh]">
+                    <div className="w-[95%] md:w-[60%] h-96 text-center p-6 border border-dashed border-info rounded-lg shadow-lg flex flex-col justify-center items-center">
+                        <HiOutlineViewGrid className="text-5xl mx-auto text-info mb-4" />
+                        <h2 className="text-xl font-semibold text-gray-600">
+                            No pending orders
+                        </h2>
+                        <p className="text-sm text-gray-500">
+                            All caught up! No orders to display.
+                        </p>
+                    </div>
+                </div>
+            )}
+
             {orders?.map((order, index) => {
                 const mergedProducts = mergeDuplicateProducts(
                     order?.orderedProducts || []
