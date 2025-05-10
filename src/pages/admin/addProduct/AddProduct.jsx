@@ -22,6 +22,9 @@ const AddProduct = () => {
         const category = form.category.value;
         const shortDescription = form.shortDescription.value;
         const additionalInfo = form.additionalInfo.value;
+        const features = form.features.value
+            .split(",")
+            .map((feature) => feature.trim());
 
         try {
             // Upload first image
@@ -60,6 +63,7 @@ const AddProduct = () => {
                 addedBy: user?.displayName,
                 addedByEmail: user?.email,
                 additionalInfo,
+                features,
             };
 
             // Upload product to MongoDB (server)
@@ -94,15 +98,15 @@ const AddProduct = () => {
     return (
         <div className="min-h-screen py-10 px-4">
             <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
-                <h2 className="text-4xl font-bold text-center text-info mb-10">
+                <h2 className="btn btn-soft btn-info w-full btn-xl pointer-events-none text-4xl font-bold text-center text-info mb-10">
                     Add New Product
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6 rounded">
                     {/* Title */}
                     <div>
                         <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Product Title
+                            Product Title *
                         </label>
                         <input
                             type="text"
@@ -116,7 +120,7 @@ const AddProduct = () => {
                     {/* Short Description */}
                     <div>
                         <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Product Short Description
+                            Product Short Description *
                         </label>
                         <input
                             type="text"
@@ -130,7 +134,7 @@ const AddProduct = () => {
                     {/* Description */}
                     <div>
                         <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Description
+                            Description *
                         </label>
                         <textarea
                             name="description"
@@ -141,11 +145,25 @@ const AddProduct = () => {
                         />
                     </div>
 
+                    {/* Features */}
+                    <div>
+                        <label className="block text-sm font-medium mb-1 text-gray-800">
+                            Features *
+                        </label>
+                        <input
+                            required
+                            className="input w-full"
+                            name="features"
+                            placeholder="Enter features separated with ,"
+                            type="text"
+                        />
+                    </div>
+
                     {/* Price and Discount */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Price (৳)
+                                Price (৳) *
                             </label>
                             <input
                                 type="number"
@@ -158,7 +176,7 @@ const AddProduct = () => {
 
                         <div>
                             <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Discount (%)
+                                Discount (%) *
                             </label>
                             <input
                                 type="number"
@@ -173,7 +191,7 @@ const AddProduct = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Product Image 1
+                                Product Image 1 *
                             </label>
                             <input
                                 type="file"
@@ -185,13 +203,13 @@ const AddProduct = () => {
                         </div>
                         <div>
                             <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Product Image 2
+                                Product Image 2 *
                             </label>
                             <input
                                 type="file"
                                 name="image2"
                                 accept="image/*"
-                                className="w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
+                                className="cursor-pointer w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
                                 required
                             />
                         </div>
@@ -212,7 +230,7 @@ const AddProduct = () => {
                     {/* Category */}
                     <div>
                         <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Category
+                            Category *
                         </label>
                         <select
                             name="category"
@@ -229,7 +247,7 @@ const AddProduct = () => {
                     {/* Additional info */}
                     <div>
                         <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Additional Information
+                            Additional Information *
                         </label>
                         <textarea
                             required
