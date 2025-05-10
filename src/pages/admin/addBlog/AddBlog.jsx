@@ -2,6 +2,7 @@ import axios from "axios";
 import AuthContext from "../../../context/AuthContext/AuthContext";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+
 const AddBlog = () => {
     const { user } = useContext(AuthContext);
 
@@ -97,7 +98,6 @@ const AddBlog = () => {
                         <input
                             type="file"
                             name="image"
-                            placeholder="Enter image URL"
                             className="file-input w-full"
                             required
                         />
@@ -120,13 +120,18 @@ const AddBlog = () => {
                         <label className="block text-gray-700 font-semibold mb-2">
                             Category
                         </label>
-                        <input
-                            type="text"
+                        <select
                             name="category"
-                            placeholder="Enter blog category"
-                            className="input w-full"
+                            className="select select-bordered w-full"
                             required
-                        />
+                        >
+                            <option value="">Select category</option>
+                            <option value="craft">Craft</option>
+                            <option value="design">Design</option>
+                            <option value="handmade">Handmade</option>
+                            <option value="wood">Wood</option>
+                            <option value="interior">Interior</option>
+                        </select>
                     </div>
 
                     <div className="text-center">
