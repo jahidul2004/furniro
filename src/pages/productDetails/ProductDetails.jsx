@@ -83,7 +83,7 @@ const ProductDetails = () => {
                 {/* Image area */}
                 <div>
                     <img
-                        className="rounded w-full h-[500px] object-cover"
+                        className="rounded w-full h-[400px] object-cover"
                         src={
                             currentProduct?.images
                                 ? currentProduct?.images[0]
@@ -99,11 +99,14 @@ const ProductDetails = () => {
                     <h1 className="text-4xl font-bold">
                         {currentProduct?.title}
                     </h1>
+                    <p className="mt-2 font-semibold text-gray-400">
+                        {currentProduct?.shortDescription}
+                    </p>
                     <p className="my-2 text-xl font-semibold text-[#9f9f9f]">
                         BDT-{currentProduct?.price} TK
                     </p>
                     <p className="my-2">⭐⭐⭐⭐⭐ | 5 Reviews</p>
-                    <p>{currentProduct?.description}</p>
+                    <p>{currentProduct?.descriptgion}</p>
 
                     <div>
                         <h1 className="text-lg font-bold my-2">Features</h1>
