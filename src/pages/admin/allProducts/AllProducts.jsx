@@ -33,13 +33,13 @@ const AllProducts = () => {
     };
     return (
         <div className="p-6">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <AiOutlineProduct className="text-info" />
+            <div className="flex flex-col md:flex-row justify-between items-center mb-4 bg-info text-white p-2 md:p-4 rounded">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                    <AiOutlineProduct className="text-white" />
                     Products
                 </h2>
                 <input
-                    className="input"
+                    className="input text-black"
                     type="text"
                     placeholder="Search products by title or category"
                 />
