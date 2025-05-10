@@ -10,7 +10,7 @@ const AllOrders = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allOrders")
+        fetch("http://localhost:3000/pendingOrders")
             .then((res) => res.json())
             .then((data) => setOrders(data))
             .catch((error) => console.error("Error fetching orders:", error));
