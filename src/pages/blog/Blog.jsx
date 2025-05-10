@@ -6,13 +6,16 @@ import { Link } from "react-router-dom";
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
-import { MdOutlineCategory, MdOutlineSupportAgent } from "react-icons/md";
+import {
+    MdNotInterested,
+    MdOutlineCategory,
+    MdOutlineSupportAgent,
+} from "react-icons/md";
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
     const [blogCount, setBlogCount] = useState([]);
-
-    console.log(blogCount);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:3000/blogCategoryCount")
@@ -29,6 +32,12 @@ const Blog = () => {
                 setBlogs(data);
             });
     }, []);
+
+    // Filtered blogs based on search text
+    const filteredBlogs = blogs.filter((blog) =>
+        blog.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return (
         <div>
             {/* Header */}
@@ -50,18 +59,39 @@ const Blog = () => {
             <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
                 {/* Blog Content */}
                 <div className="flex flex-col gap-4 md:gap-8 md:col-span-2 order-2 md:order-1">
-                    {blogs.map((item) => (
-                        <BlogCard key={item.id} item={item}></BlogCard>
-                    ))}
+                    {filteredBlogs.length > 0 ? (
+                        filteredBlogs.map((item) => (
+                            <BlogCard key={item.id} item={item} />
+                        ))
+                    ) : (
+                        <div className="flex flex-col items-center text-center bg-white border rounded-xl py-10 shadow-sm border-error border-dashed">
+                            <span>
+                                <MdNotInterested
+                                    className="text-error"
+                                    size={48}
+                                />
+                            </span>
+                            <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+                                No blog found
+                            </h2>
+                            <p className="text-gray-500">
+                                Sorry, we couldn’t find any blog matching your
+                                search.
+                            </p>
+                        </div>
+                    )}
                 </div>
+
                 {/* Blog Content end */}
 
                 {/* Navigation area start */}
                 <div className="my-4 order-1 md:order-2">
                     <input
                         type="text"
-                        className="input"
+                        className="input w-full"
                         placeholder="Search Blog"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
                     />
 
                     {/* Category Card */}
@@ -72,10 +102,13 @@ const Blog = () => {
                         </h1>
                         <ul className="space-y-3 text-gray-600 font-medium">
                             {blogCount?.map((item) => (
-                                <li className="flex justify-between hover:text-info transition">
-                                    <span>{item?._id}</span>
+                                <li
+                                    key={item._id}
+                                    className="flex justify-between hover:text-info transition"
+                                >
+                                    <span>{item._id}</span>
                                     <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                        {item?.count}
+                                        {item.count}
                                     </span>
                                 </li>
                             ))}
@@ -88,14 +121,13 @@ const Blog = () => {
                         <h1 className="text-2xl font-bold my-3">Recent Post</h1>
                         <div className="flex flex-col gap-4 md:gap-8">
                             {blogs.map((blog) => (
-                                <Link to={`/blog/${blog?._id}`}>
+                                <Link to={`/blog/${blog?._id}`} key={blog._id}>
                                     <div className="flex items-center gap-4 cursor-pointer">
                                         <img
                                             className="w-[70px] h-[70px] rounded"
                                             src={blog?.image}
                                             alt=""
                                         />
-
                                         <div>
                                             <h1 className="font-bold">
                                                 {blog?.title}
