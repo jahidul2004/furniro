@@ -7,20 +7,45 @@ import { HiOutlineTrophy } from "react-icons/hi2";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
 import { MdOutlineSupportAgent } from "react-icons/md";
+import { BsGrid } from "react-icons/bs";
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [sortOption, setSortOption] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:3000/allProducts")
             .then((res) => res.json())
-            .then((data) => setProducts(data));
+            .then((data) => {
+                setProducts(data);
+                setFilteredProducts(data);
+            });
     }, []);
+
+    // Handle Sorting
+    useEffect(() => {
+        let sorted = [...filteredProducts];
+
+        if (sortOption === "lowToHigh") {
+            sorted.sort((a, b) => a.price - b.price);
+        } else if (sortOption === "highToLow") {
+            sorted.sort((a, b) => b.price - a.price);
+        } else if (sortOption === "newest") {
+            sorted.sort((a, b) => {
+                if (a.isNew && !b.isNew) return -1;
+                if (!a.isNew && b.isNew) return 1;
+
+                return new Date(b.date) - new Date(a.date);
+            });
+        }
+        setFilteredProducts(sorted);
+    }, [sortOption, filteredProducts]);
+
     return (
         <div>
             {/* Header area */}
             <div>
-                {/* Image div */}
                 <div
                     style={{
                         backgroundImage: `url(${shopHeading})`,
@@ -34,50 +59,46 @@ const Shop = () => {
                     </p>
                 </div>
 
-                {/* Image div end */}
-
                 {/* Action div */}
                 <div className="bg-[#f9f0e7] p-4">
                     <div className="w-[95%] md:container mx-auto flex justify-between items-center">
                         {/* Left section */}
                         <div className="flex items-center gap-2">
-                            <button className="btn text-lg bg-transparent border-none">
-                                <RiSoundModuleFill />
-                                Filter
-                            </button>
-                            |
-                            <p className="hidden md:inline font-semibold">
-                                Showing 1-18 of 32 items
+                            <p className="font-semibold flex items-center gap-2">
+                                <BsGrid /> Showing {filteredProducts?.length}{" "}
+                                items
                             </p>
                         </div>
-                        {/* Left section end */}
 
                         {/* Right section */}
                         <div>
-                            <select className="select border-[#000] bg-transparent max-w-xs">
+                            <select
+                                className="select border-[#000] bg-transparent max-w-xs"
+                                onChange={(e) => setSortOption(e.target.value)}
+                            >
                                 <option disabled selected>
                                     Sort By
                                 </option>
-                                <option>Price: Low to High</option>
-                                <option>Price: High to Low</option>
-                                <option>Newest Product</option>
-                                <option>Oldest Product</option>
+                                <option value="lowToHigh">
+                                    Price: Low to High
+                                </option>
+                                <option value="highToLow">
+                                    Price: High to Low
+                                </option>
+                                <option value="newest">Newest Product</option>
                             </select>
                         </div>
-                        {/* Right section end */}
                     </div>
                 </div>
-                {/* Action div end */}
             </div>
-            {/* Header area end */}
 
-            {/* Products are */}
+            {/* Products */}
             <div className="my-10">
                 <div className="w-[95%] md:container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-                    {products.map((product) => (
+                    {filteredProducts?.map((product) => (
                         <ProductCard
                             data={product}
-                            key={product._id}
+                            key={product?._id}
                         ></ProductCard>
                     ))}
                 </div>
@@ -94,9 +115,8 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
-            {/* Products are end */}
 
-            {/* Feature card start */}
+            {/* Feature card */}
             <div className="bg-[#f9f0e7]">
                 <div className="w-[95%] md:container mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="flex items-center gap-2">
@@ -139,7 +159,6 @@ const Shop = () => {
                     </div>
                 </div>
             </div>
-            {/* Feature card */}
         </div>
     );
 };
