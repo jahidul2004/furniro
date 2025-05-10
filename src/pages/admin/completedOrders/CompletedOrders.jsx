@@ -1,11 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineViewGrid } from "react-icons/hi";
-import { MdOutlineCancel } from "react-icons/md";
 import { TbCoinTaka } from "react-icons/tb";
-import { TiInputChecked } from "react-icons/ti";
-import Swal from "sweetalert2";
 
 const CompletedOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -33,16 +29,11 @@ const CompletedOrders = () => {
 
     return (
         <div className="p-6">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <HiOutlineViewGrid className="text-info" />
+            <div className=" bg-success text-white p-2 md:p-4 rounded">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                    <HiOutlineViewGrid className="text-white" />
                     Completed Orders
                 </h2>
-                <input
-                    className="input"
-                    type="text"
-                    placeholder="Search order by title, location, status"
-                />
             </div>
 
             {orders?.map((order, index) => {
