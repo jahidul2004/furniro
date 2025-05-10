@@ -111,7 +111,7 @@ const MyAccount = () => {
                         src={
                             user?.photoURL
                                 ? user.photoURL
-                                : "https://i.ibb.co.com/0D15PXH/Whats-App-Image-2024-01-15-at-21-28-37-d3e60b3a.png"
+                                : "https://cdn-icons-png.flaticon.com/128/18557/18557239.png"
                         }
                         alt="User Profile"
                     />
@@ -123,18 +123,10 @@ const MyAccount = () => {
                     </h1>
                     <p className="mb-4">{user?.email}</p>
                     <div className="flex justify-center items-center gap-1">
-                        <Link
-                            to="/shop"
-                            className="btn bg-white shadow-none border-none text-[#b98e2f]"
-                        >
-                            <FiEdit />
-                            Edit Profile
-                        </Link>
                         <button
                             onClick={() => {
                                 logout()
                                     .then(() => {
-                                        console.log("Logout successful");
                                         Swal.fire({
                                             title: "Success",
                                             text: "Logout successful",
@@ -169,7 +161,7 @@ const MyAccount = () => {
             {/* Action area */}
             <div className="col-span-1 md:col-span-2">
                 {/* My Orders */}
-                <div className="border p-2 border-warning rounded">
+                <div className="border p-2 border-gray-200 rounded">
                     <h1 className="flex items-center gap-2 text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded">
                         <HiOutlineViewGrid />
                         My Orders
@@ -182,9 +174,6 @@ const MyAccount = () => {
                                         {index + 1}. Order ID: #{order._id}
                                         <TbCoinTaka /> {order.totalPrice} BDT
                                     </h1>
-                                    <button className="btn btn-sm btn-info btn-soft">
-                                        View Details
-                                    </button>
                                 </div>
                                 <table className="rounded-b min-w-full bg-white shadow-md overflow-hidden">
                                     <thead className="bg-gray-100">
@@ -203,24 +192,26 @@ const MyAccount = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {order.orderedProducts?.map(
+                                        {order?.orderedProducts?.map(
                                             (product) => (
                                                 <tr
-                                                    key={product._id}
+                                                    key={product?._id}
                                                     className="border-t border-gray-200"
                                                 >
                                                     <td className="px-6 py-4">
                                                         <img
-                                                            src={product.images}
-                                                            alt={product.title}
+                                                            src={
+                                                                product?.images
+                                                            }
+                                                            alt={product?.title}
                                                             className="w-14 h-14 object-cover rounded"
                                                         />
                                                     </td>
                                                     <td className="px-6 py-4 font-medium">
-                                                        {product.title}
+                                                        {product?.title}
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        {order.orderDate}
+                                                        {order?.orderDate}
                                                     </td>
                                                     <td
                                                         className={`px-6 py-4 ${
@@ -233,7 +224,7 @@ const MyAccount = () => {
                                                                 : "text-success"
                                                         }`}
                                                     >
-                                                        {order.status}
+                                                        {order?.status}
                                                     </td>
                                                     <td className="px-6 py-4 flex gap-2">
                                                         <button
@@ -246,7 +237,7 @@ const MyAccount = () => {
                                                                 order?.status ===
                                                                 "pending"
                                                                     ? "btn-warning pointer-events-none"
-                                                                    : order.status ===
+                                                                    : order?.status ===
                                                                       "cancelled"
                                                                     ? "pointer-events-none btn-error"
                                                                     : "btn-success"
@@ -254,6 +245,12 @@ const MyAccount = () => {
                                                         >
                                                             Make Review
                                                         </button>
+                                                        <Link
+                                                            className="btn btn-sm btn-soft btn-info"
+                                                            to={`/shop/${product?._id}`}
+                                                        >
+                                                            View Product
+                                                        </Link>
                                                     </td>
                                                 </tr>
                                             )
