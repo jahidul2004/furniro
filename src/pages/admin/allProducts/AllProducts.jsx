@@ -81,14 +81,43 @@ const AllProducts = () => {
                                         : "None"}{" "}
                                     <br />{" "}
                                     <span className="text-error">
-                                        19 days ago
+                                        {/* How many days ago */}
+                                        {product?.addedDate ? (
+                                            <span className="text-sm text-gray-500">
+                                                {(() => {
+                                                    const addedDate = new Date(
+                                                        product.addedDate
+                                                    );
+                                                    const now = new Date();
+                                                    const diffInMs =
+                                                        now - addedDate;
+                                                    const diffInDays =
+                                                        Math.floor(
+                                                            diffInMs /
+                                                                (1000 *
+                                                                    60 *
+                                                                    60 *
+                                                                    24)
+                                                        );
+                                                    if (diffInDays === 0)
+                                                        return "Today";
+                                                    if (diffInDays === 1)
+                                                        return "1 day ago";
+                                                    return `${diffInDays} days ago`;
+                                                })()}
+                                            </span>
+                                        ) : (
+                                            <span className="text-sm text-gray-400">
+                                                Date not available
+                                            </span>
+                                        )}
                                     </span>
                                 </td>
 
                                 <td>
-                                    Jahidul Islam Jihad <br />{" "}
+                                    {product?.addedBy} <br />{" "}
                                     <span className="px-1 rounded-full text-info bg-[#f1faff]">
-                                        abc@gmail.com
+                                        {product?.addedByEmail}
                                     </span>
                                 </td>
 

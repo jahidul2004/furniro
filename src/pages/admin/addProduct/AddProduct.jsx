@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import AuthContext from "../../../context/AuthContext/AuthContext";
 
 const AddProduct = () => {
     const [loading, setLoading] = useState(false);
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,6 +56,8 @@ const AddProduct = () => {
                 isNew,
                 category,
                 addedDate: new Date(),
+                addedBy: user?.name,
+                addedByEmail: user?.email,
             };
 
             // Upload product to MongoDB (server)
