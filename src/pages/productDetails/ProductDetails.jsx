@@ -3,7 +3,6 @@ import { FaGreaterThan, FaRegHeart } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import ProductCard from "../../components/productCard/ProductCard";
 import Swal from "sweetalert2";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -241,18 +240,6 @@ const ProductDetails = () => {
 
             {/* Related products */}
             <div className="my-10">
-                <h1 className="text-3xl font-bold text-center mb-8">
-                    Related Products
-                </h1>
-                <div className="w-[95%] md:container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-                    {relatedProducts?.map((product) => (
-                        <ProductCard
-                            key={product?.id}
-                            data={product}
-                        ></ProductCard>
-                    ))}
-                </div>
-
                 <div className="flex justify-center mt-10">
                     <Link
                         className="btn border border-[#b98e2f] text-[#b98e2f]"
