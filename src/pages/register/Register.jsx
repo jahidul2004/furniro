@@ -36,7 +36,7 @@ const Register = () => {
                         creationTime: new Date(),
                     })
                     .then((response) => {
-                        console.log("User added to database:", response.data);
+                        
                     })
                     .catch((error) => {
                         console.error("Error adding user to database:", error);

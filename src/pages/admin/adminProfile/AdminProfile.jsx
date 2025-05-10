@@ -3,7 +3,6 @@ import AuthContext from "../../../context/AuthContext/AuthContext";
 
 const AdminProfile = () => {
     const { user } = useContext(AuthContext);
-    console.log("User is:", user);
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="border border-dashed flex flex-col border-info p-4 rounded">

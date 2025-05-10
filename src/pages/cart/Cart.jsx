@@ -52,7 +52,6 @@ const Cart = () => {
                 text: "Your cart is empty!",
             });
         } else {
-            console.log("Cart is not empty", cart);
             navigate("/checkout", { state: { cartProducts: cart } });
         }
     };

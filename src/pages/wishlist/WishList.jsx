@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 const WishList = () => {
     const [wishlistProducts, setWishlistProducts] = useState([]);
-    console.log("Wishlist Products", wishlistProducts);
+
     useEffect(() => {
         const wishlistItems =
             JSON.parse(localStorage.getItem("wishlist")) || [];

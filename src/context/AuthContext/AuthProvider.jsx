@@ -16,8 +16,6 @@ const AuthProvider = ({ children }) => {
     const [dbUser, setDbUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    console.log("Db user", dbUser);
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {

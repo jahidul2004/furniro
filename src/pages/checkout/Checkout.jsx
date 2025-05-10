@@ -47,7 +47,6 @@ const Checkout = () => {
                 orderDetails
             )
             .then((response) => {
-                console.log(response.data);
                 Swal.fire({
                     icon: "success",
                     title: "Success",

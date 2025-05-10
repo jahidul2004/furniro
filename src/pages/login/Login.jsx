@@ -44,7 +44,6 @@ const Login = () => {
             .then((data) => {
                 if (data) {
                     setDbUser(data);
-                    console.log("User data from database:", data);
                 } else {
                     console.error("User not found in the database");
                 }
