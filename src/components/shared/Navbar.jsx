@@ -28,10 +28,20 @@ const Navbar = () => {
                 <Link to={"/blog"}>Blog</Link>
             </li>
             <li className="block md:hidden">
-                <Link className="btn btn-sm btn-soft btn-info w-full font-bold" to={"/login"}>Login <AiOutlineLogin /></Link>
+                <Link
+                    className="btn btn-sm btn-soft btn-info w-full font-bold"
+                    to={"/login"}
+                >
+                    Login <AiOutlineLogin />
+                </Link>
             </li>
             <li className="block md:hidden mt-2">
-                <Link className="btn btn-soft btn-success btn-sm w-full font-bold" to={"/register"}>Register <IoCreateOutline /></Link>
+                <Link
+                    className="btn btn-soft btn-success btn-sm w-full font-bold"
+                    to={"/register"}
+                >
+                    Register <IoCreateOutline />
+                </Link>
             </li>
         </>
     );
@@ -76,6 +86,17 @@ const Navbar = () => {
                     <ul className="menu menu-horizontal px-1">{links}</ul>
                 </div>
                 <div className="navbar-end flex gap-4 md:gap-8 items-center">
+                    <Link>
+                        {dbUser?.role !== "admin" && <IoSearch size={25} />}
+                    </Link>
+                    <Link to={"/wishlist"}>
+                        {dbUser?.role !== "admin" && <FaRegHeart size={20} />}
+                    </Link>
+                    <Link to={"/cart"}>
+                        {dbUser?.role !== "admin" && (
+                            <IoCartOutline size={25} />
+                        )}
+                    </Link>
                     <Link
                         to={
                             dbUser?.role === "admin"
@@ -99,20 +120,9 @@ const Navbar = () => {
                                 <FaRegUser size={20} /> My Account
                             </span>
                         ) : (
-                            <span className="flex items-center gap-2">
-                                <FaRegUser size={20} /> Login / Register
+                            <span className="flex items-center gap-2 btn btn-soft btn-warning">
+                                <FaRegUser size={20} /> Login
                             </span>
-                        )}
-                    </Link>
-                    <Link>
-                        {dbUser?.role !== "admin" && <IoSearch size={25} />}
-                    </Link>
-                    <Link to={"/wishlist"}>
-                        {dbUser?.role !== "admin" && <FaRegHeart size={20} />}
-                    </Link>
-                    <Link to={"/cart"}>
-                        {dbUser?.role !== "admin" && (
-                            <IoCartOutline size={25} />
                         )}
                     </Link>
                 </div>
