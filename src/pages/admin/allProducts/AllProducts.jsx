@@ -7,12 +7,27 @@ import Swal from "sweetalert2";
 
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:3000/allProducts")
             .then((res) => res.json())
-            .then((data) => setProducts(data));
-    });
+            .then((data) => {
+                setProducts(data);
+                setFilteredProducts(data);
+            });
+    }, []);
+
+    useEffect(() => {
+        const lowercasedSearchTerm = searchTerm.toLowerCase();
+        const filtered = products.filter(
+            (product) =>
+                product.title?.toLowerCase().includes(lowercasedSearchTerm) ||
+                product.category?.toLowerCase().includes(lowercasedSearchTerm)
+        );
+        setFilteredProducts(filtered);
+    }, [searchTerm, products]);
 
     const handleDeleteOrder = (id) => {
         axios
@@ -26,11 +41,14 @@ const AllProducts = () => {
                     timer: 1500,
                     toast: true,
                 });
+                const updatedProducts = products.filter((p) => p._id !== id);
+                setProducts(updatedProducts);
             })
             .catch((error) => {
                 console.error("Error deleting order:", error);
             });
     };
+
     return (
         <div className="p-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-4 bg-info text-white p-2 md:p-4 rounded">
@@ -42,6 +60,8 @@ const AllProducts = () => {
                     className="input text-black"
                     type="text"
                     placeholder="Search products by title or category"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
             <div className="overflow-x-auto border border-gray-200">
@@ -56,7 +76,7 @@ const AllProducts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products?.map((product) => (
+                        {filteredProducts?.map((product) => (
                             <tr
                                 key={product?._id}
                                 className="border-t border-gray-200"
@@ -79,9 +99,8 @@ const AllProducts = () => {
                                     {product?.addedDate
                                         ? product?.addedDate
                                         : "None"}{" "}
-                                    <br />{" "}
+                                    <br />
                                     <span className="text-error">
-                                        {/* How many days ago */}
                                         {product?.addedDate ? (
                                             <span className="text-sm text-gray-500">
                                                 {(() => {
@@ -115,7 +134,7 @@ const AllProducts = () => {
                                 </td>
 
                                 <td>
-                                    {product?.addedBy} <br />{" "}
+                                    {product?.addedBy} <br />
                                     <span className="px-1 rounded-full text-info bg-[#f1faff]">
                                         {product?.addedByEmail}
                                     </span>
