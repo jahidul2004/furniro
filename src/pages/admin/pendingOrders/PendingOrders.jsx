@@ -16,7 +16,7 @@ const AllOrders = () => {
             .then((res) => res.json())
             .then((data) => setOrders(data))
             .catch((error) => console.error("Error fetching orders:", error));
-    }, []);
+    }, [selectedOrder]);
 
     const mergeDuplicateProducts = (products) => {
         const merged = {};
@@ -50,6 +50,43 @@ const AllOrders = () => {
                     prevOrders.map((order) =>
                         order._id === orderId
                             ? { ...order, status: "completed" }
+                            : order
+                    )
+                );
+                setSelectedOrder(null);
+            })
+            .catch((error) => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "There was an error completing the order.",
+                    showConfirmButton: true,
+                    confirmButtonText: "OK",
+                    toast: true,
+                    position: "top-end",
+                });
+                console.error("Error completing order:", error);
+            });
+    };
+    const handleCancelOrder = (orderId) => {
+        axios
+            .put(`http://localhost:3000/updateOrder/${orderId}`, {
+                status: "cancelled",
+            })
+            .then((response) => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Order Cancelled",
+                    text: "The order has been cancelled.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    toast: true,
+                    position: "top-end",
+                });
+                setOrders((prevOrders) =>
+                    prevOrders.map((order) =>
+                        order._id === orderId
+                            ? { ...order, status: "cancelled" }
                             : order
                     )
                 );
@@ -249,13 +286,18 @@ const AllOrders = () => {
                         <div className="flex justify-center gap-2 md:gap-4 items-center mt-2 border rounded p-2 border-success border-dashed">
                             <button
                                 onClick={() => {
-                                    handleCompleteOrder(selectedOrder._id);
+                                    handleCompleteOrder(selectedOrder?._id);
                                 }}
                                 className="btn btn-soft btn-success"
                             >
                                 Complete Order <TiInputChecked />
                             </button>
-                            <button className="btn btn-soft btn-error">
+                            <button
+                                onClick={() => {
+                                    handleCancelOrder(selectedOrder?._id);
+                                }}
+                                className="btn btn-soft btn-error"
+                            >
                                 Cancel Order <MdOutlineCancel />
                             </button>
                         </div>
