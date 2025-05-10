@@ -40,7 +40,7 @@ const Shop = () => {
             });
         }
         setFilteredProducts(sorted);
-    }, [sortOption, filteredProducts]);
+    }, [sortOption]);
 
     return (
         <div>

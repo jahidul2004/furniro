@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
@@ -7,13 +7,34 @@ import { FiEdit } from "react-icons/fi";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
 import { TbCoinTaka } from "react-icons/tb";
+import ReactStars from "react-stars"; // Import react-stars for rating
+import Modal from "react-modal"; // Import modal component for review
+
+// Modal custom styles
+const customStyles = {
+    content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        transform: "translate(-50%, -50%)",
+        padding: "20px",
+        borderRadius: "10px",
+        maxWidth: "500px",
+        width: "90%",
+        backgroundColor: "#fff",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    },
+};
 
 const MyAccount = () => {
     const { user, logout, setDbUser } = useContext(AuthContext);
 
     const [orders, setOrders] = useState([]);
-
-    console.log("Orders:", orders);
+    const [modalIsOpen, setModalIsOpen] = useState(false); // To manage modal visibility
+    const [currentProduct, setCurrentProduct] = useState(null); // To hold selected product for review
+    const [rating, setRating] = useState(0); // Rating state
+    const [reviewMessage, setReviewMessage] = useState(""); // Review message state
 
     useEffect(() => {
         fetch(`http://localhost:3000/orders/${user?.email}`)
@@ -24,14 +45,65 @@ const MyAccount = () => {
             .catch((error) => {
                 console.error("Error fetching orders:", error);
             });
-    }, []);
+    }, [user?.email]);
 
-    const handleReview = (orderId) => {};
+    // Handle review button click
+    const handleReview = (product) => {
+        setCurrentProduct(product); // Set current product for review
+        setModalIsOpen(true); // Open the modal
+    };
+
+    // Handle review form submission
+    const handleSubmitReview = () => {
+        if (rating === 0 || !reviewMessage) {
+            Swal.fire({
+                title: "Error!",
+                text: "Please provide both rating and review message.",
+                icon: "error",
+                confirmButtonText: "Close",
+            });
+            return;
+        }
+
+        // Submit review (this can be an API call or any other logic)
+        const reviewData = {
+            productId: currentProduct._id,
+            rating,
+            reviewMessage,
+        };
+
+        fetch("http://localhost:3000/reviews", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reviewData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                Swal.fire({
+                    title: "Success",
+                    text: "Review submitted successfully!",
+                    icon: "success",
+                    confirmButtonText: "Close",
+                });
+                setModalIsOpen(false); // Close modal
+            })
+            .catch((error) => {
+                Swal.fire({
+                    title: "Error!",
+                    text: "There was an issue submitting your review.",
+                    icon: "error",
+                    confirmButtonText: "Close",
+                });
+            });
+    };
 
     return (
-        <div className="w-[95%] md:container mx-auto my-10 grid gird-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+        <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Profile area */}
             <div>
+                {/* Profile card */}
                 <div className="w-full h-[400px] shadow-lg rounded-lg p-4 border-t-16 border-[#b98e2f]">
                     <img
                         className="w-full h-full rounded"
@@ -40,7 +112,7 @@ const MyAccount = () => {
                                 ? user.photoURL
                                 : "https://i.ibb.co.com/0D15PXH/Whats-App-Image-2024-01-15-at-21-28-37-d3e60b3a.png"
                         }
-                        alt=""
+                        alt="User Profile"
                     />
                 </div>
 
@@ -51,7 +123,7 @@ const MyAccount = () => {
                     <p className="mb-4">{user?.email}</p>
                     <div className="flex justify-center items-center gap-1">
                         <Link
-                            to={"/shop"}
+                            to="/shop"
                             className="btn bg-white shadow-none border-none text-[#b98e2f]"
                         >
                             <FiEdit />
@@ -103,11 +175,11 @@ const MyAccount = () => {
                     </h1>
                     <div>
                         {orders?.map((order, index) => (
-                            <div className="my-2 md:my-4">
+                            <div className="my-2 md:my-4" key={order._id}>
                                 <div className="bg-[#b98e2f] text-white rounded-t p-1 flex justify-between items-center">
                                     <h1 className="text-lg font-semibold flex items-center gap-2">
-                                        {index + 1}. Order ID: #{order?._id}
-                                        <TbCoinTaka /> {order?.totalPrice} BDT
+                                        {index + 1}. Order ID: #{order._id}
+                                        <TbCoinTaka /> {order.totalPrice} BDT
                                     </h1>
                                     <button className="btn btn-sm btn-info btn-soft">
                                         View Details
@@ -130,50 +202,51 @@ const MyAccount = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {order?.orderedProducts?.map(
+                                        {order.orderedProducts?.map(
                                             (product) => (
-                                                <tr className="border-t border-gray-200">
+                                                <tr
+                                                    key={product._id}
+                                                    className="border-t border-gray-200"
+                                                >
                                                     <td className="px-6 py-4">
                                                         <img
-                                                            src={
-                                                                product?.images
-                                                            }
-                                                            alt={""}
+                                                            src={product.images}
+                                                            alt={product.title}
                                                             className="w-14 h-14 object-cover rounded"
                                                         />
                                                     </td>
                                                     <td className="px-6 py-4 font-medium">
-                                                        {product?.title}
-                                                        <p className="flex items-center gap-2 text-[#b98e2f]">
-                                                            <FaBangladeshiTakaSign />
-                                                            {product?.price} BDT
-                                                        </p>
+                                                        {product.title}
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        {order?.orderDate}
+                                                        {order.orderDate}
                                                     </td>
                                                     <td
                                                         className={`px-6 py-4 ${
                                                             order?.status ===
                                                             "pending"
-                                                                ? "text-yellow-500"
+                                                                ? "text-warning"
                                                                 : order?.status ===
-                                                                  "completed"
-                                                                ? "text-green-500"
-                                                                : "text-red-500"
+                                                                  "cancelled"
+                                                                ? "text-error"
+                                                                : "text-success"
                                                         }`}
                                                     >
-                                                        {order?.status}
+                                                        {order.status}
                                                     </td>
-                                                    <td
-                                                        className={`px-6 py-4 flex gap-2`}
-                                                    >
+                                                    <td className="px-6 py-4 flex gap-2">
                                                         <button
+                                                            onClick={() =>
+                                                                handleReview(
+                                                                    product
+                                                                )
+                                                            }
                                                             className={`btn btn-sm btn-soft ${
                                                                 order?.status ===
-                                                                    "pending" ||
-                                                                order?.status ===
-                                                                    "cancelled"
+                                                                "pending"
+                                                                    ? "btn-warning pointer-events-none"
+                                                                    : order.status ===
+                                                                      "cancelled"
                                                                     ? "pointer-events-none btn-error"
                                                                     : "btn-success"
                                                             }`}
@@ -190,59 +263,43 @@ const MyAccount = () => {
                         ))}
                     </div>
                 </div>
-                {/* My orders end */}
-
-                <div className="mt-5 border p-2 border-warning rounded">
-                    <h1 className="text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded flex items-center gap-2">
-                        <HiOutlineCurrencyDollar />
-                        Payment History
-                    </h1>
-
-                    <div className="overflow-x-auto">
-                        <table className="table">
-                            {/* head */}
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Product Title</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
-                                    <th>Transaction ID</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* row 1 */}
-                                <tr>
-                                    <th>1</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>1200</td>
-                                    <td>20/02/2025</td>
-                                    <td>1f23BCf4Rf4ffD4dHgd</td>
-                                    <td>
-                                        <span className="btn btn-soft btn-success btn-xs cursor-none">
-                                            success
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>Cy Ganderton</td>
-                                    <td>1200</td>
-                                    <td>20/02/2025</td>
-                                    <td>1f23BCf4Rf4ffD4dHgd</td>
-                                    <td>
-                                        <span className="btn btn-soft btn-error btn-xs cursor-none">
-                                            failed
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
             {/* Action area end */}
+
+            {/* Modal for review */}
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setModalIsOpen(false)}
+                style={customStyles}
+                contentLabel="Review Product"
+            >
+                <h2 className="text-xl font-bold mb-4">
+                    {currentProduct?.title} - Review
+                </h2>
+                <div className="flex items-center gap-4 mb-4">
+                    <ReactStars
+                        count={5}
+                        onChange={setRating}
+                        size={24}
+                        value={rating}
+                        half={false}
+                        color2={"#ffd700"}
+                    />
+                </div>
+                <textarea
+                    className="w-full p-2 border rounded mb-4"
+                    rows="4"
+                    placeholder="Write your review here..."
+                    value={reviewMessage}
+                    onChange={(e) => setReviewMessage(e.target.value)}
+                />
+                <button
+                    onClick={handleSubmitReview}
+                    className="btn bg-[#b98e2f] text-white shadow-none border-none"
+                >
+                    Submit Review
+                </button>
+            </Modal>
         </div>
     );
 };
