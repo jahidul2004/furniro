@@ -47,8 +47,8 @@ const AdminBlog = () => {
     };
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <FaBlog size={28} className="text-info" />
+            <h2 className="rounded text-2xl font-bold mb-6 flex items-center gap-2 bg-info text-white p-2 md:p-4">
+                <FaBlog size={28} className="text-white" />
                 Blogs
             </h2>
             <div className="overflow-x-auto border border-gray-200">
@@ -88,13 +88,13 @@ const AdminBlog = () => {
                                         onClick={() => {
                                             handleDeleteBlog(blog?._id);
                                         }}
-                                        className="btn btn-sm btn-error btn-soft border border-dashed border-error"
+                                        className="btn btn-sm btn-error btn-soft"
                                     >
                                         Delete
                                     </button>
                                     <Link
                                         to={`/blog/${blog._id}`}
-                                        className="btn btn-sm btn-info btn-soft border border-dashed border-info"
+                                        className="btn btn-sm btn-info btn-soft"
                                     >
                                         View
                                     </Link>
