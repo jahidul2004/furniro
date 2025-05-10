@@ -67,17 +67,6 @@ const Dashboard = () => {
                                     </li>
                                     <li className="rounded-sm">
                                         <Link
-                                            to={"/admin/dashboard/allOrders"}
-                                            rel="noopener noreferrer"
-                                            href="#"
-                                            className="flex items-center p-2 space-x-3 rounded-md"
-                                        >
-                                            <AiOutlineProduct className="text-warning" />
-                                            <span>All Orders</span>
-                                        </Link>
-                                    </li>
-                                    <li className="rounded-sm">
-                                        <Link
                                             to={
                                                 "/admin/dashboard/pendingOrders"
                                             }

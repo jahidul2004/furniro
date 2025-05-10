@@ -13,7 +13,7 @@ import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import Dashboard from "../pages/admin/Dashboard";
 import AdminHome from "../pages/admin/home/AdminHome";
-import AllOrders from "../pages/admin/allOrders/AllOrders";
+import AllOrders from "../pages/admin/pendingOrders/PendingOrders";
 import AddProduct from "../pages/admin/addProduct/AddProduct";
 import MyAccount from "../pages/myAccount/MyAccount";
 import LoginRegisterPrivate from "./LoginRegisterPrivate";
