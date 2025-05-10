@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
-import userIcon from "../../assets/accountProfile/user.png";
 import { Link } from "react-router-dom";
-import { CiCircleRemove } from "react-icons/ci";
-import { CgArrowLeftO, CgShoppingBag } from "react-icons/cg";
+import { CgArrowLeftO } from "react-icons/cg";
 import { FiEdit } from "react-icons/fi";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { HiOutlineCurrencyDollar, HiOutlineViewGrid } from "react-icons/hi";
@@ -27,6 +25,8 @@ const MyAccount = () => {
                 console.error("Error fetching orders:", error);
             });
     }, []);
+
+    const handleReview = (orderId) => {};
 
     return (
         <div className="w-[95%] md:container mx-auto my-10 grid gird-cols-1 md:grid-cols-3 gap-4 md:gap-8">
@@ -166,16 +166,18 @@ const MyAccount = () => {
                                                         {order?.status}
                                                     </td>
                                                     <td
-                                                        className={`${
-                                                            order?.status ===
-                                                                "pending" ||
-                                                            order?.status ===
-                                                                "canceled"
-                                                                ? "pointer-events-none"
-                                                                : ""
-                                                        } px-6 py-4 flex gap-2`}
+                                                        className={`px-6 py-4 flex gap-2`}
                                                     >
-                                                        <button className="btn btn-sm btn-success btn-soft">
+                                                        <button
+                                                            className={`btn btn-sm btn-soft ${
+                                                                order?.status ===
+                                                                    "pending" ||
+                                                                order?.status ===
+                                                                    "cancelled"
+                                                                    ? "pointer-events-none btn-error"
+                                                                    : "btn-success"
+                                                            }`}
+                                                        >
                                                             Make Review
                                                         </button>
                                                     </td>
