@@ -8,7 +8,7 @@ const AdminBlog = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allBlogs")
+        fetch("https://furniro-server-bay.vercel.app/allBlogs")
             .then((res) => res.json())
             .then((data) => {
                 setBlogs(data);
@@ -17,7 +17,7 @@ const AdminBlog = () => {
 
     const handleDeleteBlog = (id) => {
         axios
-            .delete(`http://localhost:3000/deleteBlog/${id}`)
+            .delete(`https://furniro-server-bay.vercel.app/deleteBlog/${id}`)
             .then((res) => {
                 setBlogs((prevBlogs) =>
                     prevBlogs.filter((blog) => blog._id !== id)

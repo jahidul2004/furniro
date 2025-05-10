@@ -29,7 +29,7 @@ const Register = () => {
                     });
 
                 axios
-                    .post("http://localhost:3000/addUser", {
+                    .post("https://furniro-server-bay.vercel.app/addUser", {
                         name,
                         email,
                         role: "user",

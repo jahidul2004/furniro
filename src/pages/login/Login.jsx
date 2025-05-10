@@ -39,7 +39,7 @@ const Login = () => {
             });
 
         // Fetch user data from the database
-        fetch(`http://localhost:3000/user/${email}`)
+        fetch(`https://furniro-server-bay.vercel.app/user/${email}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data) {

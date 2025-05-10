@@ -16,7 +16,7 @@ const Shop = () => {
     const [sortOption, setSortOption] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3000/allProducts")
+        fetch("https://furniro-server-bay.vercel.app/allProducts")
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);

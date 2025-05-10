@@ -26,7 +26,7 @@ const AdminHome = () => {
     const [documentCount, setDocumentCount] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/documentCount")
+        fetch("https://furniro-server-bay.vercel.app/documentCount")
             .then((res) => res.json())
             .then((data) => {
                 setDocumentCount(data);

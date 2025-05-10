@@ -6,7 +6,7 @@ const Users = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3000/allUsers")
+        fetch("https://furniro-server-bay.vercel.app/allUsers")
             .then((res) => res.json())
             .then((data) => setUsers(data));
     }, []);

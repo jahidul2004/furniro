@@ -13,7 +13,7 @@ const BlogDetails = () => {
     const [blog, setBlog] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:3000/blog/${id}`)
+        fetch(`https://furniro-server-bay.vercel.app/blog/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setBlog(data);

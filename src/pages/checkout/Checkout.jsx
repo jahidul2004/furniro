@@ -42,7 +42,10 @@ const Checkout = () => {
         };
 
         axios
-            .post("http://localhost:3000/addOrder", orderDetails)
+            .post(
+                "https://furniro-server-bay.vercel.app/addOrder",
+                orderDetails
+            )
             .then((response) => {
                 console.log(response.data);
                 Swal.fire({

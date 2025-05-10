@@ -8,7 +8,7 @@ const CanceledOrders = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/cancelledOrders")
+        fetch("https://furniro-server-bay.vercel.app/cancelledOrders")
             .then((res) => res.json())
             .then((data) => setOrders(data))
             .catch((error) => console.error("Error fetching orders:", error));

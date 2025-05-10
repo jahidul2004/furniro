@@ -18,7 +18,7 @@ const Blog = () => {
     const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3000/blogCategoryCount")
+        fetch("https://furniro-server-bay.vercel.app/blogCategoryCount")
             .then((res) => res.json())
             .then((data) => {
                 setBlogCount(data);
@@ -26,7 +26,7 @@ const Blog = () => {
     }, []);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allBlogs")
+        fetch("https://furniro-server-bay.vercel.app/allBlogs")
             .then((res) => res.json())
             .then((data) => {
                 setBlogs(data);

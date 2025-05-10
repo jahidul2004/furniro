@@ -18,7 +18,7 @@ const ProductDetails = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/product/${currentId?.id}`)
+        fetch(`https://furniro-server-bay.vercel.app/product/${currentId?.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setCurrentProduct(data);
@@ -26,7 +26,7 @@ const ProductDetails = () => {
     }, [currentId]);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/reviews/${currentId?.id}`)
+        fetch(`https://furniro-server-bay.vercel.app/reviews/${currentId?.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setReviews(data);

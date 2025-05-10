@@ -11,7 +11,7 @@ const BrowseRange = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allProducts")
+        fetch("https://furniro-server-bay.vercel.app/allProducts")
             .then((response) => response.json())
             .then((data) => setProducts(data));
     }, []);

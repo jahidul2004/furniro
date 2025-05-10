@@ -67,9 +67,13 @@ const AddProduct = () => {
             };
 
             // Upload product to MongoDB (server)
-            await axios.post("http://localhost:3000/addProduct", product, {
-                headers: { "Content-Type": "application/json" },
-            });
+            await axios.post(
+                "https://furniro-server-bay.vercel.app/addProduct",
+                product,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             Swal.fire({
                 icon: "success",

@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:3000/user/${user?.email}`)
+            fetch(`https://furniro-server-bay.vercel.app/user/${user?.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data) {

@@ -42,7 +42,7 @@ const AddBlog = () => {
 
             // === Send to backend ===
             const res = await axios.post(
-                "http://localhost:3000/addBlog",
+                "https://furniro-server-bay.vercel.app/addBlog",
                 blogData
             );
             if (res.data.insertedId) {

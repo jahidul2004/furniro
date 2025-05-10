@@ -11,7 +11,7 @@ const AllProducts = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allProducts")
+        fetch("https://furniro-server-bay.vercel.app/allProducts")
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data);
@@ -31,7 +31,7 @@ const AllProducts = () => {
 
     const handleDeleteOrder = (id) => {
         axios
-            .delete(`http://localhost:3000/deleteProduct/${id}`)
+            .delete(`https://furniro-server-bay.vercel.app/deleteProduct/${id}`)
             .then((res) => {
                 Swal.fire({
                     position: "top-end",

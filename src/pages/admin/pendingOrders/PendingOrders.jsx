@@ -12,7 +12,7 @@ const AllOrders = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/pendingOrders")
+        fetch("https://furniro-server-bay.vercel.app/pendingOrders")
             .then((res) => res.json())
             .then((data) => setOrders(data))
             .catch((error) => console.error("Error fetching orders:", error));
@@ -33,9 +33,12 @@ const AllOrders = () => {
 
     const handleCompleteOrder = (orderId) => {
         axios
-            .put(`http://localhost:3000/updateOrder/${orderId}`, {
-                status: "completed",
-            })
+            .put(
+                `https://furniro-server-bay.vercel.app/updateOrder/${orderId}`,
+                {
+                    status: "completed",
+                }
+            )
             .then((response) => {
                 Swal.fire({
                     icon: "success",
@@ -70,9 +73,12 @@ const AllOrders = () => {
     };
     const handleCancelOrder = (orderId) => {
         axios
-            .put(`http://localhost:3000/updateOrder/${orderId}`, {
-                status: "cancelled",
-            })
+            .put(
+                `https://furniro-server-bay.vercel.app/updateOrder/${orderId}`,
+                {
+                    status: "cancelled",
+                }
+            )
             .then((response) => {
                 Swal.fire({
                     icon: "success",

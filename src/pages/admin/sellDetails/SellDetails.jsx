@@ -19,7 +19,7 @@ const SellDetails = () => {
     const [cancelledAmount, setCancelledAmount] = useState(0);
 
     useEffect(() => {
-        fetch("http://localhost:3000/orderAmountStats")
+        fetch("https://furniro-server-bay.vercel.app/orderAmountStats")
             .then((res) => res.json())
             .then((data) => {
                 setSellData(data);
@@ -36,7 +36,7 @@ const SellDetails = () => {
     });
 
     useEffect(() => {
-        fetch("http://localhost:3000/orderStats")
+        fetch("https://furniro-server-bay.vercel.app/orderStats")
             .then((res) => res.json())
             .then((data) => {
                 data?.map((item) => {

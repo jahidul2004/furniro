@@ -38,7 +38,7 @@ const MyAccount = () => {
     const [reviewMessage, setReviewMessage] = useState("");
 
     useEffect(() => {
-        fetch(`http://localhost:3000/orders/${user?.email}`)
+        fetch(`https://furniro-server-bay.vercel.app/orders/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setOrders(data);
@@ -79,7 +79,7 @@ const MyAccount = () => {
         };
 
         axios
-            .post("http://localhost:3000/addReview", reviewData)
+            .post("https://furniro-server-bay.vercel.app/addReview", reviewData)
             .then((res) => {
                 Swal.fire({
                     title: "Success!",
