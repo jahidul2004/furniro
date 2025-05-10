@@ -14,6 +14,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { BsCartPlus } from "react-icons/bs";
+import ReactStars from "react-stars";
 
 const ProductDetails = () => {
     const currentId = useParams();
@@ -183,39 +184,38 @@ const ProductDetails = () => {
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className="my-10">
-                            {reviews && reviews.length > 0 ? (
-                                <Swiper
-                                    modules={[Autoplay, Pagination]}
-                                    autoplay={{
-                                        delay: 3000,
-                                        disableOnInteraction: false,
-                                    }}
-                                    pagination={{ clickable: true }}
-                                    spaceBetween={30}
-                                    breakpoints={{
-                                        640: { slidesPerView: 1 },
-                                        768: { slidesPerView: 2 },
-                                        1024: { slidesPerView: 3 },
-                                    }}
-                                >
-                                    {reviews.map((review) => (
-                                        <SwiperSlide key={review?.id}>
-                                            <ReviewCard data={review} />
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
-                            ) : (
-                                <div className="col-span-full text-center py-10">
-                                    <MessageCircleOff
-                                        className="mx-auto text-gray-400"
-                                        size={40}
-                                    />
-                                    <h1 className="text-xl font-semibold text-gray-500 mt-2">
-                                        No reviews yet
-                                    </h1>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+                            {reviews?.map((review) => (
+                                <div className="relative bg-[#fefaef] border border-dashed border-warning rounded-xl p-6 md:p-8 flex flex-col gap-4 shadow-sm hover:shadow-md transition duration-300 ease-in-out">
+                                    <div className="flex items-center gap-4">
+                                        <img
+                                            className="w-16 h-16 border-2 border-warning rounded-full object-cover p-2"
+                                            src={review?.userPhoto}
+                                            alt={review?.userName}
+                                        />
+                                        <div className="flex-1">
+                                            <h2 className="text-xl text-left font-semibold text-gray-800">
+                                                {review?.userName}
+                                            </h2>
+                                            <ReactStars
+                                                count={5}
+                                                value={review?.rating}
+                                                size={22}
+                                                edit={false}
+                                                color2="#fbbf24" // Tailwind amber-400 like
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <p className="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                                        {review?.reviewMessage}
+                                    </p>
+
+                                    <span className="absolute bottom-2 right-4 text-xs text-gray-500">
+                                        {review?.date}
+                                    </span>
                                 </div>
-                            )}
+                            ))}
                         </div>
                     </TabPanel>
                 </Tabs>

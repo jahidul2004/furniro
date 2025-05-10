@@ -50,8 +50,8 @@ const MyAccount = () => {
 
     // Handle review button click
     const handleReview = (product) => {
-        setCurrentProduct(product); // Set current product for review
-        setModalIsOpen(true); // Open the modal
+        setCurrentProduct(product);
+        setModalIsOpen(true);
     };
 
     // Handle review form submission
@@ -68,6 +68,7 @@ const MyAccount = () => {
 
         const reviewData = {
             productId: currentProduct._id,
+            date: new Date().toLocaleDateString(),
             rating,
             reviewMessage,
             userName: user?.displayName,
