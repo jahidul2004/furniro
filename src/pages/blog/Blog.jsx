@@ -6,10 +6,21 @@ import { Link } from "react-router-dom";
 import { HiOutlineTrophy } from "react-icons/hi2";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { TbTruckDelivery } from "react-icons/tb";
-import { MdOutlineSupportAgent } from "react-icons/md";
+import { MdOutlineCategory, MdOutlineSupportAgent } from "react-icons/md";
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
+    const [blogCount, setBlogCount] = useState([]);
+
+    console.log(blogCount);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/blogCategoryCount")
+            .then((res) => res.json())
+            .then((data) => {
+                setBlogCount(data);
+            });
+    }, []);
 
     useEffect(() => {
         fetch("http://localhost:3000/allBlogs")
@@ -55,40 +66,19 @@ const Blog = () => {
 
                     {/* Category Card */}
                     <div className="bg-white rounded-2xl shadow-md p-6 border mt-2 md:mt-4 border-gray-200">
-                        <h1 className="text-2xl font-bold mb-4 text-gray-800 border-b pb-2">
+                        <h1 className="text-2xl font-bold mb-4 text-gray-800 border-b border-gray-200 pb-2 flex items-center gap-2">
+                            <MdOutlineCategory />
                             Categories
                         </h1>
                         <ul className="space-y-3 text-gray-600 font-medium">
-                            <li className="flex justify-between hover:text-info transition">
-                                <span>Craft</span>
-                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                    12
-                                </span>
-                            </li>
-                            <li className="flex justify-between hover:text-info transition">
-                                <span>Design</span>
-                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                    16
-                                </span>
-                            </li>
-                            <li className="flex justify-between hover:text-info transition">
-                                <span>Handmade</span>
-                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                    0
-                                </span>
-                            </li>
-                            <li className="flex justify-between hover:text-info transition">
-                                <span>Interior</span>
-                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                    15
-                                </span>
-                            </li>
-                            <li className="flex justify-between hover:text-info transition">
-                                <span>Wood</span>
-                                <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
-                                    6
-                                </span>
-                            </li>
+                            {blogCount?.map((item) => (
+                                <li className="flex justify-between hover:text-info transition">
+                                    <span>{item?._id}</span>
+                                    <span className="bg-gray-100 px-2 py-0.5 rounded-md text-sm text-gray-500">
+                                        {item?.count}
+                                    </span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     {/* Category card end */}
