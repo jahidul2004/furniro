@@ -102,18 +102,6 @@ const Shop = () => {
                         ></ProductCard>
                     ))}
                 </div>
-
-                <div className="flex justify-center mt-10">
-                    <div className="join border border-[#2ec1ac] rounded">
-                        <button className="join-item btn">1</button>
-                        <button className="join-item btn">2</button>
-                        <button className="join-item btn btn-disabled">
-                            ...
-                        </button>
-                        <button className="join-item btn">4</button>
-                        <button className="join-item btn">5</button>
-                    </div>
-                </div>
             </div>
 
             {/* Feature card */}
