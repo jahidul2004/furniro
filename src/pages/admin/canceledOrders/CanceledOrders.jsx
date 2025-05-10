@@ -29,16 +29,11 @@ const CanceledOrders = () => {
 
     return (
         <div className="p-6">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <HiOutlineViewGrid className="text-info" />
+            <div className="bg-error text-white p-2 md:p-4 rounded">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                    <HiOutlineViewGrid className="text-white" />
                     Cancelled Orders
                 </h2>
-                <input
-                    className="input"
-                    type="text"
-                    placeholder="Search order by title, location, status"
-                />
             </div>
 
             {orders?.map((order, index) => {
@@ -87,7 +82,10 @@ const CanceledOrders = () => {
                                             />
                                         </td>
                                         <td className="px-6 py-4 font-medium">
-                                            {product?.title} <span className="text-error">x {product?.quantity} Pcs</span>
+                                            {product?.title}{" "}
+                                            <span className="text-error">
+                                                x {product?.quantity} Pcs
+                                            </span>
                                             <p className="flex items-center gap-2 text-[#b98e2f]">
                                                 <FaBangladeshiTakaSign />
                                                 {product?.price} BDT / pcs
