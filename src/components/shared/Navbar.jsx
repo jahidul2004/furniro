@@ -6,9 +6,10 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { AiOutlineLogin } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const { dbUser } = useContext(AuthContext);
     const links = (
         <>
@@ -45,13 +46,48 @@ const Navbar = () => {
                     Register <IoCreateOutline />
                 </Link>
             </li>
-            <li className="block md:hidden">
+            <li
+                className={`block md:hidden ${!user && "hidden"} ${
+                    dbUser?.role === "admin" && "hidden"
+                }`}
+            >
                 <Link
                     to={"/myAccount"}
                     className="btn btn-warning btn-sm w-full text-white"
                 >
                     My Account <FaRegUser></FaRegUser>
                 </Link>
+            </li>
+            <li
+                className={`block md:hidden mt-1 ${!user && "hidden"} ${
+                    dbUser?.role === "admin" && "hidden"
+                }`}
+            >
+                <button
+                    onClick={() => {
+                        logout()
+                            .then(() => {
+                                Swal.fire({
+                                    title: "Logout Successful",
+                                    text: "You have been logged out.",
+                                    icon: "success",
+                                    confirmButtonText: "OK",
+                                });
+                            })
+                            .catch((error) => {
+                                Swal.fire({
+                                    title: "Logout Failed",
+                                    text: "An error occurred while logging out.",
+                                    icon: "error",
+                                    confirmButtonText: "OK",
+                                });
+                                console.error("Logout error:", error);
+                            });
+                    }}
+                    className="btn btn-error btn-sm w-full text-white"
+                >
+                    Logout
+                </button>
             </li>
         </>
     );
@@ -115,10 +151,10 @@ const Navbar = () => {
                                 ? "/myAccount"
                                 : "/login"
                         }
-                        className="hidden md:flex"
+                        className=""
                     >
                         {dbUser?.role === "admin" ? (
-                            <span className="btn border border-dashed btn-soft btn-warning flex items-center gap-2">
+                            <span className="w-max btn btn-soft btn-warning flex items-center gap-2">
                                 <LuLayoutDashboard
                                     title="Admin Dashboard"
                                     size={20}

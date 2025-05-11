@@ -101,17 +101,17 @@ const MyAccount = () => {
     };
 
     return (
-        <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+        <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8">
             {/* Profile area */}
             <div>
                 {/* Profile card */}
-                <div className="w-full h-[400px] shadow-lg rounded-lg p-4 border-t-16 border-[#b98e2f]">
+                <div className="w-full h-[280px] shadow-lg rounded-lg p-4 border-t-16 border-[#b98e2f]">
                     <img
                         className="w-full h-full rounded"
                         src={
                             user?.photoURL
                                 ? user.photoURL
-                                : "https://cdn-icons-png.flaticon.com/128/18557/18557239.png"
+                                : "https://cdn-icons-png.flaticon.com/128/17927/17927284.png"
                         }
                         alt="User Profile"
                     />
@@ -159,7 +159,7 @@ const MyAccount = () => {
             {/* Profile area end */}
 
             {/* Action area */}
-            <div className="col-span-1 md:col-span-2">
+            <div className="col-span-1 md:col-span-3">
                 {/* My Orders */}
                 <div className="border p-2 border-gray-200 rounded">
                     <h1 className="flex items-center gap-2 text-white text-2xl font-bold bg-[#b98e2f] p-2 rounded">
@@ -168,7 +168,10 @@ const MyAccount = () => {
                     </h1>
                     <div>
                         {orders?.map((order, index) => (
-                            <div className="my-2 md:my-4" key={order._id}>
+                            <div
+                                className="my-2 md:my-4 overflow-x-auto"
+                                key={order._id}
+                            >
                                 <div className="bg-[#b98e2f] text-white rounded-t p-1 flex justify-between items-center">
                                     <h1 className="text-lg font-semibold flex items-center gap-2">
                                         {index + 1}. Order ID: #{order._id}
