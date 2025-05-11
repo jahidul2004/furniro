@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { FaRegArrowAltCircleRight, FaRegClock } from "react-icons/fa";
 import { MdOutlineAnalytics } from "react-icons/md";
@@ -12,6 +12,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
+import AuthContext from "../../../context/AuthContext/AuthContext";
 
 // Custom Card Component
 const Card = ({ title, value, color }) => (
@@ -24,6 +25,7 @@ const Card = ({ title, value, color }) => (
 const AdminHome = () => {
     const [time, setTime] = useState(new Date());
     const [documentCount, setDocumentCount] = useState([]);
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         fetch("https://furniro-server-bay.vercel.app/documentCount")
@@ -51,9 +53,9 @@ const AdminHome = () => {
         <div className="p-6 bg-gray-100 min-h-screen">
             <div className="flex flex-col md:flex-row items-center justify-between">
                 {/* Welcome Message */}
-                <h1 className="flex items-center gap-2 text-center md:text-left text-4xl font-bold mb-4 text-gray-800">
+                <h1 className="flex items-center gap-2 text-center md:text-left text-2xl md:text-3xl font-bold mb-4 text-gray-800">
                     <BsEmojiSmile className="text-info" />
-                    Welcome, Jahidul Islam Jihad
+                    Welcome, {user?.displayName}
                 </h1>
 
                 {/* Real-time Clock */}

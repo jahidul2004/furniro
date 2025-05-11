@@ -29,7 +29,7 @@ const Dashboard = () => {
                     className="btn bg-[#f3f4f6] text-black drawer-button lg:hidden border-none w-full"
                 >
                     <FaArrowRightFromBracket
-                        className="bg-white p-2 w-10 h-10 rounded-full mt-4"
+                        className="bg-white p-2 w-10 h-10 rounded-full mt-4 border border-info text-info"
                         size={21}
                     />
                 </label>
