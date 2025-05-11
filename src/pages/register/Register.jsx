@@ -1,6 +1,6 @@
 import { FaGreaterThan } from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase/firebase.init";
 import Swal from "sweetalert2";
 import { useContext } from "react";
@@ -9,6 +9,7 @@ import axios from "axios";
 
 const Register = () => {
     const { registerUser, updateDisplayName } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleRegister = (e) => {
         e.preventDefault();
 
@@ -23,6 +24,8 @@ const Register = () => {
                 updateDisplayName(name)
                     .then(() => {
                         // User's display name updated successfully
+                        navigate("/");
+                        window.location.reload();
                     })
                     .catch((error) => {
                         console.error("Error updating display name:", error);
@@ -35,9 +38,7 @@ const Register = () => {
                         role: "user",
                         creationTime: new Date(),
                     })
-                    .then((response) => {
-                        
-                    })
+                    .then((response) => {})
                     .catch((error) => {
                         console.error("Error adding user to database:", error);
                     });
