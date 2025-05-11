@@ -46,17 +46,23 @@ const CanceledOrders = () => {
                         className="overflow-x-auto my-2 md:my-4 border rounded border-error"
                     >
                         <div className="bg-error text-white rounded-t p-1 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-2 px-4">
-                            <h1 className="font-bold">{order?.name}</h1>
-                            <h1 className="text-lg font-semibold flex flex-col md:flex-row items-center gap-2">
-                                {index + 1}. Order ID: #{order?._id}
-                                <TbCoinTaka /> {order?.totalPrice} BDT
+                            <h1 className="font-bold">
+                                {order?.name} ({order?.city})
                             </h1>
-                            <button
-                                className="btn btn-sm btn-info btn-soft"
-                                onClick={() => setSelectedOrder(order)}
-                            >
-                                View Details
-                            </button>
+                            <h1 className="text-lg font-semibold flex flex-col md:flex-row items-center gap-2">
+                                #{order?._id}
+                            </h1>
+                            <div className="flex items-center gap-2">
+                                <span className="flex items-center gap-2">
+                                    <TbCoinTaka /> {order?.totalPrice} BDT
+                                </span>
+                                <button
+                                    className="btn btn-sm btn-info btn-soft"
+                                    onClick={() => setSelectedOrder(order)}
+                                >
+                                    View Details
+                                </button>
+                            </div>
                         </div>
 
                         <table className="rounded-b min-w-full bg-white shadow-md overflow-hidden">
