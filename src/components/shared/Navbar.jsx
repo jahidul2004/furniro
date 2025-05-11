@@ -29,18 +29,28 @@ const Navbar = () => {
             </li>
             <li className="block md:hidden">
                 <Link
-                    className="btn btn-sm btn-soft btn-info w-full font-bold"
+                    className={`${
+                        user && "hidden"
+                    } btn btn-sm btn-soft btn-info w-full font-bold`}
                     to={"/login"}
                 >
                     Login <AiOutlineLogin />
                 </Link>
             </li>
-            <li className="block md:hidden mt-2">
+            <li className={`${user && "hidden"} block md:hidden mt-2`}>
                 <Link
                     className="btn btn-soft btn-success btn-sm w-full font-bold"
                     to={"/register"}
                 >
                     Register <IoCreateOutline />
+                </Link>
+            </li>
+            <li className="block md:hidden">
+                <Link
+                    to={"/myAccount"}
+                    className="btn btn-warning btn-sm w-full text-white"
+                >
+                    My Account <FaRegUser></FaRegUser>
                 </Link>
             </li>
         </>
