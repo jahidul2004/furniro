@@ -32,19 +32,6 @@ const ProductCard = ({ data }) => {
                     >
                         View Details
                     </Link>
-
-                    {/* Action Icons (Decorative/Functional) */}
-                    <div className="flex gap-4 text-white text-sm font-semibold translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-75">
-                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
-                            <FaShareAlt /> Share
-                        </button>
-                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
-                            <FaExchangeAlt /> Compare
-                        </button>
-                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
-                            <FaRegHeart /> Like
-                        </button>
-                    </div>
                 </div>
             </div>
 

@@ -64,8 +64,8 @@ const Contact = () => {
                                     Address
                                 </h3>
                                 <p className="text-gray-600 mt-2">
-                                    236 5th SE Avenue, <br /> New York NY10000,
-                                    United States
+                                    16/C-D, Noorjahan Road, Bashbari,
+                                    Mohammadpur, Dhaka-1207
                                 </p>
                             </div>
                         </div>
@@ -202,7 +202,7 @@ const Contact = () => {
 
             <div className="w-full h-[400px] bg-gray-200">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sbd!4v1623385764268!5m2!1sen!2sbd"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.0000000000005!2d90.3625!3d23.7565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c6bec4f2093b%3A0x3e67c27abd123456!2sShyamoli%20Ideal%20Polytechnic%20Institute%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd"
                     width="100%"
                     height="100%"
                     style={{
