@@ -1,163 +1,256 @@
-import { FaGreaterThan } from "react-icons/fa";
+import {
+    FaGreaterThan,
+    FaEnvelope,
+    FaLock,
+    FaEye,
+    FaEyeSlash,
+    FaGoogle,
+} from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const { login, setUser, setDbUser } = useContext(AuthContext);
+    const { login, setUser, setDbUser, googleSignIn } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = (e) => {
         e.preventDefault();
-
         const form = e.target;
-
         const email = form.email.value;
         const password = form.password.value;
+
+        setLoading(true);
 
         login(email, password)
             .then((result) => {
                 const loggedUser = result.user;
                 setUser(loggedUser);
-                form.reset();
-                Swal.fire({
-                    title: "Success",
-                    text: "Login successful",
-                    icon: "success",
-                    confirmButtonText: "Close",
-                });
+
+                // Fetch user data from the database
+                fetch(`https://furniro-server-bay.vercel.app/user/${email}`)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data) {
+                            setDbUser(data);
+                        }
+                        setLoading(false);
+                        form.reset();
+
+                        Swal.fire({
+                            title: "Welcome Back!",
+                            text: "Login successful.",
+                            icon: "success",
+                            confirmButtonColor: "#b98e2f",
+                            timer: 1500,
+                            showConfirmButton: false,
+                        });
+
+                        navigate(from, { replace: true });
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching user data:", error);
+                        setLoading(false);
+                    });
             })
             .catch((error) => {
                 console.error("Login error:", error.message);
+                setLoading(false);
                 Swal.fire({
-                    title: "Error!",
-                    text: error.message,
+                    title: "Login Failed",
+                    text: "Invalid email or password.",
                     icon: "error",
-                    confirmButtonText: "Close",
+                    confirmButtonColor: "#b98e2f",
                 });
             });
-
-        // Fetch user data from the database
-        fetch(`https://furniro-server-bay.vercel.app/user/${email}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) {
-                    setDbUser(data);
-                } else {
-                    console.error("User not found in the database");
-                }
-            })
-            .catch((error) => {
-                console.error("Error fetching user data:", error);
-            });
     };
+
+    const handleGoogleLogin = () => {
+        if (googleSignIn) {
+            googleSignIn()
+                .then((result) => {
+                    const user = result.user;
+                    setUser(user);
+                    // Optional: You might want to save google user to DB here if not exists
+                    Swal.fire({
+                        title: "Success",
+                        text: "Logged in with Google",
+                        icon: "success",
+                        confirmButtonColor: "#b98e2f",
+                        timer: 1500,
+                        showConfirmButton: false,
+                    });
+                    navigate(from, { replace: true });
+                })
+                .catch((err) => console.error(err));
+        } else {
+            Swal.fire(
+                "Note",
+                "Google Sign In method not found in context",
+                "info"
+            );
+        }
+    };
+
     return (
-        <div>
+        <div className="bg-white pb-10">
             {/* Header */}
             <div
                 style={{
                     backgroundImage: `url(${shopHeading})`,
-                    width: "100%",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
                 }}
-                className="h-[220px] w-full bg-cover flex flex-col justify-center items-center"
+                className="relative h-[250px] w-full flex flex-col justify-center items-center"
             >
-                <h1 className="text-3xl font-semibold">Login</h1>
-                <p className="mt-2 font-semibold flex items-center">
-                    Home <FaGreaterThan className="mx-3" /> Login
-                </p>
+                <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]"></div>
+                <div className="relative z-10 text-center">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                        Login
+                    </h1>
+                    <p className="font-medium flex items-center justify-center text-gray-800">
+                        Home <FaGreaterThan className="mx-2 text-xs" /> Login
+                    </p>
+                </div>
             </div>
             {/* Header end */}
 
             {/* Main content */}
-            <div className="w-[95%] md:container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                {/* Register form */}
-                <div className="order-2 md:order-1 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
-                    <h1 className="text-2xl font-bold text-center">Login</h1>
-                    <form
-                        onSubmit={handleLogin}
-                        noValidate=""
-                        action=""
-                        className="space-y-6"
-                    >
-                        <div className="space-y-1 text-sm">
-                            <label
-                                htmlFor="username"
-                                className="block dark:text-gray-600"
-                            >
-                                Email
+            <div className="w-[95%] md:container mx-auto my-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center shadow-2xl rounded-2xl overflow-hidden bg-white border border-gray-100">
+                {/* Image Section */}
+                <div className="hidden lg:block h-full relative group">
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500"></div>
+                    <img
+                        className="w-full h-full object-cover min-h-[600px]"
+                        src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
+                        alt="Login Visual"
+                    />
+                    <div className="absolute bottom-10 left-10 text-white z-10">
+                        <h2 className="text-4xl font-bold mb-2">
+                            Welcome Back
+                        </h2>
+                        <p className="opacity-90">
+                            Sign in to continue your furniture journey.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Form Section */}
+                <div className="w-full max-w-lg mx-auto p-8 md:p-12">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800">
+                            Sign In
+                        </h2>
+                        <p className="text-gray-500 mt-2">
+                            Enter your details to access your account
+                        </p>
+                    </div>
+
+                    <form onSubmit={handleLogin} className="space-y-6">
+                        {/* Email Input */}
+                        <div className="relative">
+                            <label className="text-sm font-semibold text-gray-600 mb-1 block">
+                                Email Address
                             </label>
-                            <input
-                                type="email"
-                                name="email"
-                                id="email"
-                                placeholder="Enter your email"
-                                className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                            />
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                    <FaEnvelope />
+                                </span>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    placeholder="example@email.com"
+                                    className="w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                />
+                            </div>
                         </div>
-                        <div className="space-y-1 text-sm">
-                            <label
-                                htmlFor="password"
-                                className="block dark:text-gray-600"
-                            >
+
+                        {/* Password Input */}
+                        <div className="relative">
+                            <label className="text-sm font-semibold text-gray-600 mb-1 block">
                                 Password
                             </label>
-                            <input
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="Password"
-                                className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-                            />
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                                    <FaLock />
+                                </span>
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    required
+                                    placeholder="••••••••"
+                                    className="w-full pl-10 pr-12 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                />
+                                <span
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer hover:text-[#b98e2f]"
+                                    onClick={() =>
+                                        setShowPassword(!showPassword)
+                                    }
+                                >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </span>
+                            </div>
+                            <div className="flex justify-end mt-2">
+                                <a
+                                    href="#"
+                                    className="text-xs text-[#b98e2f] hover:underline font-semibold"
+                                >
+                                    Forgot Password?
+                                </a>
+                            </div>
                         </div>
-                        <button className="block w-full p-3 text-center rounded-sm bg-[#b98e2f] text-white">
-                            Login
+
+                        {/* Login Button */}
+                        <button
+                            disabled={loading}
+                            className="w-full py-3 bg-[#b98e2f] hover:bg-[#a17b2a] text-white font-bold rounded-lg shadow-md transition-all duration-300 transform active:scale-95 flex justify-center items-center gap-2"
+                        >
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Sign In"
+                            )}
                         </button>
                     </form>
-                    <div className="flex items-center pt-4 space-x-1">
-                        <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
-                        <p className="px-3 text-sm dark:text-gray-600">
-                            Login with social accounts
-                        </p>
-                        <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
+
+                    {/* Divider */}
+                    <div className="flex items-center my-6">
+                        <div className="flex-1 h-px bg-gray-200"></div>
+                        <span className="px-4 text-sm text-gray-500 font-medium">
+                            Or continue with
+                        </span>
+                        <div className="flex-1 h-px bg-gray-200"></div>
                     </div>
-                    <div className="flex justify-center space-x-4">
-                        <button
-                            aria-label="Log in with Google"
-                            className="p-3 rounded-sm"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 32 32"
-                                className="w-5 h-5 fill-current"
-                            >
-                                <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <p className="text-xs text-center sm:px-6 dark:text-gray-600">
-                        Don't Have an account?
+
+                    {/* Social Login */}
+                    <button
+                        onClick={handleGoogleLogin}
+                        className="w-full py-3 border border-gray-300 rounded-lg flex items-center justify-center gap-3 hover:bg-gray-50 transition-all font-semibold text-gray-700"
+                    >
+                        <FaGoogle className="text-red-500" />
+                        <span>Sign in with Google</span>
+                    </button>
+
+                    {/* Register Link */}
+                    <p className="text-center mt-8 text-sm text-gray-600">
+                        Don't have an account?{" "}
                         <Link
-                            to={"/register"}
-                            href="#"
-                            className="underline dark:text-gray-800"
+                            to="/register"
+                            className="text-[#b98e2f] font-bold hover:underline"
                         >
-                            Register
+                            Register Now
                         </Link>
                     </p>
                 </div>
-                {/* Register form end */}
-                {/* Image div */}
-                <div className="order-1 md:order-2">
-                    <img
-                        className="w-full h-full rounded"
-                        src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
-                        alt=""
-                    />
-                </div>
-                {/* Image div end */}
             </div>
-            {/* Main content end */}
         </div>
     );
 };
