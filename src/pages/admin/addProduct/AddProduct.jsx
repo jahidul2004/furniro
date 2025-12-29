@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../../../context/AuthContext/AuthContext";
+import { FaBoxOpen, FaCloudUploadAlt, FaSave } from "react-icons/fa";
 
 const AddProduct = () => {
     const [loading, setLoading] = useState(false);
@@ -82,13 +83,14 @@ const AddProduct = () => {
                 timer: 2500,
                 toast: true,
                 position: "top-end",
+                iconColor: "#b98e2f",
             });
             form.reset();
         } catch (error) {
             console.error(error);
             Swal.fire({
                 icon: "error",
-                title: "Something wrong! Try again.",
+                title: "Something went wrong! Try again.",
                 showConfirmButton: false,
                 timer: 2500,
                 toast: true,
@@ -100,176 +102,235 @@ const AddProduct = () => {
     };
 
     return (
-        <div className="min-h-screen py-10 px-4">
-            <div className="max-w-3xl mx-auto bg-white shadow-2xl rounded-3xl p-10">
-                <h2 className="btn btn-soft btn-info w-full btn-xl pointer-events-none text-4xl font-bold text-center text-info mb-10">
-                    Add New Product
-                </h2>
+        <div className="p-6 md:p-10 bg-gray-50 min-h-screen">
+            <div className="max-w-4xl mx-auto bg-white shadow-sm border border-gray-100 rounded-2xl p-8 md:p-10">
+                {/* Form Header */}
+                <div className="mb-8 border-b border-gray-100 pb-6 text-center md:text-left">
+                    <h2 className="text-3xl font-bold text-gray-800 flex items-center justify-center md:justify-start gap-3">
+                        <FaBoxOpen className="text-[#b98e2f]" />
+                        Add New Product
+                    </h2>
+                    <p className="text-gray-500 mt-2">
+                        Fill in the information below to add a new product to
+                        your inventory.
+                    </p>
+                </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6 rounded">
-                    {/* Title */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Product Title *
-                        </label>
-                        <input
-                            type="text"
-                            name="title"
-                            placeholder="e.g. Wooden Chair"
-                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
-                            required
-                        />
-                    </div>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                    {/* General Info Section */}
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-semibold text-gray-800 border-l-4 border-[#b98e2f] pl-3">
+                            General Information
+                        </h3>
 
-                    {/* Short Description */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Product Short Description *
-                        </label>
-                        <input
-                            type="text"
-                            name="shortDescription"
-                            placeholder="e.g. Elegant and durable chair"
-                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
-                            required
-                        />
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Product Title{" "}
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    placeholder="e.g. Luxury Sofa Set"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Category{" "}
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <select
+                                    name="category"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all cursor-pointer"
+                                    required
+                                >
+                                    <option value="" disabled selected>
+                                        Select a category
+                                    </option>
+                                    <option value="Furniture">Furniture</option>
+                                    <option value="Living Room">
+                                        Living Room
+                                    </option>
+                                    <option value="Bedroom">Bedroom</option>
+                                    <option value="Office">Office</option>
+                                    <option value="Dining">Dining</option>
+                                    <option value="Decor">Decor</option>
+                                </select>
+                            </div>
+                        </div>
 
-                    {/* Description */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Description *
-                        </label>
-                        <textarea
-                            name="description"
-                            rows={4}
-                            placeholder="Write a detailed product description..."
-                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
-                            required
-                        />
-                    </div>
-
-                    {/* Features */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Features *
-                        </label>
-                        <input
-                            required
-                            className="input w-full"
-                            name="features"
-                            placeholder="Enter features separated with ,"
-                            type="text"
-                        />
-                    </div>
-
-                    {/* Price and Discount */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Price (৳) *
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Short Description{" "}
+                                <span className="text-red-500">*</span>
                             </label>
                             <input
-                                type="number"
-                                name="price"
-                                placeholder="e.g. 1200"
-                                className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
+                                type="text"
+                                name="shortDescription"
+                                placeholder="e.g. Elegant and durable chair for modern homes"
+                                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
                                 required
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Discount (%) *
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Full Description{" "}
+                                <span className="text-red-500">*</span>
                             </label>
-                            <input
-                                type="number"
-                                name="discount"
-                                placeholder="e.g. 10"
-                                className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Images */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Product Image 1 *
-                            </label>
-                            <input
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                className="cursor-pointer w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium mb-1 text-gray-800">
-                                Product Image 2 *
-                            </label>
-                            <input
-                                type="file"
-                                name="image2"
-                                accept="image/*"
-                                className="cursor-pointer w-full border border-gray-300 py-2 px-3 rounded-lg shadow-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-info file:text-white hover:file:bg-info"
+                            <textarea
+                                name="description"
+                                rows={5}
+                                placeholder="Write a detailed product description here..."
+                                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all resize-none"
                                 required
                             />
                         </div>
                     </div>
 
-                    {/* Is New */}
-                    <div className="flex items-center gap-3">
+                    {/* Pricing & Features Section */}
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-semibold text-gray-800 border-l-4 border-[#b98e2f] pl-3">
+                            Pricing & Features
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Price (৳){" "}
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    placeholder="0.00"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Discount (%)
+                                </label>
+                                <input
+                                    type="number"
+                                    name="discount"
+                                    placeholder="0"
+                                    className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Features (Comma Separated){" "}
+                                <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="features"
+                                placeholder="e.g. Durable Wood, Waterproof, Easy Assembly"
+                                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                Additional Info
+                            </label>
+                            <textarea
+                                name="additionalInfo"
+                                rows={2}
+                                placeholder="Any extra notes (e.g. Warranty details)..."
+                                className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Media Section */}
+                    <div className="space-y-6">
+                        <h3 className="text-lg font-semibold text-gray-800 border-l-4 border-[#b98e2f] pl-3">
+                            Product Images
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="form-control w-full">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Cover Image{" "}
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 bg-gray-50 hover:bg-white hover:border-[#b98e2f] transition-all text-center cursor-pointer group">
+                                    <FaCloudUploadAlt className="mx-auto text-3xl text-gray-400 group-hover:text-[#b98e2f] mb-2" />
+                                    <span className="text-sm text-gray-500">
+                                        Click to upload image
+                                    </span>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        accept="image/*"
+                                        required
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
+                                </div>
+                            </div>
+                            <div className="form-control w-full">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    Detail Image{" "}
+                                    <span className="text-red-500">*</span>
+                                </label>
+                                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 bg-gray-50 hover:bg-white hover:border-[#b98e2f] transition-all text-center cursor-pointer group">
+                                    <FaCloudUploadAlt className="mx-auto text-3xl text-gray-400 group-hover:text-[#b98e2f] mb-2" />
+                                    <span className="text-sm text-gray-500">
+                                        Click to upload image
+                                    </span>
+                                    <input
+                                        type="file"
+                                        name="image2"
+                                        accept="image/*"
+                                        required
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Checkbox */}
+                    <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
                         <input
                             type="checkbox"
                             name="isNew"
-                            className="accent-info w-5 h-5"
+                            id="isNew"
+                            className="w-5 h-5 text-[#b98e2f] border-gray-300 rounded focus:ring-[#b98e2f] cursor-pointer"
                         />
-                        <label className="text-sm font-medium text-gray-800">
-                            Is New Product?
-                        </label>
-                    </div>
-
-                    {/* Category */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Category *
-                        </label>
-                        <select
-                            name="category"
-                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-info"
-                            required
+                        <label
+                            htmlFor="isNew"
+                            className="text-sm font-semibold text-gray-800 cursor-pointer select-none"
                         >
-                            <option value="">Select category</option>
-                            <option value="furniture">Furniture</option>
-                            <option value="stationery">Stationery</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    {/* Additional info */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1 text-gray-800">
-                            Additional Information *
+                            Mark as "New Arrival"
                         </label>
-                        <textarea
-                            required
-                            name="additionalInfo"
-                            rows={2}
-                            placeholder="Any additional information about the product..."
-                            className="w-full border border-gray-300 px-5 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#257bf6]"
-                        />
                     </div>
 
                     {/* Submit Button */}
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-info hover:bg-[#1e67d2] transition-all duration-300 text-white py-3 rounded-lg font-semibold shadow-lg text-lg"
-                    >
-                        {loading ? "Adding..." : "Add Product"}
-                    </button>
+                    <div className="pt-4">
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full bg-[#b98e2f] hover:bg-[#a17b2a] text-white py-4 rounded-lg font-bold shadow-lg transition-all duration-300 flex justify-center items-center gap-2 text-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                            {loading ? (
+                                <span className="loading loading-spinner loading-md"></span>
+                            ) : (
+                                <>
+                                    <FaSave /> Save Product
+                                </>
+                            )}
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

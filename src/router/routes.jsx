@@ -123,10 +123,6 @@ const router = createBrowserRouter([
                 element: <AdminHome></AdminHome>,
             },
             {
-                path: "allOrders",
-                element: <AllOrders></AllOrders>,
-            },
-            {
                 path: "addProduct",
                 element: <AddProduct></AddProduct>,
             },
