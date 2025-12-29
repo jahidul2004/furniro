@@ -50,19 +50,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/cart",
-                element: (
-                    <NotAdminRoute>
-                        <Cart></Cart>
-                    </NotAdminRoute>
-                ),
+                element: <Cart></Cart>,
             },
             {
                 path: "/wishlist",
-                element: (
-                    <NotAdminRoute>
-                        <WishList></WishList>
-                    </NotAdminRoute>
-                ),
+                element: <WishList></WishList>,
             },
             {
                 path: "/checkout",

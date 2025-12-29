@@ -1,164 +1,268 @@
-import { FaClock, FaGreaterThan, FaPhone } from "react-icons/fa";
+import React from "react";
+import {
+    FaClock,
+    FaGreaterThan,
+    FaPhone,
+    FaMapMarkerAlt,
+    FaEnvelope,
+    FaFacebookF,
+    FaTwitter,
+    FaInstagram,
+    FaLinkedinIn,
+    FaQuestionCircle,
+} from "react-icons/fa";
 import shopHeading from "../../assets/pageHeading/shopHeading.png";
-import { FaLocationDot } from "react-icons/fa6";
 import Swal from "sweetalert2";
 
 const Contact = () => {
     const handleContact = (event) => {
         event.preventDefault();
-
         const form = event.target;
         const name = form.name.value;
 
         Swal.fire({
-            title: `Thank You ${name}`,
-            text: "We received your message. \n We Will Get Back To You Soon",
+            title: `Thank You ${name}!`,
+            text: "We have received your message. Our team will get back to you shortly.",
             icon: "success",
+            confirmButtonColor: "#b98e2f",
             confirmButtonText: "Close",
         });
 
         form.reset();
     };
+
     return (
-        <div>
-            {/* Header */}
+        <div className="bg-white">
             <div
                 style={{
                     backgroundImage: `url(${shopHeading})`,
-                    width: "100%",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
                 }}
-                className="h-[220px] w-full bg-cover flex flex-col justify-center items-center"
+                className="relative h-[250px] w-full flex flex-col justify-center items-center text-center"
             >
-                <h1 className="text-3xl font-semibold">Contact</h1>
-                <p className="mt-2 font-semibold flex items-center">
-                    Home <FaGreaterThan className="mx-3" /> Contact
-                </p>
-            </div>
-            {/* Header end */}
-
-            {/* Main content start */}
-            <div className="my-10 w-[95%] md:container mx-auto">
-                {/* Header area start */}
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold">Get In Touch With Us</h1>
-                    <p className="text-[#9f9f9f] mt-4">
-                        For More Information About Our Product & Services.
-                        Please Feel Free To Drop Us An Email. <br /> Our Staff
-                        Always Be There To Help You Out. Do Not Hesitate!
+                <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+                <div className="relative z-10">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                        Contact Us
+                    </h1>
+                    <p className="font-medium flex items-center justify-center text-gray-800">
+                        Home <FaGreaterThan className="mx-2 text-xs" /> Contact
                     </p>
                 </div>
-                {/* Header area start end */}
+            </div>
 
-                {/* Address and contact form start */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 mt-12">
-                    {/* Address area start */}
-                    <div className="flex justify-center">
-                        <div className="w-max flex flex-col gap-4 md:gap-6">
-                            {/* Address */}
+            <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <div className="lg:col-span-1 space-y-8">
+                        <div className="flex items-start gap-4">
+                            <div className="bg-[#b98e2f] text-white p-4 rounded-full shadow-md">
+                                <FaMapMarkerAlt size={22} />
+                            </div>
                             <div>
-                                <span className="flex items-center gap-2">
-                                    <FaLocationDot size={23} />
-                                    <h1 className="text-xl font-bold">
-                                        Address
-                                    </h1>
-                                </span>
-                                <p className="text-[#9f9f9f] mt-2">
+                                <h3 className="text-xl font-bold text-gray-800">
+                                    Address
+                                </h3>
+                                <p className="text-gray-600 mt-2">
                                     236 5th SE Avenue, <br /> New York NY10000,
                                     United States
                                 </p>
                             </div>
-                            {/* Address */}
+                        </div>
 
-                            {/* Phone */}
+                        <div className="flex items-start gap-4">
+                            <div className="bg-[#b98e2f] text-white p-4 rounded-full shadow-md">
+                                <FaPhone size={22} />
+                            </div>
                             <div>
-                                <span className="flex items-center gap-2">
-                                    <FaPhone size={23} />
-                                    <h1 className="text-xl font-bold">Phone</h1>
-                                </span>
-                                <p className="text-[#9f9f9f] mt-2">
-                                    Mobile: +(84) 546-6789 <br /> Hotline: +(84)
-                                    456-6789
+                                <h3 className="text-xl font-bold text-gray-800">
+                                    Phone
+                                </h3>
+                                <p className="text-gray-600 mt-2">
+                                    Mobile: +(84) 546-6789 <br />
+                                    Hotline: +(84) 456-6789
                                 </p>
                             </div>
-                            {/* Phone */}
+                        </div>
 
-                            {/* Working Time */}
+                        <div className="flex items-start gap-4">
+                            <div className="bg-[#b98e2f] text-white p-4 rounded-full shadow-md">
+                                <FaClock size={22} />
+                            </div>
                             <div>
-                                <span className="flex items-center gap-2">
-                                    <FaClock size={23} />
-                                    <h1 className="text-xl font-bold">
-                                        Working Time
-                                    </h1>
-                                </span>
-                                <p className="text-[#9f9f9f] mt-2">
-                                    Monday-Friday: 9:00 - 22:00 <br />{" "}
+                                <h3 className="text-xl font-bold text-gray-800">
+                                    Working Time
+                                </h3>
+                                <p className="text-gray-600 mt-2">
+                                    Monday-Friday: 9:00 - 22:00 <br />
                                     Saturday-Sunday: 9:00 - 21:00
                                 </p>
                             </div>
-                            {/* Working Time */}
+                        </div>
+
+                        <div className="pt-8">
+                            <h4 className="text-lg font-bold text-gray-800 mb-4">
+                                Follow Us
+                            </h4>
+                            <div className="flex gap-4">
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                                >
+                                    <FaFacebookF />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                                >
+                                    <FaTwitter />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                                >
+                                    <FaInstagram />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                                >
+                                    <FaLinkedinIn />
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    {/* Address area end */}
 
-                    {/* Contact form start */}
-                    <div className="flex justify-center">
-                        <div className="w-[90%] md:w-[80%]">
-                            <form onSubmit={handleContact} action="">
-                                <fieldset className="fieldset">
-                                    <legend className="fieldset-legend">
-                                        Your Name
-                                    </legend>
-                                    <input
-                                        required
-                                        name="name"
-                                        type="text"
-                                        className="input w-full md:w-[80%]"
-                                        placeholder="Enter Your Name"
-                                    />
-                                </fieldset>
-                                <fieldset className="fieldset">
-                                    <legend className="fieldset-legend">
-                                        Your Email
-                                    </legend>
-                                    <input
-                                        required
-                                        type="email"
-                                        className="input w-full md:w-[80%]"
-                                        placeholder="Enter Your Email"
-                                    />
-                                </fieldset>
-                                <fieldset className="fieldset">
-                                    <legend className="fieldset-legend">
+                    <div className="lg:col-span-2">
+                        <div className="bg-white p-8 md:p-10 rounded-2xl shadow-lg border border-gray-100">
+                            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                                Send Us A Message
+                            </h3>
+                            <form
+                                onSubmit={handleContact}
+                                className="space-y-6"
+                            >
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-semibold text-gray-600">
+                                            Your Name
+                                        </label>
+                                        <input
+                                            required
+                                            name="name"
+                                            type="text"
+                                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                            placeholder="Abc"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-semibold text-gray-600">
+                                            Email Address
+                                        </label>
+                                        <input
+                                            required
+                                            type="email"
+                                            className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                            placeholder="abc@def.com"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-gray-600">
                                         Subject
-                                    </legend>
+                                    </label>
                                     <input
                                         required
                                         type="text"
-                                        className="input w-full md:w-[80%]"
-                                        placeholder="Subject"
+                                        className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all"
+                                        placeholder="This is an optional"
                                     />
-                                </fieldset>
-                                <fieldset className="fieldset">
-                                    <legend className="fieldset-legend">
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label className="text-sm font-semibold text-gray-600">
                                         Message
-                                    </legend>
+                                    </label>
                                     <textarea
                                         required
-                                        className="textarea h-24 w-full md:w-[80%]"
-                                        placeholder="Enter Your Message"
+                                        className="w-full px-4 py-3 h-32 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#b98e2f] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#b98e2f] transition-all resize-none"
+                                        placeholder="Hi! I'd like to ask about..."
                                     ></textarea>
-                                </fieldset>
-                                <button className="btn bg-[#b98e2f] text-white border-none outline-none w-full md:w-[80%] mt-4">
-                                    Submit
+                                </div>
+
+                                <button className="w-full md:w-auto px-8 py-3 bg-[#b98e2f] hover:bg-[#a17b2a] text-white font-bold rounded-lg transition-all duration-300 shadow-md transform active:scale-95">
+                                    Submit Message
                                 </button>
                             </form>
                         </div>
                     </div>
-                    {/* Contact form end */}
                 </div>
-                {/* Address and contact form end */}
             </div>
-            {/* Main content end */}
+
+            <div className="w-full h-[400px] bg-gray-200">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sbd!4v1623385764268!5m2!1sen!2sbd"
+                    width="100%"
+                    height="100%"
+                    style={{
+                        border: 0,
+                        filter: "grayscale(100%) contrast(1.2) opacity(0.8)",
+                    }}
+                    allowFullScreen=""
+                    loading="lazy"
+                ></iframe>
+            </div>
+
+            <div className="bg-gray-50 py-16 px-4">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-2xl font-bold text-center text-gray-800 mb-8 flex items-center justify-center gap-2">
+                        <FaQuestionCircle className="text-[#b98e2f]" />{" "}
+                        Frequently Asked Questions
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 className="font-bold text-gray-800 mb-2">
+                                How long does shipping take?
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                                Usually, our shipping takes 3-5 business days
+                                within the city and 7-10 days for international
+                                orders.
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 className="font-bold text-gray-800 mb-2">
+                                Can I return my product?
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                                Yes, we offer a 30-day return policy if the
+                                product is damaged or does not match the
+                                description.
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 className="font-bold text-gray-800 mb-2">
+                                Do you provide custom furniture?
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                                Absolutely! You can contact our support team to
+                                discuss custom dimensions and materials.
+                            </p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h4 className="font-bold text-gray-800 mb-2">
+                                Is payment secure?
+                            </h4>
+                            <p className="text-gray-600 text-sm">
+                                We use SSL encryption and trusted payment
+                                gateways to ensure your transaction is 100%
+                                secure.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

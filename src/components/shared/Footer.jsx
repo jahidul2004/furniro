@@ -1,72 +1,134 @@
-import { FaFacebook } from "react-icons/fa";
-import logo from "../../assets/logo/logo.png";
-import { FaXTwitter } from "react-icons/fa6";
-import { LuInstagram } from "react-icons/lu";
+import {
+    FaFacebook,
+    FaLinkedinIn,
+    FaTwitter,
+    FaInstagram,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer flex flex-col md:flex-row justify-between bg-base-200 text-base-content p-10">
-                <div>
-                    <h1 className="text-2xl font-bold">Furniro</h1>
-                    <p>
-                        400 University Drive Suite 200 Coral <br /> Gables, FL
-                        33134 USA
-                    </p>
-                </div>
-                <nav>
-                    <h6 className="footer-title">Links</h6>
-                    <a className="link link-hover">Home</a>
-                    <a className="link link-hover">Shop</a>
-                    <a className="link link-hover">About</a>
-                    <a className="link link-hover">Contact</a>
-                </nav>
-                <nav>
-                    <h6 className="footer-title">Help</h6>
-                    <a className="link link-hover">Payment Options</a>
-                    <a className="link link-hover">Return policy</a>
-                    <a className="link link-hover">Cookie policy</a>
-                </nav>
-                <div>
-                    <h6 className="footer-title">Newsletter</h6>
-                    <div className="flex gap-2 items-center">
-                        <input
-                            placeholder="Enter Your Email"
-                            className="input input-bordered"
-                            type="text"
-                        />
-                        <button className="bg-[#ba8d2f] text-white shadow-none border-none btn ">
-                            SUBSCRIBE
-                        </button>
+        <footer className="bg-white border-t border-gray-200 pt-16 pb-8">
+            <div className="w-[95%] md:container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    {/* Brand Info */}
+                    <div className="space-y-6">
+                        <h2 className="text-2xl font-bold text-gray-900">
+                            Furniro.
+                        </h2>
+                        <address className="not-italic text-[#9f9f9f] leading-relaxed">
+                            16/C-D, Noorjahan Road, Bashbari, Mohammadpur,
+                            Dhaka-1207
+                        </address>
+                        <div className="flex gap-4 pt-2">
+                            <a
+                                href="#"
+                                className="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                            >
+                                <FaFacebook size={18} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                            >
+                                <FaInstagram size={18} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                            >
+                                <FaTwitter size={18} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 rounded-full bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-[#b98e2f] hover:text-white transition-all duration-300"
+                            >
+                                <FaLinkedinIn size={18} />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Links */}
+                    <div className="space-y-6">
+                        <h4 className="text-[#9f9f9f] font-medium">Links</h4>
+                        <ul className="space-y-4 font-semibold text-gray-800">
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/shop"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Shop
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/about"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    About
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/contact"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Contact
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Help */}
+                    <div className="space-y-6">
+                        <h4 className="text-[#9f9f9f] font-medium">Help</h4>
+                        <ul className="space-y-4 font-semibold text-gray-800">
+                            <li>
+                                <Link
+                                    to="#"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Payment Options
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="#"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Returns
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="#"
+                                    className="hover:text-[#b98e2f] transition-colors"
+                                >
+                                    Privacy Policies
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </footer>
-            <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
-                <aside className="grid-flow-col items-center">
-                    <img src={logo} alt="" />
-                    <p className="font-bold">
-                        Furniro Industries Ltd.
-                        <br />
-                        <span className="font-normal">
-                            Providing reliable tech since 1992
-                        </span>
+
+                {/* Bottom Bar */}
+                <div className="border-t border-gray-200 pt-8">
+                    <p className="text-gray-800 text-sm md:text-base">
+                        2025 Furniro. All rights reserved | Developed by Jihad,
+                        Twahidul, Forhad, Shihab, Araf, Mahi, Parthib, Alif,
+                        Hasan, Roni
                     </p>
-                </aside>
-                <nav className="md:place-self-center md:justify-self-end">
-                    <div className="grid grid-flow-col gap-4 text-[#ba8d2f]">
-                        <a>
-                            <FaFacebook size={25} />
-                        </a>
-                        <a>
-                            <FaXTwitter size={25} />
-                        </a>
-                        <a>
-                            <LuInstagram size={25} />
-                        </a>
-                    </div>
-                </nav>
-            </footer>
-        </div>
+                </div>
+            </div>
+        </footer>
     );
 };
 

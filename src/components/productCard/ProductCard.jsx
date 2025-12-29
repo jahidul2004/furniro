@@ -1,40 +1,91 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { FaShareAlt, FaRegHeart, FaExchangeAlt } from "react-icons/fa";
 
 const ProductCard = ({ data }) => {
+    const { title, shortDescription, price, images, isNew, discount, _id } =
+        data || {};
+
+    // Calculate discounted price logic (Optional: assuming discount is percentage)
+    // If you don't need calculation, you can remove this part.
+    const hasDiscount = discount && discount > 0;
+
     return (
-        <div className="bg-[#f4f5f7] relative rounded">
-            <div className="w-full h-[200px]">
+        <div className="group relative bg-[#F4F5F7] overflow-hidden rounded-sm transition-all duration-300 hover:shadow-xl">
+            {/* Image Section */}
+            <div className="relative h-[300px] w-full overflow-hidden">
                 <img
-                    className="w-full h-full rounded-t"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     src={
-                        data?.images[0]
-                            ? data?.images[0]
+                        images && images.length > 0
+                            ? images[0]
                             : "https://i.ibb.co/7g0J3qY/Rectangle-1.png"
                     }
-                    alt=""
+                    alt={title}
                 />
-            </div>
-            <div className="p-4">
-                <h1 className="text-xl font-semibold">{data?.title}</h1>
-                <p className="my-2 text-[#898989] font-semibold">
-                    {data?.shortDescription}
-                </p>
 
-                <div className="flex justify-between items-center">
-                    <h3 className="font-semibold">$ {data?.price}</h3>
+                {/* Overlay on Hover */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center gap-4">
                     <Link
-                        to={`/shop/${data?._id}`}
-                        className="rounded btn btn-sm mt-2 border-none shadow-none bg-[#b98e2f] text-white"
+                        to={`/shop/${_id}`}
+                        className="bg-white text-[#b98e2f] font-bold px-10 py-3 rounded-sm hover:bg-[#b98e2f] hover:text-white transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
                     >
                         View Details
                     </Link>
+
+                    {/* Action Icons (Decorative/Functional) */}
+                    <div className="flex gap-4 text-white text-sm font-semibold translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-75">
+                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
+                            <FaShareAlt /> Share
+                        </button>
+                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
+                            <FaExchangeAlt /> Compare
+                        </button>
+                        <button className="flex items-center gap-1 hover:text-[#b98e2f] transition-colors">
+                            <FaRegHeart /> Like
+                        </button>
+                    </div>
                 </div>
             </div>
-            {data?.isNew && (
-                <div className="bg-[#b98e2f] absolute top-2 right-2 p-2 w-[35px] h-[35px] flex justify-center items-center rounded-full">
-                    <p className="text-white text-sm">New</p>
+
+            {/* Content Section */}
+            <div className="p-4 pb-6">
+                <h3 className="text-xl font-bold text-[#3a3a3a] mb-1 truncate">
+                    {title}
+                </h3>
+                <p className="text-[#898989] text-sm font-medium mb-2 truncate">
+                    {shortDescription}
+                </p>
+
+                <div className="flex items-center justify-between gap-2 mt-2">
+                    <span className="text-xl font-bold text-[#3a3a3a]">
+                        Tk {price?.toLocaleString()}
+                    </span>
+                    {hasDiscount && (
+                        <span className="text-sm text-[#b0b0b0] line-through">
+                            Tk{" "}
+                            {(
+                                price +
+                                (price * discount) / 100
+                            ).toLocaleString()}
+                        </span>
+                    )}
                 </div>
-            )}
+            </div>
+
+            {/* Badges (New / Discount) */}
+            <div className="absolute top-4 right-4 flex flex-col gap-2">
+                {isNew && (
+                    <div className="w-12 h-12 bg-[#2ec1ac] rounded-full flex items-center justify-center text-white text-sm font-medium shadow-sm">
+                        New
+                    </div>
+                )}
+                {hasDiscount && (
+                    <div className="w-12 h-12 bg-[#e97171] rounded-full flex items-center justify-center text-white text-sm font-medium shadow-sm">
+                        -{discount}%
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
