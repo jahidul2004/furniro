@@ -62,13 +62,15 @@ const Login = () => {
             })
             .catch((error) => {
                 console.error("Login error:", error.message);
-                setLoading(false);
+
                 Swal.fire({
                     title: "Login Failed",
                     text: "Invalid email or password.",
                     icon: "error",
                     confirmButtonColor: "#b98e2f",
                 });
+                setLoading(false);
+                window.location.reload();
             });
     };
 
@@ -78,7 +80,6 @@ const Login = () => {
                 .then((result) => {
                     const user = result.user;
                     setUser(user);
-                    // Optional: You might want to save google user to DB here if not exists
                     Swal.fire({
                         title: "Success",
                         text: "Logged in with Google",

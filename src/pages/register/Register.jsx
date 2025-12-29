@@ -64,6 +64,7 @@ const Register = () => {
                 icon: "error",
                 confirmButtonColor: "#b98e2f",
             });
+            window.location.reload();
         }
     };
 
