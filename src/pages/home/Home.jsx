@@ -23,31 +23,31 @@ const Home = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-auto md:h-[600px]">
                         <div className="flex flex-col gap-4 mt-10 md:mt-20">
                             <img
-                                src="https://i.ibb.co.com/mJ9Xq0q/image-1.png"
+                                src="https://i.ibb.co.com/2Ydq53KR/resident.png"
                                 className="w-full h-60 object-cover rounded-lg hover:scale-105 transition duration-500 shadow-md"
                                 alt="Setup 1"
                             />
                             <img
-                                src="https://i.ibb.co.com/S6qMxwQ/image-3.png"
+                                src="https://i.ibb.co.com/ksyW9M7x/dining.jpg"
                                 className="w-full h-40 object-cover rounded-lg hover:scale-105 transition duration-500 shadow-md"
                                 alt="Setup 2"
                             />
                         </div>
                         <div className="flex flex-col gap-4">
                             <img
-                                src="https://i.ibb.co.com/Xr5MCRyN/hero1.jpg"
+                                src="https://i.ibb.co.com/fV9v5vMj/director-Table.jpg"
                                 className="w-full h-48 object-cover rounded-lg hover:scale-105 transition duration-500 shadow-md"
                                 alt="Setup 3"
                             />
                             <img
-                                src="https://i.ibb.co.com/Qj0b1qK/image-2.png"
+                                src="https://i.ibb.co/zh8tG31F/kitchen.jpg"
                                 className="w-full h-80 object-cover rounded-lg hover:scale-105 transition duration-500 shadow-md"
                                 alt="Setup 4"
                             />
                         </div>
                         <div className="flex flex-col gap-4 mt-8">
                             <img
-                                src="https://i.ibb.co.com/5Lg6j6N/image-4.png"
+                                src="https://i.ibb.co/zh8tG31F/kitchen.jpg"
                                 className="w-full h-72 object-cover rounded-lg hover:scale-105 transition duration-500 shadow-md"
                                 alt="Setup 5"
                             />
